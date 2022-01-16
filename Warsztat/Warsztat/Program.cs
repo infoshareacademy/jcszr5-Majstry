@@ -6,7 +6,7 @@
 // Artur => zlecenie
 
 
-namespace Warstat
+namespace Warsztat
 {
     class Program
     {
