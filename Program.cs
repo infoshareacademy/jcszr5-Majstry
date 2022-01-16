@@ -1,10 +1,9 @@
 ﻿using System;
 // klasy:
-// pracownik => mechanik, księgowa;
-// samochód,
-// część,
-// narzędzia,
-// zlecenie
+// Łukasz => pracownik => mechanik, księgowa;
+// Krzysztof => samochód,
+// Krystian => część, narzędzia,
+// Artur => zlecenie
 
 
 namespace Warstat
@@ -13,8 +12,8 @@ namespace Warstat
     {
         static void Main(string[] args)
         {
-        
-        
+
+
         }
     }
 }
