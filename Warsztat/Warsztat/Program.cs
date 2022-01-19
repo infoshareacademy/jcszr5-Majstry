@@ -1,17 +1,18 @@
 ﻿using System;
 // klasy:
-// Łukasz => pracownik => mechanik, księgowa;
-// Krzysztof => samochód,
+// Krzysztof => pracownik => mechanik, księgowa;
+// Łukasz => samochód,
 // Krystian => część, narzędzia,
 // Artur => zlecenie
 
 
 namespace Warsztat
 {
-    class Program
+    public class Program : Samochod
     {
         static void Main(string[] args)
         {
+            Samochod samochod = new Samochod();
 
 
         }
