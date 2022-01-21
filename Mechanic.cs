@@ -19,6 +19,7 @@ namespace Majstry
         public Mechanic(string firstName, string lastName, int age, double salary, int seniority) : base(firstName,lastName,age,salary,seniority)
         {
             
+
         }
     }
 }
