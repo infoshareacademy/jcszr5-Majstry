@@ -6,103 +6,89 @@ using System.Threading.Tasks;
 
 namespace Warsztat
 {
-    public class Samochod
+    public class Car
 
     {
-        public Samochod()
+        public Car();
+        
         {
+                    public string BrandCar { get; set; }
+                    public string ModelCar { get; set; }
+                    public int ProductionYearCar { get; set; }
 
-            bool petla = true;
-            bool czyWprowadzacNoweAuto = true;
-
-            while (czyWprowadzacNoweAuto)
-            {
-
-                Console.WriteLine("Witaj użytkowniku podaj dane samochodu do naprawy");
-
-                Console.WriteLine("Wprowadź marke samochodu");
-                string marka;
-                marka = Console.ReadLine();
+                    public int EnginePower { get; set; }
 
 
-                Console.WriteLine("Podaj model samochodu");
-                string model;
-                model = Console.ReadLine();
+                    string brand;
+                    string model;
+                    int productionYear;
+                    int power;
 
-                Console.WriteLine("Podaj vin samochodu");
-                string vin;
-                model = Console.ReadLine();
-
-
-                petla = true;
-                int rokProdukcji = 0;
-                while (petla)
-                {
-                    Console.WriteLine("Podaj rok produkcji samochodu");
-                    rokProdukcji = int.TryParse(Console.ReadLine(), out rokProdukcji) ? rokProdukcji : 0;
-                    if (rokProdukcji != 0 && rokProdukcji > 1950 && rokProdukcji < 2022)
+                    public string BrandCar
                     {
-                        petla = false;
+                        get { return this.brand; }
+                        set { brand = Console.ReadLine(); }
                     }
-                    else
+                    public string ModelCar
                     {
-                        Console.WriteLine("Podaj poprawne dane!");
+                        get { return this.model; }
+                        set { model = Console.ReadLine(); }
                     }
-
-                }
-
-                petla = true;
-                double moc = 0;
-                while (petla)
-                {
-                    Console.WriteLine("Wprowadź moc samochodu");
-                    moc = double.TryParse(Console.ReadLine(), out moc) ? moc : 0;
-                    if (moc != 0 && moc > 30 && moc < 800)
+                    public int ProductionYearCar
                     {
-                        petla = false;
+                        get { return this.productionYear; }
+                        set 
+                        {
+                                bool petla = true;
+                                int productionYear = 0;
+                                while (petla)
+                                {
+                                    Console.WriteLine("Dziekuje podaj rok produkcji samochodu");
+                                     productionYear = int.TryParse(Console.ReadLine(), out productionYear) ? productionYear : 0; //operator warunkowy
+                                    if (productionYear != 0 && productionYear > 1950 && productionYear < 2022)
+                                    {
+                                        petla = false;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Podaj poprawne dane!");
+                                    }
+
+                                }
+
+                         }
                     }
-                    else
+                    public int EnginePower
                     {
-                        Console.WriteLine("Podaj poprawne dane!");
-                    }
-                }
-
-                petla = true;
-                int iloscCzesci = 0;
-                while (petla)
-                {
-                    Console.WriteLine("Podaj ilość części samochodu");
-                    iloscCzesci = int.TryParse(Console.ReadLine(), out iloscCzesci) ? iloscCzesci : 0;
-                    if (moc != 0 && iloscCzesci > 1 && iloscCzesci < 9)
-                    {
-                        petla = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Podaj poprawne dane!");
-                    }
-                }
-
-
-                Console.WriteLine("Czy chciałbyś przyjąć kolejny samochód (y)?");
-                var czyKolejny = Console.ReadLine();
-                if (czyKolejny == "y")
-                {
-                    czyWprowadzacNoweAuto = true;
-                }
-                else
-                {
-                    czyWprowadzacNoweAuto = false;
-                }
-
-
-
-
-            }
-
-
-
-
-        }
+                         get { return this.power; }
+                         set
+                         {
+                            bool petla = true;
+                            double moc = 0;
+                            while (petla)
+                            {
+                                Console.WriteLine("Dziekuję teraz wprowadź moc samochodu");
+                                power = double.TryParse(Console.ReadLine(), out power) ? power : 0;
+                                if (power != 0 && power > 30 && power < 600)
+                                {
+                                    petla = false;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Podaj poprawne dane!");
+                                }
+                            }
+                          } 
+                     }
+    
+    
     }
+
+
+
+
+
+
+    }
+    
 }

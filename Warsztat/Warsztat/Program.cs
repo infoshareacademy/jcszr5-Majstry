@@ -8,11 +8,11 @@
 
 namespace Warsztat
 {
-    public class Program : Samochod
+    public class Program : Car
     {
         static void Main(string[] args)
         {
-            Samochod samochod = new Samochod();
+            Car car = new Car();
 
 
         }
