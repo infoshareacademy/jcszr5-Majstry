@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using Warsztat;
+using static Warsztat.Order;
 
-
-
-namespace ClassOrder
+namespace Warsztat
 {
+
     class Program
     {
-
-        public static void Main(string[] args)
+       static void Main(string[] args)
         {
             List<Order> orders = new List<Order>();
             Order order = new Order();
