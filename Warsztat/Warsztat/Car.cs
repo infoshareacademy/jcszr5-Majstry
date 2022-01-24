@@ -29,18 +29,18 @@ namespace Warsztat
 
         public Car()
         {
+            // nie wiem o co z tym chodzi ale jak sie chce wywołać funkcje w innej klasie bez podawania jej parametrów to VS podpowiada Create constructor in Klasa
 
         }
 
-        public void AddCar()
-        {
-            Console.WriteLine("Declare car brand: ");
-            BrandCar = Console.ReadLine();
-            Console.WriteLine("Declare car model: ");
-           ModelCar = Console.ReadLine();
-            Console.WriteLine("Declare car production year: ");
-            ProductionYearCar = Int32.Parse(Console.ReadLine());
-
-        }
+        // public void AddCar()
+        // {
+        //     Console.WriteLine("Declare car brand: ");
+        //     BrandCar = Console.ReadLine();
+        //     Console.WriteLine("Declare car model: ");
+        //    ModelCar = Console.ReadLine();
+        //     Console.WriteLine("Declare car production year: ");
+        //     ProductionYearCar = Int32.Parse(Console.ReadLine());
+        // }
     }
 }
