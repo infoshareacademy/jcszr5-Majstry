@@ -9,11 +9,7 @@ namespace Warsztat
     //Klasa stworzona tymczasowo, w razie konflitku podczas merga nadpisać klasą Car Łukasza
     //Klasa stworzona tymczasowo, w razie konflitku podczas merga nadpisać klasą Car Łukasza
     //Klasa stworzona tymczasowo, w razie konflitku podczas merga nadpisać klasą Car Łukasza
-    //Klasa stworzona tymczasowo, w razie konflitku podczas merga nadpisać klasą Car Łukasza
-    //Klasa stworzona tymczasowo, w razie konflitku podczas merga nadpisać klasą Car Łukasza
-    //Klasa stworzona tymczasowo, w razie konflitku podczas merga nadpisać klasą Car Łukasza
-    //Klasa stworzona tymczasowo, w razie konflitku podczas merga nadpisać klasą Car Łukasza
-    //Klasa stworzona tymczasowo, w razie konflitku podczas merga nadpisać klasą Car Łukasza
+    
 
     internal class Car
     {
@@ -33,14 +29,5 @@ namespace Warsztat
 
         }
 
-        // public void AddCar()
-        // {
-        //     Console.WriteLine("Declare car brand: ");
-        //     BrandCar = Console.ReadLine();
-        //     Console.WriteLine("Declare car model: ");
-        //    ModelCar = Console.ReadLine();
-        //     Console.WriteLine("Declare car production year: ");
-        //     ProductionYearCar = Int32.Parse(Console.ReadLine());
-        // }
     }
 }

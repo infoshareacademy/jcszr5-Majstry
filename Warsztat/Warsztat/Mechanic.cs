@@ -29,6 +29,7 @@ namespace Warsztat
         }
         public Mechanic()
          {
+             //Dodałem 
             // nie wiem o co z tym chodzi ale jak sie chce wywołać funkcje w innej klasie bez podawania jej parametrów to VS podpowiada Create constructor in Klasa 
          }
     }

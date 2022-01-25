@@ -1,0 +1,26 @@
+[
+  {
+    "Number": 0,
+    "Status": "Waiting",
+    "Fault": "No air in wheels",
+    "BrandOfCar": "Fiat",
+    "ModelOfCar": "126p",
+    "ProductionYearOfCar": 1995,
+    "MechanicName": "Rysiek",
+    "MechanicSurname": "Niepsuj"
+  },
+  
+    {
+      "Number": 1,
+      "Status": "Ended",
+      "Fault": "No fuel",
+      "BrandOfCar": "Fiat",
+      "ModelOfCar": "Multipla",
+      "ProductionYearOfCar": 1999,
+      "MechanicName": "Kazimierz",
+      "MechanicSurname": "Saleta"
+    }
+  
+]
+
+

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using static Warsztat.Order;
 
 namespace Warsztat
@@ -11,8 +12,9 @@ namespace Warsztat
             List<Order> orders = new List<Order>();
             Order order = new Order();
         
-            order.CreateNewOrder(order);
-            orders.Add(order);
+            //order.CreateNewOrder(order);
+           // orders.Add(order);
+           // order.SaveToFile(orders);
             order.PrintAllOrders(orders);
         }
 
