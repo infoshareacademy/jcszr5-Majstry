@@ -7,15 +7,20 @@ namespace Warsztat
 
     class Program
     {
-       static void Main(string[] args)
+        static void Main(string[] args)
         {
-            List<Order> orders = new List<Order>();
+            // List<Order> orders = new List<Order>();
             Order order = new Order();
-        
-            //order.CreateNewOrder(order);
-           // orders.Add(order);
-           // order.SaveToFile(orders);
-            order.PrintAllOrders(orders);
+            order.PrintAllOrdersFromFile();
+            //order.ReadFromFile();
+            List<Order> orders = order.ReadFromFile();
+            order.CreateNewOrder(order);
+            orders.Add(order);
+            order.SaveToFile(orders);
+            order.PrintAllOrdersFromFile();
+            // order.ReadFromFile();
+            //  order.PrintAllOrders(orders);
+
         }
 
     }

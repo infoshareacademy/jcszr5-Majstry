@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 namespace Warsztat
 {
     public class Order
-    {
-        // private string status;
+    { // private string status;
         // private string fault;
         // private int number;
-
         public Order(int number, string status, string fault, string brandOfCar, string modelOfCar, int productionYearOfCar, string mechanicName, string mechanicSurname)//Add parameter Car car, Person mechanic
         {
             Number = number;
@@ -36,7 +34,7 @@ namespace Warsztat
         public int ProductionYearOfCar { get; set; }
         public string MechanicName { get; set; }
         public string MechanicSurname { get; set; }
-
+        
         public void AddMechanic()
 
         {
@@ -65,28 +63,23 @@ namespace Warsztat
         }
 
         public void CreateNewOrder(Order order)
-        {
-            List<Order> orders = new List<Order>();
+        { //ReadFromFile();
+            order = new Order();
             Car car = new Car();
-                // List<Order> orders = new List<Order>();
-
-                Console.WriteLine("Please declare status: Waiting/ Verification/ In progress/ Ended");
-                Status = Console.ReadLine();
-                Console.WriteLine("Short describe of problem");
-                Fault = Console.ReadLine();
-                AddCar(); // Dogadać z Łukaszem czy stworzy metode AddCar, czy odwołać sie do klasy Car - Car car = new Car() (tak jak jest teraz)
-                AddMechanic();
-                // BrandOfCar = car.BrandCar;
-                // ModelOfCar = car.ModelCar;
-                // ProductionYearOfCar = car.ProductionYearCar;
-                // string json = JsonSerializer.Serialize(orders);
-                // File.WriteAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\path.json",json);
-            
+            Console.WriteLine("Please declare status: Waiting/ Verification/ In progress/ Ended");
+            Status = Console.ReadLine();
+            Console.WriteLine("Short describe of problem");
+            Fault = Console.ReadLine();
+            AddCar();
+            AddMechanic();
+           
         }
-        public void PrintAllOrders(List<Order> orders)
+
+        public void PrintAllOrders(List<Order> orders)//Wyświetlanie zlecenia wprowadzonego z konosli
         {
-            ReadFromFile();
             Console.WriteLine("Result");
+            Console.WriteLine(" ");
+
             foreach (Order order in orders)
             {
                 Number = orders.IndexOf(order) + 1;
@@ -100,20 +93,29 @@ namespace Warsztat
                 Console.WriteLine($"Mechanic :{order.MechanicName} {order.MechanicSurname}");
             }
         }
-        public void SaveToFile(List<Order> orders)
+        public void SaveToFile(List<Order> orders)// zapis listy do pliku
         {
             string json = JsonSerializer.Serialize(orders);
             File.WriteAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\path.json", json);
         }
 
-        public void ReadFromFile()
+        public List<Order> ReadFromFile()// odczyt listy z pliku
         {
+
+            string jsonFromFile = File.ReadAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\path.json");
+            List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);
+            orderFromFile = new List<Order>();
+            return orderFromFile;
+        }
+
+        public void PrintAllOrdersFromFile()// wyświetlenie listy z pliku
+        {
+            //ReadFromFile(); //Pownienem tu wykorzystać tę metode   zamiast kopiowania jej zawartość ale nie wiem czemu wtedy mi sie nic nie wyświetla
+
             string jsonFromFile = File.ReadAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\path.json");
             List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);
             foreach (var order in orderFromFile)
             {
-
-
                 Console.WriteLine($"Order number      : {order.Number}");
                 Console.WriteLine($"Status            : {order.Status}");
                 Console.WriteLine($"Fault             : {order.Fault}");
@@ -130,3 +132,40 @@ namespace Warsztat
 
     }
 }
+/*[
+  {
+    "Number": 1,
+    "Status": "Waiting",
+    "Fault": "No air in wheels",
+    "BrandOfCar": "Fiat",
+    "ModelOfCar": "126p",
+    "ProductionYearOfCar": 1995,
+    "MechanicName": "Rysiek",
+    "MechanicSurname": "Niepsuj"
+  },
+  
+    {
+      "Number": 2,
+      "Status": "Ended",
+      "Fault": "No fuel",
+      "BrandOfCar": "Fiat",
+      "ModelOfCar": "Multipla",
+      "ProductionYearOfCar": 1999,
+      "MechanicName": "Kazimierz",
+      "MechanicSurname": "Saleta"
+    },
+	 {
+    "Number": 3,
+    "Status": "In progres",
+    "Fault": "Oil change",
+    "BrandOfCar": "Mercedes",
+    "ModelOfCar": "Vito",
+    "ProductionYearOfCar": 2005,
+    "MechanicName": "Rysiek",
+    "MechanicSurname": "Niepsuj"
+  }
+  
+]
+
+
+*/

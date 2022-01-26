@@ -1,6 +1,6 @@
 [
   {
-    "Number": 0,
+    "Number": 1,
     "Status": "Waiting",
     "Fault": "No air in wheels",
     "BrandOfCar": "Fiat",
@@ -11,7 +11,7 @@
   },
   
     {
-      "Number": 1,
+      "Number": 2,
       "Status": "Ended",
       "Fault": "No fuel",
       "BrandOfCar": "Fiat",
@@ -19,8 +19,16 @@
       "ProductionYearOfCar": 1999,
       "MechanicName": "Kazimierz",
       "MechanicSurname": "Saleta"
-    }
+    },
+	 {
+    "Number": 3,
+    "Status": "In progres",
+    "Fault": "Oil change",
+    "BrandOfCar": "Mercedes",
+    "ModelOfCar": "Vito",
+    "ProductionYearOfCar": 2005,
+    "MechanicName": "Rysiek",
+    "MechanicSurname": "Niepsuj"
+  }
   
 ]
-
-
