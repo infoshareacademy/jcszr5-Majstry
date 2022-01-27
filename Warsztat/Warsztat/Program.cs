@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Text.Json;
+using static Warsztat.Order;
+
 // klasy:
 // Krzysztof => pracownik => mechanik, księgowa;
 // Łukasz => samochód,
@@ -8,13 +11,21 @@
 
 namespace Warsztat
 {
-    public class Program : Car
+
+    class Program
     {
         static void Main(string[] args)
         {
-            Car car = new Car();
-
+            Order order = new Order();
+            List<Order> orders = order.ReadFromFile();
+            order.CreateNewOrder(order);
+            orders.Add(order);
+            order.SaveToFile(orders);
+            order.ReadFromFile();
+            order.PrintAllOrders(orders);
+=======
 
         }
+
     }
 }
