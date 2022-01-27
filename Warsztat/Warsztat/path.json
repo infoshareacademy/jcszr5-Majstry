@@ -9,18 +9,18 @@
     "MechanicName": "Rysiek",
     "MechanicSurname": "Niepsuj"
   },
-  
-    {
-      "Number": 2,
-      "Status": "Ended",
-      "Fault": "No fuel",
-      "BrandOfCar": "Fiat",
-      "ModelOfCar": "Multipla",
-      "ProductionYearOfCar": 1999,
-      "MechanicName": "Kazimierz",
-      "MechanicSurname": "Saleta"
-    },
-	 {
+
+  {
+    "Number": 2,
+    "Status": "Ended",
+    "Fault": "No fuel",
+    "BrandOfCar": "Fiat",
+    "ModelOfCar": "Multipla",
+    "ProductionYearOfCar": 1999,
+    "MechanicName": "Kazimierz",
+    "MechanicSurname": "Saleta"
+  },
+  {
     "Number": 3,
     "Status": "In progres",
     "Fault": "Oil change",
@@ -30,5 +30,5 @@
     "MechanicName": "Rysiek",
     "MechanicSurname": "Niepsuj"
   }
-  
+
 ]

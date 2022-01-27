@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 namespace Warsztat
 {
     public class Order
-    { // private string status;
+    {
+        // private string status;
         // private string fault;
         // private int number;
         public Order(int number, string status, string fault, string brandOfCar, string modelOfCar, int productionYearOfCar, string mechanicName, string mechanicSurname)//Add parameter Car car, Person mechanic
@@ -63,7 +65,7 @@ namespace Warsztat
         }
 
         public void CreateNewOrder(Order order)
-        { //ReadFromFile();
+        { 
             order = new Order();
             Car car = new Car();
             Console.WriteLine("Please declare status: Waiting/ Verification/ In progress/ Ended");
@@ -72,19 +74,20 @@ namespace Warsztat
             Fault = Console.ReadLine();
             AddCar();
             AddMechanic();
-           
         }
 
         public void PrintAllOrders(List<Order> orders)//Wyświetlanie zlecenia wprowadzonego z konosli
         {
             Console.WriteLine("Result");
             Console.WriteLine(" ");
-
+            
             foreach (Order order in orders)
             {
                 Number = orders.IndexOf(order) + 1;
 
-                Console.WriteLine($"Order number      : {order.Number}");
+               // Number = order.ReadFromFile().IndexOf(order)+1;
+
+                Console.WriteLine($"Order number      : 00{order.Number}");
                 Console.WriteLine($"Status            : {order.Status}");
                 Console.WriteLine($"Fault             : {order.Fault}");
                 Console.WriteLine($"Car brand         : {order.BrandOfCar}");
@@ -101,35 +104,33 @@ namespace Warsztat
 
         public List<Order> ReadFromFile()// odczyt listy z pliku
         {
-
             string jsonFromFile = File.ReadAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\path.json");
             List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);
-            orderFromFile = new List<Order>();
+            
             return orderFromFile;
         }
 
-        public void PrintAllOrdersFromFile()// wyświetlenie listy z pliku
+        // public void PrintAllOrdersFromFile()// wyświetlenie listy z pliku
+        // {
+        //     string jsonFromFile = File.ReadAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\path.json");
+        //     List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);
+        //    
+        //     foreach (var order in orderFromFile)
+        //     { 
+        //         Number = orderFromFile.IndexOf(order) + 1;
+        //         Console.WriteLine($"Order number      : {order.Number}");
+        //         Console.WriteLine($"Status            : {order.Status}");
+        //         Console.WriteLine($"Fault             : {order.Fault}");
+        //         Console.WriteLine($"Car brand         : {order.BrandOfCar}");
+        //         Console.WriteLine($"Model             : {order.ModelOfCar}");
+        //         Console.WriteLine($"Year of production: {order.ProductionYearOfCar}");
+        //         Console.WriteLine($"Mechanic :{order.MechanicName} {order.MechanicSurname}");
+        //     }
+        // }
+        public void FindOrder(List<Order> orders)
         {
-            //ReadFromFile(); //Pownienem tu wykorzystać tę metode   zamiast kopiowania jej zawartość ale nie wiem czemu wtedy mi sie nic nie wyświetla
-
-            string jsonFromFile = File.ReadAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\path.json");
-            List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);
-            foreach (var order in orderFromFile)
-            {
-                Console.WriteLine($"Order number      : {order.Number}");
-                Console.WriteLine($"Status            : {order.Status}");
-                Console.WriteLine($"Fault             : {order.Fault}");
-                Console.WriteLine($"Car brand         : {order.BrandOfCar}");
-                Console.WriteLine($"Model             : {order.ModelOfCar}");
-                Console.WriteLine($"Year of production: {order.ProductionYearOfCar}");
-                Console.WriteLine($"Mechanic :{order.MechanicName} {order.MechanicSurname}");
-            }
-        }
-        public void OrderSort(List<Order> orders)
-        {
 
         }
-
     }
 }
 /*[
