@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Majstry
+namespace Warstat
 {
     public class Acountant : Worker
     {

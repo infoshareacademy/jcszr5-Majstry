@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Majstry
+namespace Warstat
 {
     public class Mechanic : Worker
     {
