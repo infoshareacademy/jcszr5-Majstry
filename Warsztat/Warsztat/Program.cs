@@ -16,14 +16,9 @@ namespace Warsztat
     {
         static void Main(string[] args)
         {
-            Order order = new Order();
-            List<Order> orders = order.ReadFromFile();
-            order.CreateNewOrder(order);
-            orders.Add(order);
-            order.SaveToFile(orders);
-            order.ReadFromFile();
-            order.PrintAllOrders(orders);
-=======
+
+
+
 
         }
 
