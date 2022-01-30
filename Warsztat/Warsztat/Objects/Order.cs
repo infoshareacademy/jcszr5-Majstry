@@ -10,62 +10,25 @@ namespace Warsztat
 {
     public class Order
     {
+        public string Status { get; set; }
+        public string Fault { get; set; }
+        public Mechanic Mechanic { get; set; }
+        public Car Car { get; set; }
 
-        public Order(int number, string status, string fault, Mechanic mechanic, Car car)//Add parameter Car car, Person mechanic
+
+        public Order( string status, string fault, Mechanic mechanic, Car car)//Add parameter Car car, Person mechanic
         {
-            Number = number;
             Status = status;
             Fault = fault;
             Mechanic = mechanic;
             Car = car;
         }
 
-        public int Number { get; set; }
-        public string Status { get; set; }
-        public string Fault { get; set; }
-        public Mechanic Mechanic { get; set; }
-        public Car Car { get; set; }
+
 
         
 
-        public void CreateNewOrder(Order order)
-        { 
-            Console.WriteLine("Please declare status: Waiting/ Verification/ In progress/ Ended");
-            Status = Console.ReadLine();
-            Console.WriteLine("Short describe of problem");
-            Fault = Console.ReadLine();
-
-        }
-
-        public void PrintAllOrders(List<Order> orders)//Wyświetlanie zlecenia wprowadzonego z konosli
-        {
-            Console.WriteLine("Result");
-            Console.WriteLine(" ");
-            
-            foreach (Order order in orders)
-            {
-                Number = orders.IndexOf(order) + 1;
-
-               // Number = order.ReadFromFile().IndexOf(order)+1;
-
-                Console.WriteLine($"Order number      : 00{order.Number}");
-                Console.WriteLine($"Status            : {order.Status}");
-                Console.WriteLine($"Fault             : {order.Fault}");
-            }
-        }
-        public void SaveToFile(List<Order> orders)// zapis listy do pliku
-        {
-            string json = JsonSerializer.Serialize(orders);
-            File.WriteAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\path.json", json);
-        }
-
-        public List<Order> ReadFromFile()// odczyt listy z pliku
-        {
-            string jsonFromFile = File.ReadAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\path.json");
-            List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);
-            
-            return orderFromFile;
-        }
+        
 
         // public void PrintAllOrdersFromFile()// wyświetlenie listy z pliku
         // {
@@ -84,11 +47,6 @@ namespace Warsztat
         //         Console.WriteLine($"Mechanic :{order.MechanicName} {order.MechanicSurname}");
         //     }
         // }
-        public void FindOrder(List<Order> orders)
-        {
-
-        }
-
     }
 }
 /*[

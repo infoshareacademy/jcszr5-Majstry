@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Warsztat
 {
-    public class CarRepo
+    public class CarRepository
     {
 
 
-        public Car AddCar()
+        static public Car AddCar()
         {
             bool loop = true;
             string brand, model;
@@ -35,5 +35,6 @@ namespace Warsztat
             }
             return new Car(brand, model, yearProduction);
         }
+
     }
 }

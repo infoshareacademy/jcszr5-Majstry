@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace Warsztat
 {
-    public class Mechanic : Employee
+    public class EmployeeRepo
     {
-        public int repairCount;
+        List<Employee> Employees = new List<Employee> { };
 
-
-        public Mechanic(string firstName, string lastName, int age, double salary) : base(firstName, lastName, age, salary)
-        {
-        }
-
-        public override Employee AddEmployee()
+       public void AddMechanic()
         {
             Console.WriteLine("Enter data about ");
             Console.WriteLine("Name:");
@@ -24,7 +19,7 @@ namespace Warsztat
             string lastName = Console.ReadLine();
             Console.WriteLine("Age");
             bool loop = true;
-            int age=0, money=0, myInt;
+            int age = 0, money = 0, myInt;
             while (loop)
             {
                 bool myBool = int.TryParse(Console.ReadLine(), out myInt);
@@ -52,8 +47,7 @@ namespace Warsztat
                 }
             }
 
-            return new Mechanic(firstName, lastName, age, money);
+            Employees.Add(new Mechanic(firstName, lastName, age, money));
         }
-        
     }
 }
