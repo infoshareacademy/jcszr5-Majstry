@@ -19,6 +19,7 @@ namespace Warsztat
 
         static void Main(string[] args)
         {
+          
             startMenuOptions = new List<Option>
            {
                 new Option("Add an order"),
@@ -67,8 +68,9 @@ namespace Warsztat
                 {
                     switch (index)
                     {
-                        case 0:
-                            //OrderRepository.CreateNewOrder();
+                        case 0:                    
+                            OrderRepository orderRepository = new OrderRepository();
+                            orderRepository.CreateNewOrder();
                             break;
                         case 1:
                             //EmployeeRepo.AddMechanic();
@@ -77,6 +79,9 @@ namespace Warsztat
                         case 3:
                             break;
                         case 4:
+                            orderRepository = new OrderRepository();
+                            List<Order> orders = orderRepository.ReadFromFile();
+                            orderRepository.PrintAllOrders(orders);
                             break;
                         case 5:
                             break;

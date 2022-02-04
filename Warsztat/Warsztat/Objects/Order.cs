@@ -16,7 +16,7 @@ namespace Warsztat
         public Car Car { get; set; }
 
 
-        public Order( string status, string fault, Mechanic mechanic, Car car)//Add parameter Car car, Person mechanic
+        public Order( string status, string fault, Mechanic mechanic, Car car)
         {
             Status = status;
             Fault = fault;
@@ -85,4 +85,60 @@ namespace Warsztat
 ]
 
 
+*/
+
+/*[
+
+  {
+    "Status": "Ended",
+    "Fault": "No fuel",
+    "Mechanic":
+    {
+      "FirstName": "Ryszard",
+      "LastName": "Niepsuj",
+      "Age": 55,
+      "Salary": 50000
+    }
+    "Car":
+    {
+      "Brand": "Fiat",
+      "Model": "Multipla",
+      "ProductionYear": 1995
+    }
+  },
+  {
+    "Status": "Waiting",
+    "Fault": "No air in wheels",
+    "Mechanic":
+    {
+      "FirstName": "Piotr",
+      "LastName": "Podgórny",
+      "Age": 55,
+      "Salary": 50000
+    }
+    "Car": 
+    {
+      "Brand": "Mercedes",
+      "Model": "Vito",
+      "ProductionYear": 2007
+    }
+  },
+  {
+    "Status": "In progress",
+    "Fault": "Oil change",
+    "Mechanic":
+    {
+      "FirstName": "Tomasz",
+      "LastName": "Kowalski",
+      "Age": 55,
+      "Salary": 50000
+    }
+    "Car":
+    {
+      "Brand": "Fiat",
+      "Model": "126p",
+      "ProductionYear": 1995
+    }
+  }
+]
 */
