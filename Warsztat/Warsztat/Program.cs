@@ -73,7 +73,9 @@ namespace Warsztat
                             orderRepository.CreateNewOrder();
                             break;
                         case 1:
-                            
+                            orderRepository = new OrderRepository();
+                            orderRepository.RemoveSelectedOrder();
+                            break;
                         case 2:
                             break;
                         case 3:

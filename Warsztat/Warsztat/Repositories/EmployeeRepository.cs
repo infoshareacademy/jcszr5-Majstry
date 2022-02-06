@@ -78,7 +78,7 @@ namespace Warsztat
 
         public void PrintAllMechanics(List<Mechanic> mechanics)// WYŚWIETLANIE LISTY MECHANIKÓW
         {
-            Console.WriteLine("Choose Mechanic by declaring number:");
+         
             foreach (Mechanic mechanic in mechanics)
             {
                 int index = mechanics.IndexOf(mechanic) + 1;

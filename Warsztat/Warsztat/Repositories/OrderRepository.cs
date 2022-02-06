@@ -24,7 +24,7 @@ namespace Warsztat
 
 
 
-            Console.WriteLine("Choose mechanic:");
+            Console.WriteLine("Choose mechanic by declaring number:");
             EmployeeRepo employeeReposiotry = new EmployeeRepo();
             List<Mechanic> mechanics = employeeReposiotry.ReadMechanicFromFile();
             employeeReposiotry.ReadMechanicFromFile();
@@ -66,6 +66,20 @@ namespace Warsztat
             List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);
 
             return orderFromFile;   
+        }
+
+        public void RemoveSelectedOrder()
+        {
+
+            PrintAllOrders(orders);
+
+            Console.WriteLine($"Declare number of order for delete");
+            orders = ReadFromFile();
+
+            int indexForRemove = int.Parse(Console.ReadLine());
+            orders.RemoveAt(indexForRemove - 1);
+            SaveToFile(orders);
+
         }
     }
 }
