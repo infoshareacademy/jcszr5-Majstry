@@ -20,45 +20,48 @@ namespace Warsztat
             string status = Console.ReadLine();
             Console.WriteLine("Short description of a problem:");
             string fault = Console.ReadLine();
-      
-            Console.WriteLine("Choose mechanic:");
-            Mechanic mechanic = new Mechanic(status, fault, 55, 50000);
-       
-             Car car = CarRepository.AddCar();
-            // Car car = new Car()
-           // Car car = new Car;
-           // CarRepository carRepository = new CarRepository();
-            
+            Car car = CarRepository.AddCar();
 
-            orders.Add(new Order(status, fault, mechanic, car));// dodałem
-            SaveToFile(orders);// dodałem
+
+
+            Console.WriteLine("Choose mechanic:");
+            EmployeeRepo employeeReposiotry = new EmployeeRepo();
+            List<Mechanic> mechanics = employeeReposiotry.ReadMechanicFromFile();
+            employeeReposiotry.ReadMechanicFromFile();
+            Mechanic mechanic = employeeReposiotry.ChooseMechanic();
+            orders.Add(new Order(status, fault, mechanic, car.ProductionYear, car.Brand, car.Model));
+            SaveToFile(orders);
         }
 
         public void PrintAllOrders(List<Order> orders)
         {
-            
-            Console.WriteLine(" ");
 
+            orders = ReadFromFile();
+
+            Console.WriteLine(" ");
             foreach (Order order in orders)
             {
-                //Console.WriteLine($"Order number      : 00{order.Number}");
-                Console.WriteLine($"Status            : {order.Status}");
-                Console.WriteLine($"Fault             : {order.Fault}");
+                int indexOfOrder = orders.IndexOf(order);
+                Console.WriteLine(indexOfOrder + 1);
+                Console.WriteLine($"Status              : {order.Status}");
+                Console.WriteLine($"Fault               : {order.Fault}");
+                Console.WriteLine($"Car brand           : {order.BrandOfCar}");
+                Console.WriteLine($"Model               : {order.ModelOfCar}");
+                Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
+                Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
+                Console.WriteLine("");
             }
+    
         }
+
         public void SaveToFile(List<Order> orders)// zapis listy do pliku
         {
-            
-            // string json = JsonSerializer.Serialize(orders);
-            // File.WriteAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\path.json", json);
             string json = JsonSerializer.Serialize(orders);
             File.WriteAllText(@".\OrderList.json", json);
         }
 
         public List<Order> ReadFromFile()// odczyt listy z pliku
         {
-            // string jsonFromFile = File.ReadAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\path.json");
-            //List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);
             string jsonFromFile = File.ReadAllText(@".\OrderList.json");
             List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);
 

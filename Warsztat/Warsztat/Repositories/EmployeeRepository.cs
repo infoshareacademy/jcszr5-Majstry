@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace Warsztat
 {
     public class EmployeeRepo
     {
         List<Employee> Employees = new List<Employee> { };
-
-       public void AddMechanic()
+      
+        public void AddMechanic()//było void zmieniłem na Mechanic
         {
+            
             Console.WriteLine("Enter data about ");
             Console.WriteLine("Name:");
             string firstName = Console.ReadLine();
@@ -47,7 +49,56 @@ namespace Warsztat
                 }
             }
 
-            Employees.Add(new Mechanic(firstName, lastName, age, money));
+            Employees.Add(new Mechanic(firstName, lastName, age, money));       
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //Dodałem metode na potrzeby wyboru mechanika podczas tworzenia zlecenia
+
+        public Mechanic ChooseMechanic()// PRZYPISANIE MECHANIKA DO ZLECENIA
+        {
+            List<Mechanic> mechanics = ReadMechanicFromFile();
+            ReadMechanicFromFile();
+            PrintAllMechanics(mechanics);
+            Mechanic mechanic = mechanics[int.Parse(Console.ReadLine()) - 1];
+            return mechanic;
+        }
+
+        public void PrintAllMechanics(List<Mechanic> mechanics)// WYŚWIETLANIE LISTY MECHANIKÓW
+        {
+            Console.WriteLine("Choose Mechanic by declaring number:");
+            foreach (Mechanic mechanic in mechanics)
+            {
+                int index = mechanics.IndexOf(mechanic) + 1;
+                Console.WriteLine($"{index}.{mechanic.FirstName} {mechanic.LastName}");
+            }
+        }
+
+        public void SaveMechanicToFile(List<Mechanic> mechanics)// zapis listy do pliku
+        {
+            string json = JsonSerializer.Serialize(mechanics);
+            File.WriteAllText(@".\MechanicList.json", json);
+        }
+
+        public List<Mechanic> ReadMechanicFromFile()// odczyt listy z pliku
+        {
+            string jsonFromFile = File.ReadAllText(@".\MechanicList.json");
+            List<Mechanic> mechanicFromFile = JsonSerializer.Deserialize<List<Mechanic>>(jsonFromFile);
+
+            return mechanicFromFile;
         }
     }
+    
 }

@@ -73,15 +73,14 @@ namespace Warsztat
                             orderRepository.CreateNewOrder();
                             break;
                         case 1:
-                            //EmployeeRepo.AddMechanic();
+                            
                         case 2:
                             break;
                         case 3:
+                        
                             break;
                         case 4:
-                            orderRepository = new OrderRepository();
-                            List<Order> orders = orderRepository.ReadFromFile();
-                            orderRepository.PrintAllOrders(orders);
+                                 
                             break;
                         case 5:
                             break;

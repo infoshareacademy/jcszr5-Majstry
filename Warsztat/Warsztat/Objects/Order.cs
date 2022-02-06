@@ -12,23 +12,33 @@ namespace Warsztat
     {
         public string Status { get; set; }
         public string Fault { get; set; }
-        public Mechanic Mechanic { get; set; }
-        public Car Car { get; set; }
+        public string BrandOfCar { get; set; }
+        public string ModelOfCar { get; set; }
+        public int ProductionYearOfCar { get; set; }
+     //   public string MechanicName { get; set; }
+     //   public string MechanicSurname { get; set; }
+      public Mechanic Mechanic { get; set; }
+        //public Car Car { get; set; }
 
 
-        public Order( string status, string fault, Mechanic mechanic, Car car)
+     
+
+
+
+        public Order(string status, string fault, Mechanic mechanic, int productionYearOfCar, string brandOfCar, string modelOfCar)
         {
             Status = status;
             Fault = fault;
+            BrandOfCar = brandOfCar;
+            ModelOfCar = modelOfCar;
+            ProductionYearOfCar = productionYearOfCar;
+
             Mechanic = mechanic;
-            Car = car;
+           // MechanicName = mechanicName;
+            //MechanicSurname = mechanicSurname;
         }
 
 
-
-        
-
-        
 
         // public void PrintAllOrdersFromFile()// wyświetlenie listy z pliku
         // {
