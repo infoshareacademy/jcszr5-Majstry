@@ -80,7 +80,12 @@ namespace Warsztat
                         
                             break;
                         case 4:
-                                 
+                            orderRepository = new OrderRepository();
+                            List<Order> orders = orderRepository.ReadFromFile();
+                            orderRepository.PrintAllOrders(orders);
+                            Console.WriteLine("Press eny key to continue");
+                            Console.ReadLine();
+
                             break;
                         case 5:
                             break;
