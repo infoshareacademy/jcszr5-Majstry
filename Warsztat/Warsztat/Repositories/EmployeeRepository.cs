@@ -11,7 +11,7 @@ namespace Warsztat
     {
         List<Employee> Employees = new List<Employee> { };
       
-        public void AddMechanic()//było void zmieniłem na Mechanic
+        public void AddMechanic()
         {
             
             Console.WriteLine("Enter data about ");
@@ -65,7 +65,8 @@ namespace Warsztat
 
 
 
-        //Dodałem metode na potrzeby wyboru mechanika podczas tworzenia zlecenia
+        //Dodałem metody na potrzeby wyboru mechanika podczas tworzenia zlecenia
+        //Zastąpić metodami Krzyśka z zachowaniem jego nazw metod i pliku z listą mechaników
 
         public Mechanic ChooseMechanic()// PRZYPISANIE MECHANIKA DO ZLECENIA
         {

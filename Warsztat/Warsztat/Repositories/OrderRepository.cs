@@ -55,13 +55,13 @@ namespace Warsztat
     
         }
 
-        public void SaveToFile(List<Order> orders)// zapis listy do pliku
+        public void SaveToFile(List<Order> orders)
         {
             string json = JsonSerializer.Serialize(orders);
             File.WriteAllText(@".\OrderList.json", json);
         }
 
-        public List<Order> ReadFromFile()// odczyt listy z pliku
+        public List<Order> ReadFromFile()
         {
             string jsonFromFile = File.ReadAllText(@".\OrderList.json");
             List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);
@@ -154,10 +154,32 @@ namespace Warsztat
                 }
             }
             Console.WriteLine("-----------------------------------------------------------------");
+            Console.WriteLine("Press eny key to continue");
             Console.ReadLine();
         }
+        public void EditDeclaredOrder()
+        {
+            PrintAllOrders(orders);
+            Console.WriteLine("-----------------------------------------------------------------");
+            Console.WriteLine($"Declare number of order to change");
+            Console.WriteLine("-----------------------------------------------------------------");
+            orders = ReadFromFile();
+            int indexToEdit = int.Parse(Console.ReadLine()) - 1;
+            Console.WriteLine("-----------------------------------------------------------------");
+            Console.WriteLine("Status (Waiting / In progress / Finished)");
+            string status = Console.ReadLine();
+            Console.WriteLine("Short description of a problem:");
+            string fault = Console.ReadLine();
+            Car car = CarRepository.AddCar();
+            Console.WriteLine("Choose mechanic:");
+            EmployeeRepo employeeReposiotry = new EmployeeRepo();
+            List<Mechanic> mechanics = employeeReposiotry.ReadMechanicFromFile();
+            employeeReposiotry.ReadMechanicFromFile();
+            Mechanic mechanic = employeeReposiotry.ChooseMechanic();
+            orders[indexToEdit] = new Order(status, fault, mechanic, car.ProductionYear, car.Brand, car.Model);
+            SaveToFile(orders);
+        }
     }
-
 }
 
 

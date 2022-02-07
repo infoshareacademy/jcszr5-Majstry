@@ -77,11 +77,12 @@ namespace Warsztat
                             orderRepository.RemoveSelectedOrder();
                             break;
                         case 2:
+                            orderRepository = new OrderRepository();
+                            orderRepository.EditDeclaredOrder();
                             break;
                         case 3:
                             orderRepository = new OrderRepository();
                             orderRepository.SortingOrdersByStatus();
-
                             break;
                         case 4:
                             orderRepository = new OrderRepository();
@@ -89,7 +90,6 @@ namespace Warsztat
                             orderRepository.PrintAllOrders(orders);
                             Console.WriteLine("Press eny key to continue");
                             Console.ReadLine();
-
                             break;
                         case 5:
                             break;
