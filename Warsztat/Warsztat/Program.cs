@@ -79,7 +79,9 @@ namespace Warsztat
                         case 2:
                             break;
                         case 3:
-                        
+                            orderRepository = new OrderRepository();
+                            orderRepository.SortingOrdersByStatus();
+
                             break;
                         case 4:
                             orderRepository = new OrderRepository();

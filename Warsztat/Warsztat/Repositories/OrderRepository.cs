@@ -42,6 +42,7 @@ namespace Warsztat
             foreach (Order order in orders)
             {
                 int indexOfOrder = orders.IndexOf(order);
+                Console.WriteLine("-----------------------------------------------------------------");
                 Console.WriteLine(indexOfOrder + 1);
                 Console.WriteLine($"Status              : {order.Status}");
                 Console.WriteLine($"Fault               : {order.Fault}");
@@ -49,7 +50,7 @@ namespace Warsztat
                 Console.WriteLine($"Model               : {order.ModelOfCar}");
                 Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
                 Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
-                Console.WriteLine("");
+                Console.WriteLine("-----------------------------------------------------------------");
             }
     
         }
@@ -72,8 +73,9 @@ namespace Warsztat
         {
 
             PrintAllOrders(orders);
-
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine($"Declare number of order for delete");
+            Console.WriteLine("-----------------------------------------------------------------");
             orders = ReadFromFile();
 
             int indexForRemove = int.Parse(Console.ReadLine());
@@ -81,7 +83,81 @@ namespace Warsztat
             SaveToFile(orders);
 
         }
+        public void SortingOrdersByStatus()
+        {
+            orders = ReadFromFile();
+
+            Console.WriteLine("Enter the status number by which you want to sort");
+            Console.WriteLine("1.Waiting");
+            Console.WriteLine("2.In progress");
+            Console.WriteLine("3.Finished");
+            Console.WriteLine("-----------------------------------------------------------------");
+
+            int numberOfStatus = int.Parse(Console.ReadLine());
+            Console.WriteLine("-----------------------------------------------------------------");
+
+            if (numberOfStatus == 1)
+            {
+                foreach (Order order in orders)
+                {
+                    if (order.Status == "Waiting")
+                    {
+                        int indexOfOrder = orders.IndexOf(order);
+                        Console.WriteLine("-----------------------------------------------------------------");
+                        Console.WriteLine(indexOfOrder + 1);
+                        Console.WriteLine($"Status              : {order.Status}");
+                        Console.WriteLine($"Fault               : {order.Fault}");
+                        Console.WriteLine($"Car brand           : {order.BrandOfCar}");
+                        Console.WriteLine($"Model               : {order.ModelOfCar}");
+                        Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
+                        Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
+                        Console.WriteLine("-----------------------------------------------------------------");
+                    }
+                }
+            }
+            if (numberOfStatus == 2)
+            {
+                foreach (Order order in orders)
+                {
+                    if (order.Status == "In progress")
+                    {
+                        int indexOfOrder = orders.IndexOf(order);
+                        Console.WriteLine("-----------------------------------------------------------------");
+                        Console.WriteLine(indexOfOrder + 1);
+                        Console.WriteLine($"Status              : {order.Status}");
+                        Console.WriteLine($"Fault               : {order.Fault}");
+                        Console.WriteLine($"Car brand           : {order.BrandOfCar}");
+                        Console.WriteLine($"Model               : {order.ModelOfCar}");
+                        Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
+                        Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
+                        Console.WriteLine("-----------------------------------------------------------------");
+                    }
+                }
+            }
+            if (numberOfStatus == 3)
+            {
+                foreach (Order order in orders)
+                {
+                    if (order.Status == "Finished")
+                    {
+                        int indexOfOrder = orders.IndexOf(order);
+                        Console.WriteLine("-----------------------------------------------------------------");
+                        Console.WriteLine(indexOfOrder + 1);
+                        Console.WriteLine($"Status              : {order.Status}");
+                        Console.WriteLine($"Fault               : {order.Fault}");
+                        Console.WriteLine($"Car brand           : {order.BrandOfCar}");
+                        Console.WriteLine($"Model               : {order.ModelOfCar}");
+                        Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
+                        Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
+                        Console.WriteLine("-----------------------------------------------------------------");
+                    }
+                }
+            }
+            Console.WriteLine("-----------------------------------------------------------------");
+            Console.ReadLine();
+        }
     }
+
 }
 
 
