@@ -35,7 +35,6 @@ namespace Warsztat
 
         public void PrintAllOrders(List<Order> orders)
         {
-
             orders = ReadFromFile();
 
             Console.WriteLine(" ");

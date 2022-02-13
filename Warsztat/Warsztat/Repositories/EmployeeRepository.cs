@@ -59,12 +59,6 @@ namespace Warsztat
 
 
 
-
-
-
-
-
-
         //Dodałem metody na potrzeby wyboru mechanika podczas tworzenia zlecenia
         //Zastąpić metodami Krzyśka z zachowaniem jego nazw metod i pliku z listą mechaników
 
