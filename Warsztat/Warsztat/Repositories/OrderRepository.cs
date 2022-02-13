@@ -3,55 +3,182 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace Warsztat
 {
     public class OrderRepository
     {
-        List<Order> Orders = new List<Order> {};
+        List<Order> orders = new List<Order> ();
         public void CreateNewOrder()
         {
+
+           List <Order> orders = ReadFromFile();
+
             Console.WriteLine("Create order. Insert order informations below:");
             Console.WriteLine("Status (Waiting / In progress / Finished");
             string status = Console.ReadLine();
             Console.WriteLine("Short description of a problem:");
             string fault = Console.ReadLine();
-            Console.WriteLine("Choose mechanic:");
-            Mechanic mechanic = new Mechanic(status, fault, 55, 50000);
             Car car = CarRepository.AddCar();
-            Orders.Add(new Order( status, fault, mechanic, car));
 
-            // na razie zrobiłem na odpierdziel, trzeba uzupełnić wybór mechanika,
-            // samochód z funkcji, a mechanik, żeby wybrać z dodanych mechaników.
 
+
+            Console.WriteLine("Choose mechanic by declaring number:");
+            EmployeeRepo employeeReposiotry = new EmployeeRepo();
+            List<Mechanic> mechanics = employeeReposiotry.ReadMechanicFromFile();
+            employeeReposiotry.ReadMechanicFromFile();
+            Mechanic mechanic = employeeReposiotry.ChooseMechanic();
+            orders.Add(new Order(status, fault, mechanic, car.ProductionYear, car.Brand, car.Model));
+            SaveToFile(orders);
         }
 
-        public void PrintAllOrders(List<Order> orders)//Wyświetlanie zlecenia wprowadzonego z konosli
+        public void PrintAllOrders(List<Order> orders)
         {
-            Console.WriteLine("Result");
-            Console.WriteLine(" ");
+            orders = ReadFromFile();
 
+            Console.WriteLine(" ");
             foreach (Order order in orders)
             {
-                //Console.WriteLine($"Order number      : 00{order.Number}");
-                Console.WriteLine($"Status            : {order.Status}");
-                Console.WriteLine($"Fault             : {order.Fault}");
+                int indexOfOrder = orders.IndexOf(order);
+                Console.WriteLine("-----------------------------------------------------------------");
+                Console.WriteLine(indexOfOrder + 1);
+                Console.WriteLine($"Status              : {order.Status}");
+                Console.WriteLine($"Fault               : {order.Fault}");
+                Console.WriteLine($"Car brand           : {order.BrandOfCar}");
+                Console.WriteLine($"Model               : {order.ModelOfCar}");
+                Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
+                Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
+                Console.WriteLine("-----------------------------------------------------------------");
             }
+    
         }
-        //public void SaveToFile(List<Order> orders)// zapis listy do pliku
-        //{
-            // tu był jakiś błąd, nie miałem siły tego szukać
-            //string json = JsonSerializer.Serialize(orders);
-        //    File.WriteAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\path.json", json);
-        //}
 
-       // public List<Order> ReadFromFile()// odczyt listy z pliku
-        //{
-        //    string jsonFromFile = File.ReadAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\path.json");
-           // List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);
-           // tu też
-            //return orderFromFile;
-       // }
+        public void SaveToFile(List<Order> orders)
+        {
+            string json = JsonSerializer.Serialize(orders);
+            File.WriteAllText(@".\OrderList.json", json);
+        }
+
+        public List<Order> ReadFromFile()
+        {
+            string jsonFromFile = File.ReadAllText(@".\OrderList.json");
+            List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);
+
+            return orderFromFile;   
+        }
+
+        public void RemoveSelectedOrder()
+        {
+
+            PrintAllOrders(orders);
+            Console.WriteLine("-----------------------------------------------------------------");
+            Console.WriteLine($"Declare number of order for delete");
+            Console.WriteLine("-----------------------------------------------------------------");
+            orders = ReadFromFile();
+
+            int indexForRemove = int.Parse(Console.ReadLine());
+            orders.RemoveAt(indexForRemove - 1);
+            SaveToFile(orders);
+
+        }
+        public void SortingOrdersByStatus()
+        {
+            orders = ReadFromFile();
+
+            Console.WriteLine("Enter the status number by which you want to sort");
+            Console.WriteLine("1.Waiting");
+            Console.WriteLine("2.In progress");
+            Console.WriteLine("3.Finished");
+            Console.WriteLine("-----------------------------------------------------------------");
+
+            int numberOfStatus = int.Parse(Console.ReadLine());
+            Console.WriteLine("-----------------------------------------------------------------");
+
+            if (numberOfStatus == 1)
+            {
+                foreach (Order order in orders)
+                {
+                    if (order.Status == "Waiting")
+                    {
+                        int indexOfOrder = orders.IndexOf(order);
+                        Console.WriteLine("-----------------------------------------------------------------");
+                        Console.WriteLine(indexOfOrder + 1);
+                        Console.WriteLine($"Status              : {order.Status}");
+                        Console.WriteLine($"Fault               : {order.Fault}");
+                        Console.WriteLine($"Car brand           : {order.BrandOfCar}");
+                        Console.WriteLine($"Model               : {order.ModelOfCar}");
+                        Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
+                        Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
+                        Console.WriteLine("-----------------------------------------------------------------");
+                    }
+                }
+            }
+            if (numberOfStatus == 2)
+            {
+                foreach (Order order in orders)
+                {
+                    if (order.Status == "In progress")
+                    {
+                        int indexOfOrder = orders.IndexOf(order);
+                        Console.WriteLine("-----------------------------------------------------------------");
+                        Console.WriteLine(indexOfOrder + 1);
+                        Console.WriteLine($"Status              : {order.Status}");
+                        Console.WriteLine($"Fault               : {order.Fault}");
+                        Console.WriteLine($"Car brand           : {order.BrandOfCar}");
+                        Console.WriteLine($"Model               : {order.ModelOfCar}");
+                        Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
+                        Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
+                        Console.WriteLine("-----------------------------------------------------------------");
+                    }
+                }
+            }
+            if (numberOfStatus == 3)
+            {
+                foreach (Order order in orders)
+                {
+                    if (order.Status == "Finished")
+                    {
+                        int indexOfOrder = orders.IndexOf(order);
+                        Console.WriteLine("-----------------------------------------------------------------");
+                        Console.WriteLine(indexOfOrder + 1);
+                        Console.WriteLine($"Status              : {order.Status}");
+                        Console.WriteLine($"Fault               : {order.Fault}");
+                        Console.WriteLine($"Car brand           : {order.BrandOfCar}");
+                        Console.WriteLine($"Model               : {order.ModelOfCar}");
+                        Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
+                        Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
+                        Console.WriteLine("-----------------------------------------------------------------");
+                    }
+                }
+            }
+            Console.WriteLine("-----------------------------------------------------------------");
+            Console.WriteLine("Press eny key to continue");
+            Console.ReadLine();
+        }
+        public void EditDeclaredOrder()
+        {
+            PrintAllOrders(orders);
+            Console.WriteLine("-----------------------------------------------------------------");
+            Console.WriteLine($"Declare number of order to change");
+            Console.WriteLine("-----------------------------------------------------------------");
+            orders = ReadFromFile();
+            int indexToEdit = int.Parse(Console.ReadLine()) - 1;
+            Console.WriteLine("-----------------------------------------------------------------");
+            Console.WriteLine("Status (Waiting / In progress / Finished)");
+            string status = Console.ReadLine();
+            Console.WriteLine("Short description of a problem:");
+            string fault = Console.ReadLine();
+            Car car = CarRepository.AddCar();
+            Console.WriteLine("Choose mechanic:");
+            EmployeeRepo employeeReposiotry = new EmployeeRepo();
+            List<Mechanic> mechanics = employeeReposiotry.ReadMechanicFromFile();
+            employeeReposiotry.ReadMechanicFromFile();
+            Mechanic mechanic = employeeReposiotry.ChooseMechanic();
+            orders[indexToEdit] = new Order(status, fault, mechanic, car.ProductionYear, car.Brand, car.Model);
+            SaveToFile(orders);
+        }
     }
 }
+
 

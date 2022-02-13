@@ -12,23 +12,33 @@ namespace Warsztat
     {
         public string Status { get; set; }
         public string Fault { get; set; }
-        public Mechanic Mechanic { get; set; }
-        public Car Car { get; set; }
+        public string BrandOfCar { get; set; }
+        public string ModelOfCar { get; set; }
+        public int ProductionYearOfCar { get; set; }
+     //   public string MechanicName { get; set; }
+     //   public string MechanicSurname { get; set; }
+      public Mechanic Mechanic { get; set; }
+        //public Car Car { get; set; }
 
 
-        public Order( string status, string fault, Mechanic mechanic, Car car)//Add parameter Car car, Person mechanic
+     
+
+
+
+        public Order(string status, string fault, Mechanic mechanic, int productionYearOfCar, string brandOfCar, string modelOfCar)
         {
             Status = status;
             Fault = fault;
+            BrandOfCar = brandOfCar;
+            ModelOfCar = modelOfCar;
+            ProductionYearOfCar = productionYearOfCar;
+
             Mechanic = mechanic;
-            Car = car;
+           // MechanicName = mechanicName;
+            //MechanicSurname = mechanicSurname;
         }
 
 
-
-        
-
-        
 
         // public void PrintAllOrdersFromFile()// wyświetlenie listy z pliku
         // {
@@ -85,4 +95,60 @@ namespace Warsztat
 ]
 
 
+*/
+
+/*[
+
+  {
+    "Status": "Ended",
+    "Fault": "No fuel",
+    "Mechanic":
+    {
+      "FirstName": "Ryszard",
+      "LastName": "Niepsuj",
+      "Age": 55,
+      "Salary": 50000
+    }
+    "Car":
+    {
+      "Brand": "Fiat",
+      "Model": "Multipla",
+      "ProductionYear": 1995
+    }
+  },
+  {
+    "Status": "Waiting",
+    "Fault": "No air in wheels",
+    "Mechanic":
+    {
+      "FirstName": "Piotr",
+      "LastName": "Podgórny",
+      "Age": 55,
+      "Salary": 50000
+    }
+    "Car": 
+    {
+      "Brand": "Mercedes",
+      "Model": "Vito",
+      "ProductionYear": 2007
+    }
+  },
+  {
+    "Status": "In progress",
+    "Fault": "Oil change",
+    "Mechanic":
+    {
+      "FirstName": "Tomasz",
+      "LastName": "Kowalski",
+      "Age": 55,
+      "Salary": 50000
+    }
+    "Car":
+    {
+      "Brand": "Fiat",
+      "Model": "126p",
+      "ProductionYear": 1995
+    }
+  }
+]
 */

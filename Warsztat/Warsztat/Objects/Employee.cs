@@ -8,8 +8,8 @@ namespace Warsztat
 {
     public abstract class Employee
     {
-        public string FirstName { get; set; }// zmodyfikowałem dodając seta na potrzeby metody AddMechanic()
-        public string LastName { get; set; } // zmodyfikowałem dodając seta na potrzeby metody AddMechanic()
+        public string FirstName { get; set; }
+        public string LastName { get; set; } 
         public int Age { get; set; }
         public double Salary { get; set; }
 

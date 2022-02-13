@@ -13,18 +13,18 @@ namespace Warsztat
         static public Car AddCar()
         {
             bool loop = true;
-            string brand, model;
-            Console.WriteLine($@"Enter your own brand");
-            brand = Console.ReadLine();
-            Console.WriteLine($@"Enter your own model");
-            model = Console.ReadLine();
-            Console.WriteLine($"Enter your own production year:");
-            int yearProduction = 0;
+            string Brand, Model;
+            Console.WriteLine($@"Enter brand of car");
+            Brand = Console.ReadLine();
+            Console.WriteLine($@"Enter model");
+            Model = Console.ReadLine();
+            Console.WriteLine($"Enter  production year:");
+            int YearProduction = 0;
             bool myBool;
             while (loop)
             {
-                myBool = int.TryParse(Console.ReadLine(), out yearProduction);
-                if (myBool && yearProduction > 1952 && yearProduction < 2022)
+                myBool = int.TryParse(Console.ReadLine(), out YearProduction);
+                if (myBool && YearProduction > 1952 && YearProduction < 2022)
                 {
                     break;
                 }
@@ -33,7 +33,7 @@ namespace Warsztat
                     Console.WriteLine("Enter the correct details");
                 }
             }
-            return new Car(brand, model, yearProduction);
+            return new Car(Brand, Model, YearProduction);
         }
 
     }
