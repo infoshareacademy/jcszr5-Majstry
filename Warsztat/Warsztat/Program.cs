@@ -27,11 +27,13 @@ namespace Warsztat
                 new Option("Edit an order"),
                 new Option("Status of an order"),
                 new Option("Show all orders"),
+
                 new Option("Add an employee"),
                 new Option("Delete an employee"),
                 new Option("Edit an employee"),
                 new Option("Status of an employee"),
                 new Option("Show all employee"),
+
                 new Option("Add part"),
                 new Option("Delete part"),
                 new Option("Edit part"),
@@ -41,7 +43,8 @@ namespace Warsztat
             bool program = true;
             int index = 0;
             ConsoleKeyInfo keyinfo;
-
+            OrderRepository orderRepository = new OrderRepository();
+            EmployeeRepo employeeRepo = new EmployeeRepo();
             do
             {
                 Menu.Menu.WriteMenu(startMenuOptions, startMenuOptions[index]);
@@ -69,23 +72,18 @@ namespace Warsztat
                     switch (index)
                     {
                         case 0:                    
-                            OrderRepository orderRepository = new OrderRepository();
                             orderRepository.CreateNewOrder();
                             break;
-                        case 1:
-                            orderRepository = new OrderRepository();
+                        case 1:                      
                             orderRepository.RemoveSelectedOrder();
                             break;
-                        case 2:
-                            orderRepository = new OrderRepository();
+                        case 2:                       
                             orderRepository.EditDeclaredOrder();
                             break;
-                        case 3:
-                            orderRepository = new OrderRepository();
+                        case 3:                        
                             orderRepository.SortingOrdersByStatus();
                             break;
-                        case 4:
-                            orderRepository = new OrderRepository();
+                        case 4:                     
                             List<Order> orders = orderRepository.ReadFromFile();
                             orderRepository.PrintAllOrders(orders);
                             Console.WriteLine("Press eny key to continue");
@@ -100,6 +98,9 @@ namespace Warsztat
                         case 8:
                             break;
                         case 9:
+                         
+                            employeeRepo.PrintAllMechanics();
+                            Console.ReadLine();
                             break;
                         case 10:
                             break;

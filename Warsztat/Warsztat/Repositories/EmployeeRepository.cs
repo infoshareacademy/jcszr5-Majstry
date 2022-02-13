@@ -66,14 +66,15 @@ namespace Warsztat
         {
             List<Mechanic> mechanics = ReadMechanicFromFile();
             ReadMechanicFromFile();
-            PrintAllMechanics(mechanics);
+            PrintAllMechanics(/*mechanics*/);
             Mechanic mechanic = mechanics[int.Parse(Console.ReadLine()) - 1];
             return mechanic;
         }
 
-        public void PrintAllMechanics(List<Mechanic> mechanics)// WYŚWIETLANIE LISTY MECHANIKÓW
+        public void PrintAllMechanics()// WYŚWIETLANIE LISTY MECHANIKÓW
         {
-         
+           
+            List<Mechanic> mechanics = ReadMechanicFromFile();
             foreach (Mechanic mechanic in mechanics)
             {
                 int index = mechanics.IndexOf(mechanic) + 1;
