@@ -11,14 +11,8 @@ namespace Warsztat
     public class Part
     {
         public string PartName { get; set; }
-        public int Price { get; set; }
+        public string PartPrice { get; set; }
         public int Quantity { get; set; }
-
-        public Part(string partName, int price)
-        {
-            PartName = partName;
-            Price = price;
-        }
     }
 }
 

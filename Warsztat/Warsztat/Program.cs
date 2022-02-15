@@ -15,6 +15,7 @@ namespace Warsztat
     class Program
     {
 
+
         public static List<Option> startMenuOptions;
 
         static void Main(string[] args)
@@ -32,9 +33,9 @@ namespace Warsztat
                 new Option("Edit an employee"),
                 new Option("Status of an employee"),
                 new Option("Show all employee"),
+                new Option("Select part"),
+                new Option("Show parts"),
                 new Option("Add part"),
-                new Option("Delete part"),
-                new Option("Edit part"),
                 new Option("Parts quantity review"),
                 new Option("Exit") //() => Environment.Exit(0))
             };
@@ -102,10 +103,22 @@ namespace Warsztat
                         case 9:
                             break;
                         case 10:
+                            Parts selectPart = new Parts();
+                            selectPart.SelectPart();
+                            Console.WriteLine("Press eny key to continue");
+                            Console.ReadLine();
                             break;
                         case 11:
+                            Parts showPart = new Parts();
+                            showPart.PrintAllPart();
+                            Console.WriteLine("Press eny key to continue");
+                            Console.ReadLine();
                             break;
                         case 12:
+                            Parts addPart = new Parts();
+                            addPart.AddPart();
+                            Console.WriteLine("Press eny key to continue");
+                            Console.ReadLine();
                             break;
                         case 13:
                             break;

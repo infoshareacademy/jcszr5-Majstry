@@ -13,6 +13,7 @@ namespace Warsztat
 
         public Mechanic(string firstName, string lastName, int age, double salary) : base(firstName, lastName, age, salary)
         {
+
         }
 
 
