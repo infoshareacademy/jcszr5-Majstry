@@ -14,7 +14,7 @@ namespace Warsztat
 
     class Program
     {
-
+        
         public static List<Option> startMenuOptions;
 
         static void Main(string[] args)
@@ -27,13 +27,11 @@ namespace Warsztat
                 new Option("Edit an order"),
                 new Option("Status of an order"),
                 new Option("Show all orders"),
-
                 new Option("Add an employee"),
                 new Option("Delete an employee"),
                 new Option("Edit an employee"),
                 new Option("Status of an employee"),
                 new Option("Show all employee"),
-
                 new Option("Add part"),
                 new Option("Delete part"),
                 new Option("Edit part"),
@@ -43,8 +41,7 @@ namespace Warsztat
             bool program = true;
             int index = 0;
             ConsoleKeyInfo keyinfo;
-            OrderRepository orderRepository = new OrderRepository();
-            EmployeeRepo employeeRepo = new EmployeeRepo();
+
             do
             {
                 Menu.Menu.WriteMenu(startMenuOptions, startMenuOptions[index]);
@@ -72,35 +69,68 @@ namespace Warsztat
                     switch (index)
                     {
                         case 0:                    
+                            OrderRepository orderRepository = new OrderRepository();
                             orderRepository.CreateNewOrder();
                             break;
-                        case 1:                      
+                        case 1:
+                            orderRepository = new OrderRepository();
                             orderRepository.RemoveSelectedOrder();
                             break;
-                        case 2:                       
+                        case 2:
+                            orderRepository = new OrderRepository();
                             orderRepository.EditDeclaredOrder();
                             break;
-                        case 3:                        
+                        case 3:
+                            orderRepository = new OrderRepository();
                             orderRepository.SortingOrdersByStatus();
                             break;
-                        case 4:                     
+                        case 4:
+                            orderRepository = new OrderRepository();
                             List<Order> orders = orderRepository.ReadFromFile();
                             orderRepository.PrintAllOrders(orders);
                             Console.WriteLine("Press eny key to continue");
                             Console.ReadLine();
                             break;
                         case 5:
+                            EmployeeRepo employeeRepo = new EmployeeRepo();
+                            string question = "";
+                            while(question.ToLower() != "n")
+                            {
+                                employeeRepo.Employees = employeeRepo.AddEmployees();
+                                Console.WriteLine("Add another? (Y/N)");
+                                question = Console.ReadLine();
+                            }
+                            employeeRepo.SaveToFile();
+                            employeeRepo.PresentAllEmployee(employeeRepo.Employees); 
+                            Console.WriteLine("Employe was added succefull!");
+                            //employeeRepo.SaveToFile();
+                            Console.ReadLine();
                             break;
                         case 6:
+                            employeeRepo = new EmployeeRepo();
+                            Console.WriteLine("Select employee to remowe:");
+                            employeeRepo.DeleteEmploye();
+                            employeeRepo.PresentAllEmployee(employeeRepo.Employees);
+
                             break;
                         case 7:
+                            employeeRepo = new EmployeeRepo();
+                            Console.WriteLine("Select employee to Edit:");
+                            employeeRepo.EditEmploye(); 
                             break;
                         case 8:
+                            employeeRepo = new EmployeeRepo();
+                            employeeRepo.MechanicsStatus();
                             break;
                         case 9:
-                         
-                            employeeRepo.PrintAllMechanics();
+                            employeeRepo = new EmployeeRepo();
+                            //employeeRepo.LoadFromFile();
+                            employeeRepo.PresentAllEmployee(employeeRepo.LoadFromFile());
                             Console.ReadLine();
+
+                            //employeeRepo.LoadFile();
+                            //employeeRepo.PresentAllEmployee(employeeRepo.Employees);
+
                             break;
                         case 10:
                             break;

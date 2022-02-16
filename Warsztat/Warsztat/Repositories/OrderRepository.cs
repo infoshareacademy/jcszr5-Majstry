@@ -35,13 +35,14 @@ namespace Warsztat
 
         public void PrintAllOrders(List<Order> orders)
         {
+
             orders = ReadFromFile();
 
             Console.WriteLine(" ");
             foreach (Order order in orders)
             {
                 int indexOfOrder = orders.IndexOf(order);
-                DecorateLine();
+                Console.WriteLine("-----------------------------------------------------------------");
                 Console.WriteLine(indexOfOrder + 1);
                 Console.WriteLine($"Status              : {order.Status}");
                 Console.WriteLine($"Fault               : {order.Fault}");
@@ -49,7 +50,7 @@ namespace Warsztat
                 Console.WriteLine($"Model               : {order.ModelOfCar}");
                 Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
                 Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
-                DecorateLine();
+                Console.WriteLine("-----------------------------------------------------------------");
             }
     
         }
@@ -72,9 +73,9 @@ namespace Warsztat
         {
 
             PrintAllOrders(orders);
-            DecorateLine();
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine($"Declare number of order for delete");
-            DecorateLine();
+            Console.WriteLine("-----------------------------------------------------------------");
             orders = ReadFromFile();
 
             int indexForRemove = int.Parse(Console.ReadLine());
@@ -90,11 +91,10 @@ namespace Warsztat
             Console.WriteLine("1.Waiting");
             Console.WriteLine("2.In progress");
             Console.WriteLine("3.Finished");
-           
-            DecorateLine();
+            Console.WriteLine("-----------------------------------------------------------------");
 
             int numberOfStatus = int.Parse(Console.ReadLine());
-            DecorateLine(); ;
+            Console.WriteLine("-----------------------------------------------------------------");
 
             if (numberOfStatus == 1)
             {
@@ -103,7 +103,7 @@ namespace Warsztat
                     if (order.Status == "Waiting")
                     {
                         int indexOfOrder = orders.IndexOf(order);
-                        DecorateLine();
+                        Console.WriteLine("-----------------------------------------------------------------");
                         Console.WriteLine(indexOfOrder + 1);
                         Console.WriteLine($"Status              : {order.Status}");
                         Console.WriteLine($"Fault               : {order.Fault}");
@@ -111,7 +111,7 @@ namespace Warsztat
                         Console.WriteLine($"Model               : {order.ModelOfCar}");
                         Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
                         Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
-                        DecorateLine();
+                        Console.WriteLine("-----------------------------------------------------------------");
                     }
                 }
             }
@@ -122,7 +122,7 @@ namespace Warsztat
                     if (order.Status == "In progress")
                     {
                         int indexOfOrder = orders.IndexOf(order);
-                        DecorateLine();
+                        Console.WriteLine("-----------------------------------------------------------------");
                         Console.WriteLine(indexOfOrder + 1);
                         Console.WriteLine($"Status              : {order.Status}");
                         Console.WriteLine($"Fault               : {order.Fault}");
@@ -130,7 +130,7 @@ namespace Warsztat
                         Console.WriteLine($"Model               : {order.ModelOfCar}");
                         Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
                         Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
-                        DecorateLine();
+                        Console.WriteLine("-----------------------------------------------------------------");
                     }
                 }
             }
@@ -141,7 +141,7 @@ namespace Warsztat
                     if (order.Status == "Finished")
                     {
                         int indexOfOrder = orders.IndexOf(order);
-                        DecorateLine();
+                        Console.WriteLine("-----------------------------------------------------------------");
                         Console.WriteLine(indexOfOrder + 1);
                         Console.WriteLine($"Status              : {order.Status}");
                         Console.WriteLine($"Fault               : {order.Fault}");
@@ -149,23 +149,23 @@ namespace Warsztat
                         Console.WriteLine($"Model               : {order.ModelOfCar}");
                         Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
                         Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
-                        DecorateLine();
+                        Console.WriteLine("-----------------------------------------------------------------");
                     }
                 }
             }
-            DecorateLine();
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("Press eny key to continue");
             Console.ReadLine();
         }
         public void EditDeclaredOrder()
         {
             PrintAllOrders(orders);
-            DecorateLine();
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine($"Declare number of order to change");
-            DecorateLine();
+            Console.WriteLine("-----------------------------------------------------------------");
             orders = ReadFromFile();
             int indexToEdit = int.Parse(Console.ReadLine()) - 1;
-            DecorateLine();
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("Status (Waiting / In progress / Finished)");
             string status = Console.ReadLine();
             Console.WriteLine("Short description of a problem:");
@@ -178,11 +178,6 @@ namespace Warsztat
             Mechanic mechanic = employeeReposiotry.ChooseMechanic();
             orders[indexToEdit] = new Order(status, fault, mechanic, car.ProductionYear, car.Brand, car.Model);
             SaveToFile(orders);
-        }
-
-        public void DecorateLine()
-        {
-            Console.WriteLine("-----------------------------------------------------------------");
         }
     }
 }
