@@ -14,7 +14,7 @@ namespace Warsztat
 
     class Program
     {
-
+        
         public static List<Option> startMenuOptions;
 
         static void Main(string[] args)
@@ -92,14 +92,45 @@ namespace Warsztat
                             Console.ReadLine();
                             break;
                         case 5:
+                            EmployeeRepo employeeRepo = new EmployeeRepo();
+                            string question = "";
+                            while(question.ToLower() != "n")
+                            {
+                                employeeRepo.Employees = employeeRepo.AddEmployees();
+                                Console.WriteLine("Add another? (Y/N)");
+                                question = Console.ReadLine();
+                            }
+                            employeeRepo.SaveToFile();
+                            employeeRepo.PresentAllEmployee(employeeRepo.Employees); 
+                            Console.WriteLine("Employe was added succefull!");
+                            //employeeRepo.SaveToFile();
+                            Console.ReadLine();
                             break;
                         case 6:
+                            employeeRepo = new EmployeeRepo();
+                            Console.WriteLine("Select employee to remowe:");
+                            employeeRepo.DeleteEmploye();
+                            employeeRepo.PresentAllEmployee(employeeRepo.Employees);
+
                             break;
                         case 7:
+                            employeeRepo = new EmployeeRepo();
+                            Console.WriteLine("Select employee to Edit:");
+                            employeeRepo.EditEmploye(); 
                             break;
                         case 8:
+                            employeeRepo = new EmployeeRepo();
+                            employeeRepo.MechanicsStatus();
                             break;
                         case 9:
+                            employeeRepo = new EmployeeRepo();
+                            //employeeRepo.LoadFromFile();
+                            employeeRepo.PresentAllEmployee(employeeRepo.LoadFromFile());
+                            Console.ReadLine();
+
+                            //employeeRepo.LoadFile();
+                            //employeeRepo.PresentAllEmployee(employeeRepo.Employees);
+
                             break;
                         case 10:
                             break;
