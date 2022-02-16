@@ -52,26 +52,16 @@ namespace Warsztat
             Employees.Add(new Mechanic(firstName, lastName, age, money));       
         }
 
-
-
-
-
-
-
-
-        //Dodałem metody na potrzeby wyboru mechanika podczas tworzenia zlecenia
-        //Zastąpić metodami Krzyśka z zachowaniem jego nazw metod i pliku z listą mechaników
-
-        public Mechanic ChooseMechanic()// PRZYPISANIE MECHANIKA DO ZLECENIA
+        public Mechanic ChooseMechanic()
         {
             List<Mechanic> mechanics = ReadMechanicFromFile();
             ReadMechanicFromFile();
-            PrintAllMechanics(/*mechanics*/);
+            PrintAllMechanicsForOrder();
             Mechanic mechanic = mechanics[int.Parse(Console.ReadLine()) - 1];
             return mechanic;
         }
 
-        public void PrintAllMechanics()// WYŚWIETLANIE LISTY MECHANIKÓW
+        public void PrintAllMechanicsForOrder()
         {
            
             List<Mechanic> mechanics = ReadMechanicFromFile();
@@ -82,15 +72,15 @@ namespace Warsztat
             }
         }
 
-        public void SaveMechanicToFile(List<Mechanic> mechanics)// zapis listy do pliku
+        public void SaveMechanicToFile(List<Mechanic> mechanics)
         {
             string json = JsonSerializer.Serialize(mechanics);
-            File.WriteAllText(@".\MechanicList.json", json);
+            File.WriteAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\MechanicList.json", json);
         }
-
-        public List<Mechanic> ReadMechanicFromFile()// odczyt listy z pliku
+   
+        public List<Mechanic> ReadMechanicFromFile()
         {
-            string jsonFromFile = File.ReadAllText(@".\MechanicList.json");
+            string jsonFromFile = File.ReadAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\MechanicList.json");
             List<Mechanic> mechanicFromFile = JsonSerializer.Deserialize<List<Mechanic>>(jsonFromFile);
 
             return mechanicFromFile;
