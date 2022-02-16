@@ -98,9 +98,7 @@ namespace Warsztat
                         case 8:
                             break;
                         case 9:
-                         
-                            employeeRepo.PrintAllMechanics();
-                            Console.ReadLine();
+                      
                             break;
                         case 10:
                             break;

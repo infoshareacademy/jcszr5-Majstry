@@ -59,19 +59,19 @@ namespace Warsztat
 
 
 
-        //Dodałem metody na potrzeby wyboru mechanika podczas tworzenia zlecenia
-        //Zastąpić metodami Krzyśka z zachowaniem jego nazw metod i pliku z listą mechaników
-
+        //Ta metoda jest potrzebna tylko mi, do przypisania mechanika do zlecenia wiec jej nie zmieniajmy.
         public Mechanic ChooseMechanic()// PRZYPISANIE MECHANIKA DO ZLECENIA
         {
             List<Mechanic> mechanics = ReadMechanicFromFile();
             ReadMechanicFromFile();
-            PrintAllMechanics(/*mechanics*/);
+            PrintAllMechanicsForOrder(/*mechanics*/);
             Mechanic mechanic = mechanics[int.Parse(Console.ReadLine()) - 1];
             return mechanic;
         }
 
-        public void PrintAllMechanics()// WYŚWIETLANIE LISTY MECHANIKÓW
+        /*W tej metodzie zmieńmy nazwe na PrintAllMechanicsForOrder i nic poza tym, bo już ją wykorzystuje. Pewnie bedziesz tworzył kolejną metode wyświetlającą mechaników tylko że z wiekszą ilością properities
+        i ją prawdopodobnie bedziesz chciał nazwać PrintAllMechanics*/
+        public void PrintAllMechanicsForOrder()// WYŚWIETLANIE LISTY MECHANIKÓW
         {
            
             List<Mechanic> mechanics = ReadMechanicFromFile();
@@ -82,12 +82,13 @@ namespace Warsztat
             }
         }
 
-        public void SaveMechanicToFile(List<Mechanic> mechanics)// zapis listy do pliku
+        //Ta metoda tylko zapisuje do pliku wiec raczej nic tu nie trzeba zmieniać oprócz ścieżki( Michał mówił że trzeba pliki umieścić tak żeby były widoczne w solucji)
+        public void SaveMechanicToFile(List<Mechanic> mechanics)
         {
             string json = JsonSerializer.Serialize(mechanics);
             File.WriteAllText(@".\MechanicList.json", json);
         }
-
+        //Ta metoda tylko odczytuje z pliku wiec raczej nic tu nie trzeba zmieniać oprócz ścieżki( Michał mówił że trzeba pliki umieścić tak żeby były widoczne w solucji)
         public List<Mechanic> ReadMechanicFromFile()// odczyt listy z pliku
         {
             string jsonFromFile = File.ReadAllText(@".\MechanicList.json");
