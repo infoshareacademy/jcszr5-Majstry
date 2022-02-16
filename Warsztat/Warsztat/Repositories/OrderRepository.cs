@@ -10,12 +10,12 @@ namespace Warsztat
     public class OrderRepository
     {
         List<Order> orders = new List<Order>();
+        EmployeeRepo employeeReposiotry = new EmployeeRepo();
         int indexOfOrder;
 
         public void CreateNewOrder()
         {
             List<Order> orders = ReadFromFile();
-
             Console.WriteLine("Create order. Insert order informations below:");
             DecorateLine();
             string status = SelectStatus();
@@ -24,7 +24,6 @@ namespace Warsztat
             DecorateLine();
             Car car = CarRepository.AddCar();
             Console.WriteLine("Choose mechanic by declaring number:");
-            EmployeeRepo employeeReposiotry = new EmployeeRepo();
             List<Mechanic> mechanics = employeeReposiotry.ReadMechanicFromFile();
             employeeReposiotry.ReadMechanicFromFile();
             Mechanic mechanic = employeeReposiotry.ChooseMechanic();
@@ -40,7 +39,7 @@ namespace Warsztat
             {
                 indexOfOrder = orders.IndexOf(order);
                 PrintSingleOrder(order, indexOfOrder);
-        
+
             }
 
         }
@@ -108,7 +107,6 @@ namespace Warsztat
             PrintAllOrders(orders);
             DecorateLine();
             Console.WriteLine($"Declare number of order to change");
-          
             orders = ReadFromFile();
             int indexToEdit = int.Parse(Console.ReadLine()) - 1;
             DecorateLine();
@@ -119,25 +117,21 @@ namespace Warsztat
             Car car = CarRepository.AddCar();
             DecorateLine();
             Console.WriteLine("Choose mechanic:");
-            EmployeeRepo employeeReposiotry = new EmployeeRepo();
             List<Mechanic> mechanics = employeeReposiotry.ReadMechanicFromFile();
             employeeReposiotry.ReadMechanicFromFile();
             Mechanic mechanic = employeeReposiotry.ChooseMechanic();
-            DecorateLine();
             orders[indexToEdit] = new Order(status, fault, mechanic, car.ProductionYear, car.Brand, car.Model);
             SaveToFile(orders);
         }
         public void SaveToFile(List<Order> orders)
         {
             string json = JsonSerializer.Serialize(orders);
-            File.WriteAllText(@".\OrderList.json", json);
+            File.WriteAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\OrderList.json", json);
         }
-
         public List<Order> ReadFromFile()
         {
-            string jsonFromFile = File.ReadAllText(@".\OrderList.json");
+            string jsonFromFile = File.ReadAllText(@"D:\InfoShaREaCADEMY\Projekt\Projekt Warsztat\jcszr5-Majstry\Warsztat\Warsztat\OrderList.json");
             List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);
-
             return orderFromFile;
         }
 
@@ -182,7 +176,7 @@ namespace Warsztat
             Console.WriteLine("-----------------------------------------------------------------");
         }
         void PrintSingleOrder(Order order, int indexOfOrder)
-        {   
+        {
             DecorateLine();
             Console.WriteLine(indexOfOrder + 1);
             Console.WriteLine($"Status              : {order.Status}");
