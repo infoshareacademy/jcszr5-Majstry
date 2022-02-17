@@ -27,15 +27,15 @@ namespace Warsztat
 
 
             Console.WriteLine("Choose mechanic by declaring number:");
-            EmployeeRepo employeeReposiotry = new EmployeeRepo();
-            List<Mechanic> mechanics = employeeReposiotry.ReadMechanicFromFile();
-            employeeReposiotry.ReadMechanicFromFile();
-            Mechanic mechanic = employeeReposiotry.ChooseMechanic();
+            EmployeeRepository employeeRepository = new EmployeeRepository();
+            List<Mechanic> mechanics = employeeRepository.ReadMechanicFromFile();
+            employeeRepository.ReadMechanicFromFile();
+            Mechanic mechanic = employeeRepository.ChooseMechanic();
             orders.Add(new Order(status, fault, mechanic, car.ProductionYear, car.Brand, car.Model));
             SaveToFile(orders);
         }
 
-        public void PrintAllOrders(List<Order> orders)
+        public void PrintAllOrders()
         {
             orders = ReadFromFile();
 
@@ -50,7 +50,7 @@ namespace Warsztat
                 Console.WriteLine($"Car brand           : {order.BrandOfCar}");
                 Console.WriteLine($"Model               : {order.ModelOfCar}");
                 Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
-                Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
+                Console.WriteLine($"Mechanic            : {order.Mechanic.FirstName} {order.Mechanic.LastName}");
                 DecorateLine();
             }
     
@@ -73,7 +73,7 @@ namespace Warsztat
         public void RemoveSelectedOrder()
         {
 
-            PrintAllOrders(orders);
+            PrintAllOrders();
             DecorateLine();
             Console.WriteLine($"Declare number of order for delete");
             DecorateLine();
@@ -112,7 +112,7 @@ namespace Warsztat
                         Console.WriteLine($"Car brand           : {order.BrandOfCar}");
                         Console.WriteLine($"Model               : {order.ModelOfCar}");
                         Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
-                        Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
+                        Console.WriteLine($"Mechanic            : {order.Mechanic.FirstName} {order.Mechanic.LastName}");
                         DecorateLine();
                     }
                 }
@@ -131,7 +131,7 @@ namespace Warsztat
                         Console.WriteLine($"Car brand           : {order.BrandOfCar}");
                         Console.WriteLine($"Model               : {order.ModelOfCar}");
                         Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
-                        Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
+                        Console.WriteLine($"Mechanic            : {order.Mechanic.FirstName} {order.Mechanic.LastName}");
                         DecorateLine();
                     }
                 }
@@ -150,18 +150,18 @@ namespace Warsztat
                         Console.WriteLine($"Car brand           : {order.BrandOfCar}");
                         Console.WriteLine($"Model               : {order.ModelOfCar}");
                         Console.WriteLine($"Year of production  : {order.ProductionYearOfCar}");
-                        Console.WriteLine($"Mechanic            :{order.Mechanic.FirstName} {order.Mechanic.LastName}");
+                        Console.WriteLine($"Mechanic            : {order.Mechanic.FirstName} {order.Mechanic.LastName}");
                         DecorateLine();
                     }
                 }
             }
             DecorateLine();
-            Console.WriteLine("Press eny key to continue");
+            Console.WriteLine("Press Enter to continue");
             Console.ReadLine();
         }
         public void EditDeclaredOrder()
         {
-            PrintAllOrders(orders);
+            PrintAllOrders();
             DecorateLine();
             Console.WriteLine($"Declare number of order to change");
             DecorateLine();
@@ -174,7 +174,7 @@ namespace Warsztat
             string fault = Console.ReadLine();
             Car car = CarRepository.AddCar();
             Console.WriteLine("Choose mechanic:");
-            EmployeeRepo employeeReposiotry = new EmployeeRepo();
+            EmployeeRepository employeeReposiotry = new EmployeeRepository();
             List<Mechanic> mechanics = employeeReposiotry.ReadMechanicFromFile();
             employeeReposiotry.ReadMechanicFromFile();
             Mechanic mechanic = employeeReposiotry.ChooseMechanic();
