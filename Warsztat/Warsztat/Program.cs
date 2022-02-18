@@ -130,7 +130,7 @@
                             case 4:
                                 Console.Clear();
                                 List<Order> orders = orderRepository.ReadFromFile();
-                                orderRepository.PrintAllOrders();
+                                orderRepository.PrintAllOrders(orders);
                                 Console.WriteLine("Press Enter to continue");
                                 Console.ReadLine();
                                 break;
