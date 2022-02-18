@@ -32,6 +32,7 @@ namespace Warsztat
         }
         public void PrintAllOrders(List<Order> orders)
         {
+
             orders = ReadFromFile();
 
             Console.WriteLine(" ");
@@ -47,9 +48,9 @@ namespace Warsztat
         public void RemoveSelectedOrder()
         {
             PrintAllOrders(orders);
-            DecorateLine();
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine($"Declare number of order for delete");
-            DecorateLine();
+            Console.WriteLine("-----------------------------------------------------------------");
             orders = ReadFromFile();
             int indexForRemove = int.Parse(Console.ReadLine());
             orders.RemoveAt(indexForRemove - 1);
@@ -98,14 +99,14 @@ namespace Warsztat
                     }
                 }
             }
-            DecorateLine();
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine("Press eny key to continue");
             Console.ReadLine();
         }
         public void EditDeclaredOrder()
         {
             PrintAllOrders(orders);
-            DecorateLine();
+            Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine($"Declare number of order to change");
             orders = ReadFromFile();
             int indexToEdit = int.Parse(Console.ReadLine()) - 1;
