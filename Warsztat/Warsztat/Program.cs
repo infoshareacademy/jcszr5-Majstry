@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-           List<Option> startMenuOptions = new List<Option>
+            List<Option> startMenuOptions = new List<Option>
            {
                 new Option("Orders"),
                 new Option("Employees"),
@@ -36,13 +36,13 @@
                 new Option("Add part"),
                 new Option("Show parts"),
                 new Option("Edit quantity of a part"),
-                new Option("Parts quantity review"),
+                new Option("Quantity raport"),
                 new Option("Main menu"),
             };
 
-            OrderRepository orderRepository = new OrderRepository();
-            EmployeeRepository employeeRepository = new EmployeeRepository();
-            Parts parts = new Parts();
+            OrderService orderService = new OrderService();
+            EmployeeService employeeService = new EmployeeService();
+            PartService partService = new PartService();
 
             bool program = true;
             int index = 0;
@@ -109,28 +109,27 @@
                         {
                             case 0:
                                 Console.Clear();
-                                orderRepository.CreateNewOrder();
+                                orderService.CreateNewOrder();
                                 break;
 
                             case 1:
                                 Console.Clear();
-                                orderRepository.RemoveSelectedOrder();
+                                orderService.RemoveSelectedOrder();
                                 break;
 
                             case 2:
                                 Console.Clear();
-                                orderRepository.EditDeclaredOrder();
+                                orderService.EditDeclaredOrder();
                                 break;
 
                             case 3:
                                 Console.Clear();
-                                orderRepository.SortingOrdersByStatus();
+                                orderService.SortingOrdersByStatus();
                                 break;
 
                             case 4:
                                 Console.Clear();
-                                List<Order> orders = orderRepository.ReadFromFile();
-                                orderRepository.PrintAllOrders(orders);
+                                orderService.PrintAllOrders();
                                 Console.WriteLine("Press Enter to continue");
                                 Console.ReadLine();
                                 break;
@@ -149,20 +148,20 @@
                         {
                             case 0:
                                 Console.Clear();
-                                employeeRepository.AddMechanic();
+                                employeeService.AddMechanic();
                                 break;
                             case 1:
                                 Console.Clear();
-                                employeeRepository.RemoveSelectedMechanic();
+                                employeeService.RemoveSelectedMechanic();
                                 break;
                             case 2:
                                 Console.Clear();
-                                employeeRepository.EditDeclaredMechanic();
+                                employeeService.EditDeclaredMechanic();
                                 break;
 
                             case 3:
                                 Console.Clear();
-                                employeeRepository.PrintAllMechanics();
+                                employeeService.PrintAllMechanics();
                                 Console.WriteLine("Press Enter to continue");
                                 Console.ReadLine();
                                 break;
@@ -181,33 +180,37 @@
                         {
                             case 0:
                                 Console.Clear();
-                                parts.AddPart();
+                                partService.AddPart();
                                 Console.WriteLine("Press Enter to continue");
                                 Console.ReadLine();
                                 break;
 
                             case 1:
                                 Console.Clear();
-                                parts.PrintAllPart();
+                                partService.PrintAllPart();
                                 Console.WriteLine("Press Enter to continue");
                                 Console.ReadLine();
                                 break;
 
                             case 2:
                                 Console.Clear();
-                                parts.AddPart();
+                                partService.EditQuantityOfPart();
                                 Console.WriteLine("Press Enter to continue");
                                 Console.ReadLine();
                                 break;
 
                             case 3:
+                                Console.Clear();
+                                partService.QuantityRaport();
+                                Console.WriteLine("Press Enter to continue");
+                                Console.ReadLine();
                                 break;
 
                             case 4:
                                 currentMenuOptions = startMenuOptions;
                                 menuOption = 0;
                                 index = 0;
-                                continue;
+                                continue;                                
                         }
                     }
                     index = 0;

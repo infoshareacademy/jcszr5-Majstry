@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Warsztat
 {
-    public class CarRepository
+    public class CarService
     {
-
 
         static public Car AddCar()
         {

@@ -1,14 +1,18 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Warsztat
 {
-    public class EmployeeRepository
+    public class EmployeeService
     {
-        List<Employee> Employees = new List<Employee> { };
-      
+        EmployeeRepository employeeRepository = new EmployeeRepository();
+
         public void AddMechanic()
         {
-            
+
             Console.WriteLine("Enter data about ");
             Console.WriteLine("Name:");
             string firstName = Console.ReadLine();
@@ -43,9 +47,9 @@ namespace Warsztat
                     Console.WriteLine("Enter the correct data");
                 }
             }
-            var mechanics = ReadMechanicFromFile();
+            var mechanics = employeeRepository.ReadMechanicFromFile();
             mechanics.Add(new Mechanic(firstName, lastName, age, money));
-            SaveMechanicToFile(mechanics);
+            employeeRepository.SaveMechanicToFile(mechanics);
         }
 
         public void RemoveSelectedMechanic()
@@ -55,20 +59,17 @@ namespace Warsztat
             DecorateLine();
             Console.WriteLine($"Declare number of order for delete");
             DecorateLine();
-            var mechanics = ReadMechanicFromFile();
+            var mechanics = employeeRepository.ReadMechanicFromFile();
 
             int indexForRemove = int.Parse(Console.ReadLine());
             mechanics.RemoveAt(indexForRemove - 1);
-            SaveMechanicToFile(mechanics);
+            employeeRepository.SaveMechanicToFile(mechanics);
         }
-
-        //Dodałem metody na potrzeby wyboru mechanika podczas tworzenia zlecenia
-        //Zastąpić metodami Krzyśka z zachowaniem jego nazw metod i pliku z listą mechaników
 
         public Mechanic ChooseMechanic()// PRZYPISANIE MECHANIKA DO ZLECENIA
         {
-            List<Mechanic> mechanics = ReadMechanicFromFile();
-            ReadMechanicFromFile();
+            List<Mechanic> mechanics = employeeRepository.ReadMechanicFromFile();
+            employeeRepository.ReadMechanicFromFile();
             PrintAllMechanics(/*mechanics*/);
             Mechanic mechanic = mechanics[int.Parse(Console.ReadLine()) - 1];
             return mechanic;
@@ -76,8 +77,8 @@ namespace Warsztat
 
         public void PrintAllMechanics()// WYŚWIETLANIE LISTY MECHANIKÓW
         {
-           
-            List<Mechanic> mechanics = ReadMechanicFromFile();
+
+            List<Mechanic> mechanics = employeeRepository.ReadMechanicFromFile();
             foreach (Mechanic mechanic in mechanics)
             {
                 int index = mechanics.IndexOf(mechanic) + 1;
@@ -91,7 +92,7 @@ namespace Warsztat
             DecorateLine();
             Console.WriteLine($"Declare number of order to change");
             DecorateLine();
-            var mechanics = ReadMechanicFromFile().ToList();
+            var mechanics = employeeRepository.ReadMechanicFromFile();
             int indexToEdit = int.Parse(Console.ReadLine()) - 1;
             DecorateLine();
             Console.WriteLine("Enter data about ");
@@ -129,24 +130,12 @@ namespace Warsztat
                 }
             }
             mechanics[indexToEdit] = new Mechanic(firstName, lastName, age, money);
-            SaveMechanicToFile(mechanics);
+            employeeRepository.SaveMechanicToFile(mechanics);
         }
 
-        public void SaveMechanicToFile(List<Mechanic> mechanics)// zapis listy do pliku
+        public void DecorateLine()
         {
-            string json = JsonSerializer.Serialize(mechanics);
-            File.WriteAllText(@"..\..\..\MechanicList.json", json);
+            Console.WriteLine("-----------------------------------------------------------------");
         }
-
-        public List<Mechanic> ReadMechanicFromFile()
-        {
-            string jsonFromFile = File.ReadAllText(@"..\..\..\MechanicList.json");
-            List<Mechanic> mechanicFromFile = JsonSerializer.Deserialize<List<Mechanic>>(jsonFromFile);
-
-            return mechanicFromFile;
-        }
-
-        
     }
-    
 }
