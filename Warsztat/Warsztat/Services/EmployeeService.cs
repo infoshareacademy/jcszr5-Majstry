@@ -34,6 +34,7 @@ namespace Warsztat
                     Console.WriteLine("Enter the correct data");
                 }
             }
+            Console.WriteLine("Salary:");
             while (loop)
             {
                 bool myBool = int.TryParse(Console.ReadLine(), out myInt);

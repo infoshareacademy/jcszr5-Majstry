@@ -11,7 +11,7 @@ namespace Warsztat.Menu
         public static void WriteMenu(List<Option> options, Option selectedOption)
         {
             Console.Clear();
-            Console.WriteLine($"Welcome in your garage! What do you want to do?");
+            Console.WriteLine($"Welcome! This is Service Station V.1.0. written by Majtry. \n What do you want to do?");
             foreach (Option option in options)
             {
                 if (option == selectedOption)
