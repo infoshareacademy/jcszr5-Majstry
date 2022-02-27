@@ -1,6 +1,6 @@
 ﻿namespace Warsztat_v2.Enum
 {
-    public enum Employees
+    public enum Role
     {
         Mechanic,
         Service,

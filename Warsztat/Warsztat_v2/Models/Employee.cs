@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Warsztat_v2.Enum;
+
 namespace Warsztat_v2.Models
 {
     public class Employee
@@ -12,5 +14,6 @@ namespace Warsztat_v2.Models
         [Display(Name = "Birth Date" )]
         public DateTime DateOfBirth { get; set; }
         public double Salary { get; set; }
+        public Role Role { get; set; }
     }
 }
