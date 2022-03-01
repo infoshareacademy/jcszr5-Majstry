@@ -76,7 +76,7 @@ namespace Warsztat_v2.Services
         private static int IdCounter = 6;
         public List<Employee> GetAll()
         {
-            string jasonFromFile = File.ReadAllText(@"C:\Users\2021\source\repos\jcszr5-Majstry\Warsztat\Warsztat_v2\employeeList.json");
+            string jasonFromFile = File.ReadAllText(@"C:\Users\Łukasz\Desktop\RepoWarsztat567\jcszr5-Majstry\Warsztat\Warsztat_v2\employeeList.json");
             Employees = JsonSerializer.Deserialize<List<Employee>>(jasonFromFile);
             return Employees;
         }
@@ -107,7 +107,7 @@ namespace Warsztat_v2.Services
         {
             string json = JsonSerializer.Serialize(Employees);
 
-            File.WriteAllText(@"C:\Users\2021\source\repos\jcszr5-Majstry\Warsztat\Warsztat_v2\employeeList.json", json);
+            File.WriteAllText(@"C:\Users\Łukasz\Desktop\RepoWarsztat567\jcszr5-Majstry\Warsztat\Warsztat_v2\employeeList.json", json);
         }
         //private void DeleteFromFile()
         //{
