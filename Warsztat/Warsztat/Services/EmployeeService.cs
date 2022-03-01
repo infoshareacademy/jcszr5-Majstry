@@ -53,6 +53,11 @@ namespace Warsztat
             employeeRepository.SaveMechanicToFile(mechanics);
         }
 
+        public object GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public void RemoveSelectedMechanic()
         {
 
