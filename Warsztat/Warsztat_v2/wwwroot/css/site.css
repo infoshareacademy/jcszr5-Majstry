@@ -5,14 +5,17 @@ html {
 @media (min-width: 768px) {
   html {
     font-size: 16px;
+    background-color:aqua;
   }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: aqua;
 }
