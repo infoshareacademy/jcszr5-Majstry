@@ -71,7 +71,6 @@ namespace Warsztat_v2.Services
             employee.DateOfBirth = model.DateOfBirth;
             employee.Salary = model.Salary;
             employee.Role = model.Role;
-            Employees.Add(employee);
             SaveToFile();
         }
 
