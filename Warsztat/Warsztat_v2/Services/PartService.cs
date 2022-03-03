@@ -71,6 +71,7 @@ namespace Warsztat_v2.Services
             part.PartName = model.PartName;
             part.PartPrice = model.PartPrice;
             part.Quantity = model.Quantity;
+            SaveToFile();
 
         }
 
