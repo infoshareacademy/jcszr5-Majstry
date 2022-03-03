@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace Warsztat
 {
-    public class Order
+    public class Order1
     {
-        public string Status { get; set; }
-        public string Fault { get; set; }
-        public string BrandOfCar { get; set; }
-        public string ModelOfCar { get; set; }
-        public int ProductionYearOfCar { get; set; }
-      public Mechanic Mechanic { get; set; }
+        public string Status1 { get; set; }
+        public string Fault1 { get; set; }
+        public string BrandOfCar1 { get; set; }
+        public string ModelOfCar1 { get; set; }
+        public int ProductionYearOfCar1 { get; set; }
+      public Mechanic Mechanic1 { get; set; }
 
-        public Order(string status, string fault, Mechanic mechanic, int productionYearOfCar, string brandOfCar, string modelOfCar)
+        public Order1(string status, string fault, Mechanic mechanic, int productionYearOfCar, string brandOfCar, string modelOfCar)
         {
-            Status = status;
-            Fault = fault;
-            BrandOfCar = brandOfCar;
-            ModelOfCar = modelOfCar;
-            ProductionYearOfCar = productionYearOfCar;
-            Mechanic = mechanic;
+            Status1 = status;
+            Fault1 = fault;
+            BrandOfCar1 = brandOfCar;
+            ModelOfCar1 = modelOfCar;
+            ProductionYearOfCar1 = productionYearOfCar;
+            Mechanic1 = mechanic;
 
         }
     }

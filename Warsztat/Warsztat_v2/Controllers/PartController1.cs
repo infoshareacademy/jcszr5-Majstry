@@ -3,39 +3,40 @@ using Microsoft.AspNetCore.Mvc;
 using Warsztat_v2.Models;
 using Warsztat_v2.Services;
 
+
 namespace Warsztat_v2.Controllers
 {
-    public class EmployeeControler : Controller
+    public class PartController1 : Controller
     {
-        private EmployeeService _employeeService;
-        public EmployeeControler()
+        private PartService _partService;
+        public PartController1()
         {
-           _employeeService = new EmployeeService();
+            _partService = new PartService();
         }
-        // GET: EmployeeControler
+        // GET: PartController1
         public ActionResult Index()
         {
-           var model = _employeeService.GetAll();
+            var model = _partService.GetAll();
             return View(model);
         }
 
-        // GET: EmployeeControler/Details/5
+        // GET: PartController1/Details/5
         public ActionResult Details(int id)
         {
-            var model = _employeeService.GetById(id);
+            var model = _partService.GetById(id);
             return View(model);
         }
 
-        // GET: EmployeeControler/Create
+        // GET: PartController1/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: EmployeeControler/Create
+        // POST: PartController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Employee model)
+        public ActionResult Create(Part model)
         {
             try
             {
@@ -43,9 +44,10 @@ namespace Warsztat_v2.Controllers
                 {
                     return View(model);
                 }
-                _employeeService.Create(model);
+                _partService.Create(model);
+
                 return RedirectToAction(nameof(Index));
-                
+
             }
             catch
             {
@@ -53,17 +55,17 @@ namespace Warsztat_v2.Controllers
             }
         }
 
-        // GET: EmployeeControler/Edit/5
+        // GET: PartController1/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = _employeeService.GetById(id);
+            var model = _partService.GetById(id);
             return View(model);
         }
 
-        // POST: EmployeeControler/Edit/5
+        // POST: PartController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Employee model)
+        public ActionResult Edit(int id, Part model)
         {
             try
             {
@@ -71,7 +73,7 @@ namespace Warsztat_v2.Controllers
                 {
                     return View(model);
                 }
-                _employeeService.Update(model);
+                _partService.Update(model);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -80,21 +82,21 @@ namespace Warsztat_v2.Controllers
             }
         }
 
-        // GET: EmployeeControler/Delete/5
+        // GET: PartController1/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = _employeeService.GetById(id);
+            var model = _partService.GetById(id);
             return View(model);
         }
 
-        // POST: EmployeeControler/Delete/5
+        // POST: PartController1/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Employee model)
+        public ActionResult Delete(int id, Part model)
         {
             try
             {
-                _employeeService.Delete(id);
+                _partService.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
