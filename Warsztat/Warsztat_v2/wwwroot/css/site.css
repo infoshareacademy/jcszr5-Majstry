@@ -24,3 +24,19 @@ body {
     font-weight:700;
 
 }
+.table {
+    font-weight: 700;
+    color:brown;
+}
+.navi {
+    font-weight: 700;
+}
+.nav-link text-dark {
+    font-weight: 700;
+}
+li {
+    font-weight: 700;
+}
+a {
+    color: black;
+}
