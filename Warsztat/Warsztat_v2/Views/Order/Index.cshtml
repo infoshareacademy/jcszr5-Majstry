@@ -42,6 +42,12 @@
                 <th>
                  <label asp-for ="First().Mechanic"></label>
             </th>
+                <th>
+                 <label asp-for ="First().Part"></label>
+            </th>
+                <th>
+                 <label asp-for ="First().PartPcs"></label>
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -77,6 +83,12 @@
             </td>
                   <td>
                 @item.Mechanic
+            </td>
+                  <td>
+                @item.Part
+            </td>
+                  <td>
+                @item.PartPcs
             </td>
             <td>
         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
