@@ -6,50 +6,55 @@ using Warsztat_v2.Services;
 
 namespace Warsztat_v2.Controllers
 {
-    public class CarrController : Controller
+    public class OrderController : Controller
     {
         private CarrService _carrService;
-        public CarrController()
+        private PartService _partService;
+        private EmployeeService _employeeService;
+        public OrderController()
         {
             _carrService = new CarrService();
-            SelectList list = new SelectList(_carrService.GetAll(), "CarModel", "CarMark");
-            ViewBag.Roles = list;
+            _employeeService = new EmployeeService();
+            _partService = new PartService();
+
         }
-        // GET: CarrController
+        // GET: OrderController
         public ActionResult Index()
         {
-            var model = _carrService.GetAll();
-            return View(model);
+            ViewBag.Cars = _carrService.GetAll().ToList();
+            ViewBag.Parts = _partService.GetAll().ToList();
+            ViewBag.Employees = _employeeService.GetAll().ToList();
+
+            return View();
         }
 
-        // GET: PartController1/Details/5
+
+      
+
+
+
+    
+
+        // GET: OrderController/Details/5
         public ActionResult Details(int id)
         {
-            var model = _carrService.GetById(id);
-            return View(model);
+            return View();
         }
 
-        // GET: PartController1/Create
+        // GET: OrderController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PartController1/Create
+        // POST: OrderController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Carr model)
+        public ActionResult Create(IFormCollection collection)
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return View(model);
-                }
-                _carrService.Create(model);
-
                 return RedirectToAction(nameof(Index));
-
             }
             catch
             {
@@ -57,25 +62,19 @@ namespace Warsztat_v2.Controllers
             }
         }
 
-        // GET: PartController1/Edit/5
+        // GET: OrderController/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = _carrService.GetById(id);
-            return View(model);
+            return View();
         }
 
-        // POST: PartController1/Edit/5
+        // POST: OrderController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Carr model)
+        public ActionResult Edit(int id, IFormCollection collection)
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return View(model);
-                }
-                _carrService.Update(model);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -84,21 +83,19 @@ namespace Warsztat_v2.Controllers
             }
         }
 
-        // GET: PartController1/Delete/5
+        // GET: OrderController/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = _carrService.GetById(id);
-            return View(model);
+            return View();
         }
 
-        // POST: PartController1/Delete/5
+        // POST: OrderController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Carr model)
+        public ActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
-                _carrService.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

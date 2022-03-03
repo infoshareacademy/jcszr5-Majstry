@@ -7,22 +7,22 @@ namespace Warsztat_v2.Controllers
 {
     public class EmployeeControler : Controller
     {
-        private EmployeeService _employeeServise;
+        private EmployeeService _employeeService;
         public EmployeeControler()
         {
-           _employeeServise = new EmployeeService();
+           _employeeService = new EmployeeService();
         }
         // GET: EmployeeControler
         public ActionResult Index()
         {
-           var model = _employeeServise.GetAll();
+           var model = _employeeService.GetAll();
             return View(model);
         }
 
         // GET: EmployeeControler/Details/5
         public ActionResult Details(int id)
         {
-            var model = _employeeServise.GetById(id);
+            var model = _employeeService.GetById(id);
             return View(model);
         }
 
@@ -43,7 +43,7 @@ namespace Warsztat_v2.Controllers
                 {
                     return View(model);
                 }
-                _employeeServise.Create(model);
+                _employeeService.Create(model);
                 return RedirectToAction(nameof(Index));
                 
             }
@@ -56,7 +56,7 @@ namespace Warsztat_v2.Controllers
         // GET: EmployeeControler/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = _employeeServise.GetById(id);
+            var model = _employeeService.GetById(id);
             return View(model);
         }
 
@@ -71,7 +71,7 @@ namespace Warsztat_v2.Controllers
                 {
                     return View(model);
                 }
-                _employeeServise.Update(model);
+                _employeeService.Update(model);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -83,7 +83,7 @@ namespace Warsztat_v2.Controllers
         // GET: EmployeeControler/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = _employeeServise.GetById(id);
+            var model = _employeeService.GetById(id);
             return View(model);
         }
 
@@ -94,7 +94,7 @@ namespace Warsztat_v2.Controllers
         {
             try
             {
-                _employeeServise.Delete(id);
+                _employeeService.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

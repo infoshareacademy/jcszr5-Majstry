@@ -1,0 +1,54 @@
+﻿@using Warsztat_v2.Controllers
+@using Warsztat_v2.Services
+@model IEnumerable<Warsztat_v2.Models.Carr>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Order</h1>
+
+ 
+ 
+  @Html.DropDownList("ApplicationType", new SelectList(ViewBag.Cars, "Id","CarMark"), " - Select Car - ")
+  @Html.DropDownList("ApplicationType", new SelectList(ViewBag.Parts, "Id","PartName"), " - Select Part - ")
+  @Html.DropDownList("ApplicationType", new SelectList(ViewBag.Employees, "Id","LastName"), " - Select Employee - ")
+  
+
+
+
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fault)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fault)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+*@
