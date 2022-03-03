@@ -10,17 +10,18 @@
     <h4>Order</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            <label asp-for="Id"></label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.Id
-        </dd>
+  
         <dt class = "col-sm-2">
            <label asp-for="OrderNumber"></label>
         </dt>
         <dd class = "col-sm-10">
             @Model.OrderNumber
+        </dd>
+              <dt class = "col-sm-2">
+            <label asp-for="Client"></label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Client
         </dd>
         <dt class = "col-sm-2">
            <label asp-for="StartTime"></label>
@@ -28,12 +29,7 @@
         <dd class = "col-sm-10">
             @Model.StartTime
         </dd>
-        <dt class = "col-sm-2">
-          <label asp-for="EndTime"></label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.EndTime
-        </dd>
+
         <dt class = "col-sm-2">
             <label asp-for="Status"></label>
         </dt>
@@ -47,16 +43,10 @@
            @Model.Fault
         </dd>
         <dt class = "col-sm-2">
-             <label asp-for="BrandOfCar"></label>
+             <label asp-for="Car"></label>
         </dt>
         <dd class = "col-sm-10">
-           @Model.BrandOfCar
-        </dd>
-        <dt class = "col-sm-2">
-             <label asp-for="ModelOfCar"></label>
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.ModelOfCar
+           @Model.Car
         </dd>
         <dt class = "col-sm-2">
              <label asp-for="RegistrationNumber"></label>

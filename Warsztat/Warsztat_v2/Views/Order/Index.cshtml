@@ -12,18 +12,17 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-               <label asp-for ="First().Id"></label>
-            </th>
+        
             <th>
                 <label asp-for ="First().OrderNumber"></label>
+            </th>
+                <th>
+               <label asp-for ="First().Client"></label>
             </th>
             <th>
                  <label asp-for ="First().StartTime"></label>
             </th>
-            <th>
-                 <label asp-for ="First().EndTime"></label>
-            </th>
+  
             <th>
                 <label asp-for ="First().Status"></label>
             </th>
@@ -31,10 +30,7 @@
                  <label asp-for ="First().Fault"></label>
             </th>
             <th>
-                <label asp-for ="First().BrandOfCar"></label>
-            </th>
-            <th>
-                 <label asp-for ="First().ModelOfCar"></label>
+                <label asp-for ="First().Car"></label>
             </th>
             <th>
                  <label asp-for ="First().RegistrationNumber"></label>
@@ -54,18 +50,19 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @item.Id
+                <td>
+                @item.OrderNumber@item.RegistrationNumber/@item.StartTime.ToString("yyyy")/@item.Id
             </td>
-            <td>
-                @item.OrderNumber
+         
+                <td>
+                @item.Client
             </td>
+        
             <td>
-                @item.StartTime
+                @item.StartTime.ToString("dd-MM-yyyy") 
+              @* @DateTime.Now.ToString()*@
             </td>
-            <td>
-                @item.EndTime
-            </td>
+  
             <td>
                 @item.Status
             </td>
@@ -73,10 +70,7 @@
                 @item.Fault
             </td>
             <td>
-                @item.BrandOfCar
-            </td>
-            <td>
-                @item.ModelOfCar
+                @item.Car
             </td>
             <td>
                 @item.RegistrationNumber

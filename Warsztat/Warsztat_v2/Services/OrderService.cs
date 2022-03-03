@@ -7,53 +7,19 @@ namespace Warsztat_v2.Services
 {
     public class OrderService
     {
+        Order order;
         private static int orderId = 0;
         private OrderRepository _orderRepository = new OrderRepository();
-        public PartService partService = new PartService();
-        
-        List<Part> parts;
-        List<Order> orders;
-        public SelectList partsList;
-        //public string partName;
+        //order.OrderNumber = order.RegistrationNumber + "/" + DateTime.Now.ToString("yyyy") +"/"+ order.Id.ToString();
+       
+      public static  List<Order> orders;
+       // public int orderId = orders.Count();
 
 
-        //private static List<Order> orders = new List<Order>
-        //{
-
-        //   //public EmployeeService employeeService = new EmployeeService();
-        //    new Order()
-        //    {
-        //        Id = 1,
-        //        OrderNumber = "sdgsdg",
-        //        StartTime = DateTime.Now,
-        //        EndTime = DateTime.Now.AddDays(6),
-        //        Status ="sagf",
-        //        Fault = "sadgf",
-        //        BrandOfCar ="sdg",
-        //        ModelOfCar ="sdg",
-        //        RegistrationNumber ="aefhg",
-        //        Mechanic = "antek"
-
-        //    },
-        //         new Order()
-        //    {
-        //        Id = 1,
-        //        OrderNumber = "sdgsdg",
-        //        StartTime = DateTime.Now,
-        //        EndTime = DateTime.Now.AddDays(6),
-        //        Status ="sagf",
-        //        Fault = "sadgf",
-        //        BrandOfCar ="sdg",
-        //        ModelOfCar ="sdg",
-        //        RegistrationNumber ="aefhg",
-        //        Mechanic = "antek"
-
-        //    }
-        //};
         public List<Order> GetAll()
         {
             List<Order> orders = _orderRepository.ReadFromFile();
-
+          //  OrderNumberGenerator();
             return orders;
         }
 
@@ -62,59 +28,37 @@ namespace Warsztat_v2.Services
             return orders.FirstOrDefault(o => o.Id == id);
         }
 
-        // private OrderRepository _orderRepository;
+        //public string OrderNumberGenerator()
+        //{
+
+        //     order.OrderNumber = order.RegistrationNumber + "/" + DateTime.Now.ToString("yyyy") + "/" + order.Id.ToString();
+        //    return order.OrderNumber;
+        //}
 
         public void Create(Order order)
         {
-            GetAll();
+          
+            orders = GetAll();
             order.Id = GetNextId();
+           // OrderNumberGenerator();
             orders.Add(order);
-            _orderRepository.SaveToFile(orders);
-
+           _orderRepository.SaveToFile(orders);
         }
         public int GetNextId()
         {
-            orderId++;
+            orderId+=1;
             return orderId;
         }
-        public SelectList GetPartNameList()
-        {
-            string jasonFromFile = File.ReadAllText(@"..\..\..\PartList.json");
-            parts = JsonSerializer.Deserialize<List<Part>>(jasonFromFile);
-           // return parts.Select(p => p.PartName).ToList();
-          //  parts.ConvertAll(x => x.PartName).ToHashSet();
+        //public SelectList GetPartNameList()
+        //{
+        //    string jasonFromFile = File.ReadAllText(@"..\..\..\PartList.json");
+        //    parts = JsonSerializer.Deserialize<List<Part>>(jasonFromFile);
 
-          return  partsList = new SelectList(parts.Select(p => p.PartName));
+
+        //  return  partsList = new SelectList(parts.Select(p => p.PartName));
   
-        }
-       
-
-    //}
-    //public List<string> GetPartNameList()
-    //{
-    //    string jasonFromFile = File.ReadAllText(@"..\..\..\PartList.json");
-    //    parts = JsonSerializer.Deserialize<List<Part>>(jasonFromFile);
-    //    return parts.Select(p => p.PartName).ToList();
-    //    parts.ConvertAll(x => x.PartName).ToHashSet();
-
-    //}
-
-    //public List<Part> GetParts()
-    //{
-    //    string jasonFromFile = File.ReadAllText(@"..\..\..\PartList.json");
-    //    parts = JsonSerializer.Deserialize<List<Part>>(jasonFromFile);
-    //    return parts;
-    //}
+        //}
 
 }
 }
-/*        public int Id { get; set; }
-        public string OrderNumber { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public string Status { get; set; }
-        public string Fault { get; set; }
-        public string BrandOfCar { get; set; }
-        public string ModelOfCar { get; set; }
-        public string RegistrationNumber { get; set; }
-        public Employee Mechanic { get; set; }*/
+
