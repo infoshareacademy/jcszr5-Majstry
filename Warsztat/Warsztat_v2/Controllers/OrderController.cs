@@ -8,15 +8,26 @@ namespace Warsztat_v2.Controllers
     public class OrderController : Controller
     {
         private OrderService _orderService;
+
+        private CarrService _carrService;//
+        private EmployeeService _employeeService;//
+        private PartService _partService;//
+
         public OrderController()
         {
-         _orderService = new OrderService();
+            _orderService = new OrderService();
+
+            _carrService = new CarrService();//
+            _employeeService = new EmployeeService();//
+            _partService = new PartService();//
+
         }
         // GET: OrderController
         public ActionResult Index()
         {
-           var model = _orderService.GetAll();
-           return View(model);
+
+            var model = _orderService.GetAll();
+            return View(model);
         }
 
         // GET: OrderController/Details/5
@@ -29,6 +40,10 @@ namespace Warsztat_v2.Controllers
         // GET: OrderController/Create
         public ActionResult Create()
         {
+            ViewBag.Cars = _carrService.GetAll().ToList();
+            ViewBag.Parts = _partService.GetAll().ToList();
+            ViewBag.Employees = _employeeService.GetAll().ToList();
+
             return View();
         }
 
@@ -39,8 +54,9 @@ namespace Warsztat_v2.Controllers
         {
             try
             {
-                if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
+                   
                     return View(model);
                 }
                 _orderService.Create(model);
@@ -50,6 +66,8 @@ namespace Warsztat_v2.Controllers
             {
                 return View();
             }
+
+
         }
 
         // GET: OrderController/Edit/5

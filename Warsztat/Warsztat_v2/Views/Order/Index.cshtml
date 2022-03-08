@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<Warsztat_v2.Models.Order>
+@using Warsztat_v2.Controllers
+@using Warsztat_v2.Services
 
 @{
     ViewData["Title"] = "Index";
@@ -6,43 +8,48 @@
 
 <h1>Index</h1>
 
+  
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-        
+   
             <th>
-                <label asp-for ="First().OrderNumber"></label>
-            </th>
-                <th>
-               <label asp-for ="First().Client"></label>
-            </th>
-            <th>
-                 <label asp-for ="First().StartTime"></label>
-            </th>
-  
-            <th>
-                <label asp-for ="First().Status"></label>
+               <label asp-for="First().OrderNumber"></label>
+               
+
             </th>
             <th>
-                 <label asp-for ="First().Fault"></label>
+                <label asp-for="First().StartTime"></label>
             </th>
             <th>
-                <label asp-for ="First().Car"></label>
+                <label asp-for="First().Status"></label>
             </th>
             <th>
-                 <label asp-for ="First().RegistrationNumber"></label>
+                <label asp-for="First().Fault"></label>
             </th>
-                <th>
-                 <label asp-for ="First().Mechanic"></label>
+            <th>
+               <label asp-for="First().Client"></label>
             </th>
-                <th>
-                 <label asp-for ="First().Part"></label>
+            <th>
+                <label asp-for="First().RegistrationNumber"></label>
             </th>
-                <th>
-                 <label asp-for ="First().PartPcs"></label>
+             <th>
+                <label asp-for="First().Car"></label>
+            </th>
+             <th>
+                <label asp-for="First().Mechanic"></label>
+            </th>
+             <th>
+                <label asp-for="First().Part"></label>
+            </th>
+            <th>
+                <label asp-for="First().PartPcs"></label>
+            </th>
+            <th>
+                <label asp-for="First().Price"></label>
             </th>
             <th></th>
         </tr>
@@ -50,19 +57,13 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-                <td>
-                @item.OrderNumber@item.RegistrationNumber/@item.StartTime.ToString("yyyy")/@item.Id
-            </td>
-         
-                <td>
-                @item.Client
-            </td>
-        
+          
             <td>
-                @item.StartTime.ToString("dd-MM-yyyy") 
-              @* @DateTime.Now.ToString()*@
+                @item.OrderNumber
             </td>
-  
+            <td>
+                @item.StartTime
+            </td>
             <td>
                 @item.Status
             </td>
@@ -70,24 +71,30 @@
                 @item.Fault
             </td>
             <td>
-                @item.Car
+                @item.Client
             </td>
             <td>
                 @item.RegistrationNumber
             </td>
-                  <td>
+            <td>
+                @item.Car
+            </td>
+            <td>
                 @item.Mechanic
             </td>
-                  <td>
+            <td>
                 @item.Part
             </td>
-                  <td>
+            <td>
                 @item.PartPcs
             </td>
             <td>
-        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @item.Price
+            </td>
+            <td>        
+            <a asp-action = "Edit" asp-route-id ="@item.Id">Edit</a>
+             <a asp-action = "Details" asp-route-id ="@item.Id">Details</a>
+              <a asp-action = "Delete" asp-route-id ="@item.Id">Delete</a>
             </td>
         </tr>
 }
