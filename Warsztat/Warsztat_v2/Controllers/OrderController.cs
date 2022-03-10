@@ -12,20 +12,19 @@ namespace Warsztat_v2.Controllers
 
         private CarrService _carrService;//
         private EmployeeService _employeeService;//
-        private PartService _partService;//
+        private IPartService _partService;//
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, IPartService partService/*,ICarService carService*/)
         {
             _orderService = orderService;
             _carrService = new CarrService();//
             _employeeService = new EmployeeService();//
-            _partService = new PartService();//
+            _partService =partService;//
 
         }
         // GET: OrderController
         public ActionResult Index()
         {
-
             var model = _orderService.GetAll();
             return View(model);
         }

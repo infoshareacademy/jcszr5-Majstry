@@ -8,6 +8,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddTransient<IPartService, PartService>();
+//builder.Services.AddTransient<ICarService, CarrService>();
 
 var app = builder.Build();
 

@@ -3,7 +3,7 @@ using Warsztat_v2.Models;
 
 namespace Warsztat_v2.Services
 {
-    public class CarrService
+    public class CarrService /*: ICarService*/
     {
         private static List<Carr> Carrs = new List<Carr>
         {
