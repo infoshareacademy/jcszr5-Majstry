@@ -1,23 +1,22 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Warsztat_v2.Models;
+using Warsztat_v2.Repositories;
 using Warsztat_v2.Services;
 
 namespace Warsztat_v2.Controllers
 {
     public class OrderController : Controller
     {
-        private OrderService _orderService;
+        private IOrderService _orderService;
 
         private CarrService _carrService;//
         private EmployeeService _employeeService;//
         private PartService _partService;//
 
-        public OrderController()
+        public OrderController(IOrderService orderService)
         {
-           
-            _orderService = new OrderService();
-
+            _orderService = orderService;
             _carrService = new CarrService();//
             _employeeService = new EmployeeService();//
             _partService = new PartService();//
