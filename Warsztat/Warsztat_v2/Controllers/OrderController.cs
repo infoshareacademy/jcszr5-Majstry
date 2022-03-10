@@ -15,6 +15,7 @@ namespace Warsztat_v2.Controllers
 
         public OrderController()
         {
+           
             _orderService = new OrderService();
 
             _carrService = new CarrService();//
@@ -43,7 +44,8 @@ namespace Warsztat_v2.Controllers
             ViewBag.Cars = _carrService.GetAll().ToList();
             ViewBag.Parts = _partService.GetAll().ToList();
             ViewBag.Employees = _employeeService.GetAll().ToList();
-
+       
+           
             return View();
         }
 
@@ -67,24 +69,35 @@ namespace Warsztat_v2.Controllers
                 return View();
             }
 
-
         }
 
         // GET: OrderController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ViewBag.Cars = _carrService.GetAll().ToList();
+            ViewBag.Parts = _partService.GetAll().ToList();
+            ViewBag.Employees = _employeeService.GetAll().ToList();
+
+            var model =_orderService.GetById(id);
+            return View(model);
         }
 
         // POST: OrderController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Order model)
         {
             try
             {
+                if(!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+              
+                _orderService.Update(model);
                 return RedirectToAction(nameof(Index));
             }
+            
             catch
             {
                 return View();
@@ -94,16 +107,18 @@ namespace Warsztat_v2.Controllers
         // GET: OrderController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var model = _orderService.GetById(id);
+            return View(model);
         }
 
         // POST: OrderController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Order model)
         {
             try
             {
+                _orderService.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

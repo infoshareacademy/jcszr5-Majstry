@@ -3,7 +3,7 @@ using Warsztat_v2.Models;
 
 namespace Warsztat_v2.Repositories
 {
-    public class OrderRepository
+    public class OrderRepository/*:IOrderRepository*/
     {
         public void SaveToFile(List<Order> orders)
         {

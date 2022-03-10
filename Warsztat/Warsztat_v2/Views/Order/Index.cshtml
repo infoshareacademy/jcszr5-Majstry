@@ -18,8 +18,6 @@
    
             <th>
                <label asp-for="First().OrderNumber"></label>
-               
-
             </th>
             <th>
                 <label asp-for="First().StartTime"></label>
@@ -27,9 +25,9 @@
             <th>
                 <label asp-for="First().Status"></label>
             </th>
-            <th>
+        @*    <th>
                 <label asp-for="First().Fault"></label>
-            </th>
+            </th>*@
             <th>
                <label asp-for="First().Client"></label>
             </th>
@@ -62,14 +60,14 @@
                 @item.OrderNumber
             </td>
             <td>
-                @item.StartTime
+                @item.StartTime.ToString("dd-MM-yyyy")
             </td>
             <td>
                 @item.Status
             </td>
-            <td>
+         @*   <td>
                 @item.Fault
-            </td>
+            </td>*@
             <td>
                 @item.Client
             </td>
@@ -91,10 +89,10 @@
             <td>
                 @item.Price
             </td>
-            <td>        
-            <a asp-action = "Edit" asp-route-id ="@item.Id">Edit</a>
-             <a asp-action = "Details" asp-route-id ="@item.Id">Details</a>
-              <a asp-action = "Delete" asp-route-id ="@item.Id">Delete</a>
+            <td>   
+             <td><a asp-action = "Edit" asp-route-id ="@item.Id">Edit</a></td>
+             <td><a asp-action = "Details" asp-route-id ="@item.Id">Details</a></td>
+             <td> <a asp-action = "Delete" asp-route-id ="@item.Id">Delete</a></td>
             </td>
         </tr>
 }

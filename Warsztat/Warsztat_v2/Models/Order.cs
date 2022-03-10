@@ -8,18 +8,26 @@ namespace Warsztat_v2.Models
     public class Order
     {
     
-        
+        [Key]
         public int Id { get; set; }
+        [Display(Name ="Order IDN")]
         public string OrderNumber { get; set; }
+
+        [Display(Name = "Start")]
+        [DataType(DataType.Date)]
         public DateTime StartTime { get; set; }
         public Status Status { get; set; }
         public string Fault { get; set; }
         public string Client { get; set; }
+
+        [Display(Name = "Reg Number")]
         public string RegistrationNumber { get; set; }
 
-        public  Carr Car { get; set; }
-        public Employee Mechanic { get; set; }
-        public Part Part { get; set; }
+        public  string Car { get; set; }
+        public string Mechanic { get; set; }
+        public string Part { get; set; }
+
+        [Display(Name = "Pcs")]
         public int PartPcs { get; set; }
         public float Price { get; set; }
     }
@@ -27,7 +35,6 @@ namespace Warsztat_v2.Models
 }
 //public List<Order> orders = new List<Order>
 //        {
-
 //            new Order()
 //            {
 //                Id=1,
@@ -42,7 +49,6 @@ namespace Warsztat_v2.Models
 //                Part = null,
 //                PartPcs = 1,
 //                Price=50,
-
 //            },
 //        };
 //public List<Order> GetAll()
