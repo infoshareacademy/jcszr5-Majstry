@@ -19,7 +19,7 @@ namespace Warsztat_v2.Controllers
             _orderService = orderService;
             _carrService = new CarrService();//
             _employeeService = new EmployeeService();//
-            _partService =partService;//
+            _partService = partService;//
 
         }
         // GET: OrderController
@@ -41,7 +41,9 @@ namespace Warsztat_v2.Controllers
         {
             ViewBag.Cars = _carrService.GetAll().ToList();
             ViewBag.Parts = _partService.GetAll().ToList();
-            ViewBag.Employees = _employeeService.GetAll().ToList();
+            ViewBag.Mechanics = _employeeService.GetAll().Where(e => e.Role == Enum.Role.Mechanic).ToList();
+            //ViewBag.Employees = _employeeService.GetAll().ToList();
+            
        
            
             return View();
@@ -74,7 +76,8 @@ namespace Warsztat_v2.Controllers
         {
             ViewBag.Cars = _carrService.GetAll().ToList();
             ViewBag.Parts = _partService.GetAll().ToList();
-            ViewBag.Employees = _employeeService.GetAll().ToList();
+            ViewBag.Mechanics = _employeeService.GetAll().Where(m => m.Role == Enum.Role.Mechanic).ToList();
+           
 
             var model =_orderService.GetById(id);
             return View(model);

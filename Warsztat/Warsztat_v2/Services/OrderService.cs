@@ -12,11 +12,18 @@ namespace Warsztat_v2.Services
     {
        // public OrderService orderService;
         private IOrderRepository orderRepository;
+        private IPartService partService;
+
+        public Part part;
+        //public Order order;
+
         private List<Order> orders;
 
-        public OrderService(IOrderRepository orderRepository)
+        public OrderService(IOrderRepository orderRepository, IPartService partService)
         {
-            this.orderRepository = orderRepository;                            
+            this.orderRepository = orderRepository;     
+            this.partService = partService;
+            
         }
 
         public string OrderNumberGenerator(Order order)
@@ -34,15 +41,18 @@ namespace Warsztat_v2.Services
         public Order GetById(int id)
         {
             orders = GetAll();
+           
             return orders.FirstOrDefault(o => o.Id == id);
         }
 
 
         public void Create(Order order)
         {
+  
              //orders = GetAll(); 
             order.Id = GetNextId();
             order.OrderNumber = OrderNumberGenerator(order);
+            order.Price = GetPrice(order);
             orders.Add(order);
             orderRepository.SaveToFile(orders);
         }
@@ -63,7 +73,8 @@ namespace Warsztat_v2.Services
             order.Status = model.Status;
             order.Car=model.Car;
             order.Client = model.Client;
-            order.Price = model.Price;
+            //order.Price = model.Price;
+            order.Price = GetPrice(model);
             order.Part = model.Part;
             order.Fault = model.Fault;
             order.Mechanic = model.Mechanic;
@@ -77,5 +88,18 @@ namespace Warsztat_v2.Services
             orders.Remove(order);
             orderRepository.SaveToFile(orders);       
         }
+
+        public float GetPrice(Order order)
+        {
+            float price = 0;
+            var part = partService.GetAll().FirstOrDefault(p => p.PartName == order.Part);
+                order.Price = order.PartPcs * part.PartPrice;
+                price = order.Price;
+            
+            return price;
+        }
+
+     
+       
     }
 }
