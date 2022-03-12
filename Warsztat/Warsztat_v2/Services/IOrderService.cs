@@ -11,6 +11,6 @@ namespace Warsztat_v2.Services
         int GetNextId();
         void Update(Order model);
         void Delete(int id);
-        float GetPrice(Order order);
+        float GetCostOfOrder(Order order);
     }
 }

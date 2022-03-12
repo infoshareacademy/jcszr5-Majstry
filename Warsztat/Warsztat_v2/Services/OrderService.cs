@@ -52,7 +52,7 @@ namespace Warsztat_v2.Services
              //orders = GetAll(); 
             order.Id = GetNextId();
             order.OrderNumber = OrderNumberGenerator(order);
-            order.Price = GetPrice(order);
+            order.Price = GetCostOfOrder(order);
             orders.Add(order);
             orderRepository.SaveToFile(orders);
         }
@@ -74,7 +74,7 @@ namespace Warsztat_v2.Services
             order.Car=model.Car;
             order.Client = model.Client;
             //order.Price = model.Price;
-            order.Price = GetPrice(model);
+            order.Price = GetCostOfOrder(model);
             order.Part = model.Part;
             order.Fault = model.Fault;
             order.Mechanic = model.Mechanic;
@@ -89,15 +89,22 @@ namespace Warsztat_v2.Services
             orderRepository.SaveToFile(orders);       
         }
 
-        public float GetPrice(Order order)
+        public float GetCostOfOrder(Order order)
         {
             float price = 0;
             var part = partService.GetAll().FirstOrDefault(p => p.PartName == order.Part);
+           
                 order.Price = order.PartPcs * part.PartPrice;
                 price = order.Price;
-            
             return price;
+
         }
+
+        //public int UpdatePartsQuantity()
+        //{
+
+        //}
+
 
      
        
