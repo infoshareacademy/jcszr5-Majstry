@@ -1,7 +1,15 @@
+using Warsztat_v2.Repositories;
+using Warsztat_v2.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddTransient<IPartService, PartService>();
+//builder.Services.AddTransient<ICarService, CarrService>();
 
 var app = builder.Build();
 

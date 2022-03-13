@@ -3,7 +3,7 @@ using Warsztat_v2.Models;
 
 namespace Warsztat_v2.Services
 {
-    public class PartService
+    public class PartService: IPartService
     {
         private static List<Part> Parts = new List<Part>
         {
@@ -78,7 +78,7 @@ namespace Warsztat_v2.Services
         private static int IdCounter = 7;
         public List<Part> GetAll()
         {
-            string jasonFromFile = File.ReadAllText(@"C:\Users\Łukasz\Desktop\RepoWarsztat567\jcszr5-Majstry\Warsztat\Warsztat_v2\PartList.json");
+            string jasonFromFile = File.ReadAllText(@"..\..\..\PartList.json");
             Parts = JsonSerializer.Deserialize<List<Part>>(jasonFromFile);
             return Parts;
         }
@@ -100,14 +100,14 @@ namespace Warsztat_v2.Services
             Parts.Add(part);
             SaveToFile();
         }
-        private void SaveToFile()
+        public void SaveToFile()
         {
             string json = JsonSerializer.Serialize(Parts);
 
-            File.WriteAllText(@"C:\Users\Łukasz\Desktop\RepoWarsztat567\jcszr5-Majstry\Warsztat\Warsztat_v2\PartList.json", json);
+            File.WriteAllText(@"..\..\..\PartList.json", json);
         }
 
-        private int GetNextId()
+        public int GetNextId()
         {
             IdCounter = IdCounter + 1;
             return IdCounter;

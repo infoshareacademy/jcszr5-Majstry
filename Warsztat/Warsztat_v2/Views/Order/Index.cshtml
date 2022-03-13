@@ -1,54 +1,100 @@
-﻿@using Warsztat_v2.Controllers
+﻿@model IEnumerable<Warsztat_v2.Models.Order>
+@using Warsztat_v2.Controllers
 @using Warsztat_v2.Services
-@model IEnumerable<Warsztat_v2.Models.Carr>
+
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Order</h1>
+<h1>Index</h1>
 
- 
- 
-  @Html.DropDownList("ApplicationType", new SelectList(ViewBag.Cars, "Id","CarMark"), " - Select Car - ")
-  @Html.DropDownList("ApplicationType", new SelectList(ViewBag.Parts, "Id","PartName"), " - Select Part - ")
-  @Html.DropDownList("ApplicationType", new SelectList(ViewBag.Employees, "Id","LastName"), " - Select Employee - ")
   
-
-
-
-
-@*<p>
+<p>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+   
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+               <label asp-for="First().OrderNumber"></label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Fault)
+                <label asp-for="First().StartTime"></label>
+            </th>
+            <th>
+                <label asp-for="First().Status"></label>
+            </th>
+        @*    <th>
+                <label asp-for="First().Fault"></label>
+            </th>*@
+            <th>
+               <label asp-for="First().Client"></label>
+            </th>
+            <th>
+                <label asp-for="First().RegistrationNumber"></label>
+            </th>
+             <th>
+                <label asp-for="First().Car"></label>
+            </th>
+             <th>
+                <label asp-for="First().Mechanic"></label>
+            </th>
+             <th>
+                <label asp-for="First().Part"></label>
+            </th>
+            <th>
+                <label asp-for="First().PartPcs"></label>
+            </th>
+            <th>
+                <label asp-for="First().Price"></label>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr>          
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+                @item.OrderNumber
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Fault)
+                @item.StartTime.ToString("dd-MM-yyyy")
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @item.Status
+            </td>
+         @*   <td>
+                @item.Fault
+            </td>*@
+            <td>
+                @item.Client
+            </td>
+            <td>
+                @item.RegistrationNumber
+            </td>
+            <td>
+                @item.Car
+            </td>
+            <td>
+                @item.Mechanic
+            </td>
+            <td>
+                @item.Part
+            </td>
+            <td>
+                @item.PartPcs
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>   
+             <td><a asp-action = "Edit" asp-route-id ="@item.Id">Edit</a></td>
+             <td><a asp-action = "Details" asp-route-id ="@item.Id">Details</a></td>
+             <td> <a asp-action = "Delete" asp-route-id ="@item.Id">Delete</a></td>
             </td>
         </tr>
 }
     </tbody>
 </table>
-*@

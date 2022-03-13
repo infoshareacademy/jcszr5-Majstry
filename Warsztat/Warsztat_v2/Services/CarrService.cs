@@ -4,7 +4,7 @@ using Warsztat_v2.Models;
 
 namespace Warsztat_v2.Services
 {
-    public class CarrService
+    public class CarrService /*: ICarService*/
     {
         public List<Carr> Carrs = new List<Carr>
         {
@@ -80,8 +80,8 @@ namespace Warsztat_v2.Services
         private static int IdCounter = 7;
         public List<Carr> GetAll()
         {
-            string jasonFromFile = File.ReadAllText(@"C:\Users\Łukasz\Desktop\RepoWarsztat567\jcszr5-Majstry\Warsztat\Warsztat_v2\CarrList.json");
-            Carrs = JsonSerializer.Deserialize<List<Carr>>(jasonFromFile);
+           // string jasonFromFile = File.ReadAllText(@"C:\Users\Łukasz\Desktop\RepoWarsztat567\jcszr5-Majstry\Warsztat\Warsztat_v2\CarrList.json");
+            //Carrs = JsonSerializer.Deserialize<List<Carr>>(jasonFromFile);
             return Carrs;
         }
 
