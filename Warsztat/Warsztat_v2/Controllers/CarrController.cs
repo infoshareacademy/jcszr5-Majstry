@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Warsztat_v2.Models;
 using Warsztat_v2.Services;
 
@@ -11,6 +12,8 @@ namespace Warsztat_v2.Controllers
         public CarrController()
         {
             _carrService = new CarrService();
+            SelectList list = new SelectList(_carrService.GetAll(), "CarModel", "CarMark");
+            ViewBag.Roles = list;
         }
         // GET: CarrController
         public ActionResult Index()

@@ -30,6 +30,7 @@ namespace Warsztat_v2.Models
         [Display(Name = "Pcs")]
         public int PartPcs { get; set; }
         public float Price { get; set; }
+
     }
 
 }

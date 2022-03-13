@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 using Warsztat_v2.Models;
 using Warsztat_v2.Repositories;
+
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 using Warsztat_v2.Services;
 
 namespace Warsztat_v2.Controllers
@@ -43,10 +47,6 @@ namespace Warsztat_v2.Controllers
             ViewBag.Parts = _partService.GetAll().ToList();
             ViewBag.Mechanics = _employeeService.GetAll().Where(e => e.Role == Enum.Role.Mechanic).ToList();
             //ViewBag.Employees = _employeeService.GetAll().ToList();
-            
-       
-           
-            return View();
         }
 
         // POST: OrderController/Create
@@ -68,7 +68,6 @@ namespace Warsztat_v2.Controllers
             {
                 return View();
             }
-
         }
 
         // GET: OrderController/Edit/5
@@ -98,7 +97,6 @@ namespace Warsztat_v2.Controllers
                 _orderService.Update(model);
                 return RedirectToAction(nameof(Index));
             }
-            
             catch
             {
                 return View();
@@ -120,6 +118,7 @@ namespace Warsztat_v2.Controllers
             try
             {
                 _orderService.Delete(id);
+
                 return RedirectToAction(nameof(Index));
             }
             catch

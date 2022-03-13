@@ -1,11 +1,12 @@
-﻿using System.Text.Json;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text.Json;
 using Warsztat_v2.Models;
 
 namespace Warsztat_v2.Services
 {
     public class CarrService /*: ICarService*/
     {
-        private static List<Carr> Carrs = new List<Carr>
+        public List<Carr> Carrs = new List<Carr>
         {
             new Carr()
             {
@@ -74,6 +75,7 @@ namespace Warsztat_v2.Services
             SaveToFile();
 
         }
+
 
         private static int IdCounter = 7;
         public List<Carr> GetAll()

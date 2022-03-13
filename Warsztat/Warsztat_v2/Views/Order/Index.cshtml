@@ -2,6 +2,7 @@
 @using Warsztat_v2.Controllers
 @using Warsztat_v2.Services
 
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -54,8 +55,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
-          
+        <tr>          
             <td>
                 @item.OrderNumber
             </td>
