@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
-using Warsztat_v2.Models;
-using Warsztat_v2.Repositories;
-
-using Microsoft.AspNetCore.Mvc.Rendering;
-
-using Warsztat_v2.Services;
+using Warsztat.BLL.Services;
+using Warsztat.BLL.Models;
+using Warsztat.BLL.Enums;
+using Warsztat.BLL.Models;
 
 namespace Warsztat_v2.Controllers
 {
@@ -14,17 +11,16 @@ namespace Warsztat_v2.Controllers
     {
         private IOrderService _orderService;
 
-        private CarrService _carrService;//
+        private CarService _carrService;//
         private EmployeeService _employeeService;//
         private IPartService _partService;//
 
         public OrderController(IOrderService orderService, IPartService partService/*,ICarService carService*/)
         {
             _orderService = orderService;
-            _carrService = new CarrService();//
-            _employeeService = new EmployeeService();//
             _partService = partService;//
-
+            _carrService = new CarService();//
+            _employeeService = new EmployeeService();//
         }
         // GET: OrderController
         public ActionResult Index()
@@ -45,10 +41,17 @@ namespace Warsztat_v2.Controllers
         {
             ViewBag.Cars = _carrService.GetAll().ToList();
             ViewBag.Parts = _partService.GetAll().ToList();
-            ViewBag.Mechanics = _employeeService.GetAll().Where(e => e.Role == Enum.Role.Mechanic).ToList();
+            ViewBag.Mechanics = _employeeService.GetAll().Where(e => e.Role == Role.Mechanic).ToList();
             //ViewBag.Employees = _employeeService.GetAll().ToList();
 
-            return View();
+            //var model = new CreateOrderViewModel()
+            //{
+            //    Cars = _carrService.GetAll(),
+            //    Parts = _partService.GetAll(),
+            //    Employees = _employeeService.GetAll().Where(e => e.Role == Role.Mechanic).ToList()
+            //};
+
+            return View(/*model*/);
 
         }
 
@@ -78,7 +81,7 @@ namespace Warsztat_v2.Controllers
         {
             ViewBag.Cars = _carrService.GetAll().ToList();
             ViewBag.Parts = _partService.GetAll().ToList();
-            ViewBag.Mechanics = _employeeService.GetAll().Where(m => m.Role == Enum.Role.Mechanic).ToList();
+            ViewBag.Mechanics = _employeeService.GetAll().Where(m => m.Role == Role.Mechanic).ToList();
            
 
             var model =_orderService.GetById(id);

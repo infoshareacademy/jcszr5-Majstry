@@ -1,5 +1,5 @@
-using Warsztat_v2.Repositories;
-using Warsztat_v2.Services;
+using Warsztat.BLL.Repositories;
+using Warsztat.BLL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

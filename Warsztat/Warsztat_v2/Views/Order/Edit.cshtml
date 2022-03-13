@@ -1,5 +1,5 @@
-﻿@model Warsztat_v2.Models.Order
-
+﻿@model Warsztat.BLL.Models.Order
+@using Warsztat.BLL.Enums
 @{
     ViewData["Title"] = "Edit";
 }
@@ -29,7 +29,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
+                @*<input asp-for="Status" class="form-control" />*@
+                 <select asp-for="Status" asp-items="Html.GetEnumSelectList<Status>()" class="form-control"></select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">

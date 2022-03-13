@@ -6,39 +6,37 @@ using Warsztat.BLL.Services;
 
 namespace Warsztat_v2.Controllers
 {
-    public class CarrController : Controller
+    public class EmployeeController : Controller
     {
-        private CarService _carrService;
-        public CarrController()
+        private EmployeeService _employeeService;
+        public EmployeeController()
         {
-            _carrService = new CarService();
-            SelectList list = new SelectList(_carrService.GetAll(), "CarModel", "CarMark");
-            ViewBag.Roles = list;
+           _employeeService = new EmployeeService();
         }
-        // GET: CarrController
+        // GET: EmployeeControler
         public ActionResult Index()
         {
-            var model = _carrService.GetAll();
+           var model = _employeeService.GetAll();
             return View(model);
         }
 
-        // GET: PartController1/Details/5
+        // GET: EmployeeControler/Details/5
         public ActionResult Details(int id)
         {
-            var model = _carrService.GetById(id);
+            var model = _employeeService.GetById(id);
             return View(model);
         }
 
-        // GET: PartController1/Create
+        // GET: EmployeeControler/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PartController1/Create
+        // POST: EmployeeControler/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Carr model)
+        public ActionResult Create(Employee model)
         {
             try
             {
@@ -46,10 +44,9 @@ namespace Warsztat_v2.Controllers
                 {
                     return View(model);
                 }
-                _carrService.Create(model);
-
+                _employeeService.Create(model);
                 return RedirectToAction(nameof(Index));
-
+                
             }
             catch
             {
@@ -57,17 +54,17 @@ namespace Warsztat_v2.Controllers
             }
         }
 
-        // GET: PartController1/Edit/5
+        // GET: EmployeeControler/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = _carrService.GetById(id);
+            var model = _employeeService.GetById(id);
             return View(model);
         }
 
-        // POST: PartController1/Edit/5
+        // POST: EmployeeControler/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Carr model)
+        public ActionResult Edit(int id, Employee model)
         {
             try
             {
@@ -75,7 +72,7 @@ namespace Warsztat_v2.Controllers
                 {
                     return View(model);
                 }
-                _carrService.Update(model);
+                _employeeService.Update(model);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -84,21 +81,21 @@ namespace Warsztat_v2.Controllers
             }
         }
 
-        // GET: PartController1/Delete/5
+        // GET: EmployeeControler/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = _carrService.GetById(id);
+            var model = _employeeService.GetById(id);
             return View(model);
         }
 
-        // POST: PartController1/Delete/5
+        // POST: EmployeeControler/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Carr model)
+        public ActionResult Delete(int id, Employee model)
         {
             try
             {
-                _carrService.Delete(id);
+                _employeeService.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

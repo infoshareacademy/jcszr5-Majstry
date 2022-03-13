@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Warsztat_v2.Models;
+using Warsztat.BLL.Models;
 
 namespace Warsztat_v2.Controllers
 {

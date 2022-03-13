@@ -1,31 +1,29 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Warsztat.BLL.Models;
 using Warsztat.BLL.Services;
 
+
 namespace Warsztat_v2.Controllers
 {
-    public class CarrController : Controller
+    public class PartController : Controller
     {
-        private CarService _carrService;
-        public CarrController()
+        private PartService _partService;
+        public PartController()
         {
-            _carrService = new CarService();
-            SelectList list = new SelectList(_carrService.GetAll(), "CarModel", "CarMark");
-            ViewBag.Roles = list;
+            _partService = new PartService();
         }
-        // GET: CarrController
+        // GET: PartController1
         public ActionResult Index()
         {
-            var model = _carrService.GetAll();
+            var model = _partService.GetAll();
             return View(model);
         }
 
         // GET: PartController1/Details/5
         public ActionResult Details(int id)
         {
-            var model = _carrService.GetById(id);
+            var model = _partService.GetById(id);
             return View(model);
         }
 
@@ -38,7 +36,7 @@ namespace Warsztat_v2.Controllers
         // POST: PartController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Carr model)
+        public ActionResult Create(Part model)
         {
             try
             {
@@ -46,7 +44,7 @@ namespace Warsztat_v2.Controllers
                 {
                     return View(model);
                 }
-                _carrService.Create(model);
+                _partService.Create(model);
 
                 return RedirectToAction(nameof(Index));
 
@@ -60,14 +58,14 @@ namespace Warsztat_v2.Controllers
         // GET: PartController1/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = _carrService.GetById(id);
+            var model = _partService.GetById(id);
             return View(model);
         }
 
         // POST: PartController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Carr model)
+        public ActionResult Edit(int id, Part model)
         {
             try
             {
@@ -75,7 +73,7 @@ namespace Warsztat_v2.Controllers
                 {
                     return View(model);
                 }
-                _carrService.Update(model);
+                _partService.Update(model);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -87,18 +85,18 @@ namespace Warsztat_v2.Controllers
         // GET: PartController1/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = _carrService.GetById(id);
+            var model = _partService.GetById(id);
             return View(model);
         }
 
         // POST: PartController1/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Carr model)
+        public ActionResult Delete(int id, Part model)
         {
             try
             {
-                _carrService.Delete(id);
+                _partService.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

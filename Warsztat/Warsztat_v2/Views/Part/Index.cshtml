@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Warsztat.BLL.Models.Carr>
+﻿@model IEnumerable<Warsztat.BLL.Models.Part>
 
 @{
     ViewData["Title"] = "Index";
 }
-@*<img src="~/css/ikona.jpg" alt="" class="news_img" color="red" width="50" height="50">*@
-<h1>Cars</h1>
+
+<h1>Parts</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,13 +14,13 @@
         <tr>
             
             <th>
-                <label asp-for="First().CarMark"></label>
+                <label asp-for="First().PartName"></label>
             </th>
             <th>
-                <label asp-for="First().CarModel"></label>
+                <label asp-for="First().PartPrice"></label>
             </th>
             <th>
-                <label asp-for="First().YearProduction1"></label>
+                <label asp-for="First().Quantity"></label>
             </th>
             <th></th>
         </tr>
@@ -29,16 +29,15 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @item.CarMark
+                @item.PartName
             </td>
             <td>
-                @item.CarModel
+                @item.PartPrice
             </td>
             <td>
-                @item.YearProduction1
+                @item.Quantity
             </td>
-           
-           <td>
+            <td>
                 <a asp-action = "Edit" asp-route-id = "@item.Id">Edit</a> |
                 <a asp-action = "Details" asp-route-id = "@item.Id">Details</a> |
                 <a asp-action = "Delete" asp-route-id = "@item.Id">Delete</a>
