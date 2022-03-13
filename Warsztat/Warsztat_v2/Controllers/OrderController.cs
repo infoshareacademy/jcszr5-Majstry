@@ -47,6 +47,9 @@ namespace Warsztat_v2.Controllers
             ViewBag.Parts = _partService.GetAll().ToList();
             ViewBag.Mechanics = _employeeService.GetAll().Where(e => e.Role == Enum.Role.Mechanic).ToList();
             //ViewBag.Employees = _employeeService.GetAll().ToList();
+
+            return View();
+
         }
 
         // POST: OrderController/Create

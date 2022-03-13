@@ -77,7 +77,7 @@ namespace Warsztat_v2.Services
         private static int IdCounter = 6;
         public List<Employee> GetAll()
         {
-            string jasonFromFile = File.ReadAllText(@"..\..\..\employeeList.json");
+            string jasonFromFile = File.ReadAllText(@"employeeList.json");
             
             Employees = JsonSerializer.Deserialize<List<Employee>>(jasonFromFile);
             return Employees;

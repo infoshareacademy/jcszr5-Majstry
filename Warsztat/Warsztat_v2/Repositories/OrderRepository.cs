@@ -13,7 +13,7 @@ namespace Warsztat_v2.Repositories
 
         public List<Order> ReadFromFile()
         {
-           string jsonFromFile = File.ReadAllText(@"D:\InfoShaREaCADEMY\Projekt\Web app v.2\Service WebApp\jcszr5-Majstry\Warsztat\Warsztat_v2\OrderList.json");
+           string jsonFromFile = File.ReadAllText(@"OrderList.json");
             //D:\InfoShaREaCADEMY\Projekt\Web app v.2\Service WebApp\jcszr5-Majstry\Warsztat
            
             List<Order> orderFromFile = JsonSerializer.Deserialize<List<Order>>(jsonFromFile);

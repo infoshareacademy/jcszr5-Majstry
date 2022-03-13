@@ -78,7 +78,7 @@ namespace Warsztat_v2.Services
         private static int IdCounter = 7;
         public List<Part> GetAll()
         {
-            string jasonFromFile = File.ReadAllText(@"..\..\..\PartList.json");
+            string jasonFromFile = File.ReadAllText(@"PartList.json");
             Parts = JsonSerializer.Deserialize<List<Part>>(jasonFromFile);
             return Parts;
         }
