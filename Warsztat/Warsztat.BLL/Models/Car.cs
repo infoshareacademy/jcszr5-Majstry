@@ -2,7 +2,7 @@
 
 namespace Warsztat.BLL.Models
 {
-    public class Carr
+    public class Car
 
     {
         public int Id { get; set; }

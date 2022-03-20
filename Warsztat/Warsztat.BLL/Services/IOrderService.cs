@@ -4,7 +4,7 @@ namespace Warsztat.BLL.Services
 {
     public interface IOrderService
     {
-        string OrderNumberGenerator(Order order);
+        string OrderNumberGenerator(Order order/*string registrationNumber, string startTime, string id*/);
         List<Order> GetAll();
         Order GetById(int id);
         void Create(Order order);

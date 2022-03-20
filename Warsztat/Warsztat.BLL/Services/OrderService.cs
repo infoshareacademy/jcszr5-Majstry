@@ -6,13 +6,11 @@ namespace Warsztat.BLL.Services
 {
     public class OrderService : IOrderService
     {
-        // public OrderService orderService;
+        
         private IOrderRepository orderRepository;
         private IPartService partService;
-
         public Part part;
         public Order order;
-
         private List<Order> orders;
 
         public OrderService(IOrderRepository orderRepository, IPartService partService)
@@ -22,9 +20,12 @@ namespace Warsztat.BLL.Services
 
         }
 
-        public string OrderNumberGenerator(Order order)
+      
+        public string OrderNumberGenerator(Order order/*string registrationNumber, string startTime, string id*/)
         {
+          //  return registrationNumber + startTime + id;
             return order.RegistrationNumber + "/" + order.StartTime.ToString("yyyy") + "/" + order.Id.ToString();
+ 
         }
         private static int orderCounter;
         public List<Order> GetAll()
@@ -44,10 +45,9 @@ namespace Warsztat.BLL.Services
 
         public void Create(Order order)
         {
-
             //orders = GetAll(); 
             order.Id = GetNextId();
-            order.OrderNumber = OrderNumberGenerator(order);
+           // order.OrderNumber = OrderNumberGenerator( /*order*/order.RegistrationNumber, order.StartTime.ToString("yyyy"), order.Id.ToString());
             order.Price = GetCostOfOrder(order);
             orders.Add(order);
             orderRepository.SaveToFile(orders);
@@ -91,7 +91,6 @@ namespace Warsztat.BLL.Services
             order.Price = order.PartPcs * part.PartPrice;
             price = order.Price;
             return price;
-
         }
 
         //public int UpdatePartsQuantity()

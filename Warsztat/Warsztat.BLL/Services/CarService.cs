@@ -5,9 +5,9 @@ namespace Warsztat.BLL.Services
 {
     public class CarService /*: ICarService*/
     {
-        public List<Carr> Carrs = new List<Carr>
+        public List<Car> Carrs = new List<Car>
         {
-            new Carr()
+            new Car()
             {
                 Id = 1,
                 CarMark = "Audi",
@@ -15,7 +15,7 @@ namespace Warsztat.BLL.Services
                 YearProduction1 = 2017,
 
             },
-             new Carr()
+             new Car()
             {
                 Id = 2,
                 CarMark = "Renault",
@@ -23,7 +23,7 @@ namespace Warsztat.BLL.Services
                 YearProduction1 = 2008,
 
             },
-              new Carr()
+              new Car()
             {
                 Id = 3,
                 CarMark = "Peugeot",
@@ -31,7 +31,7 @@ namespace Warsztat.BLL.Services
                 YearProduction1 = 2004,
 
             },
-               new Carr()
+               new Car()
             {
                 Id = 4,
                 CarMark = "Toyota",
@@ -39,7 +39,7 @@ namespace Warsztat.BLL.Services
                 YearProduction1 = 2014,
 
             },
-            new Carr()
+            new Car()
             {
                 Id = 5,
                 CarMark = "Jeep",
@@ -47,7 +47,7 @@ namespace Warsztat.BLL.Services
                 YearProduction1 = 2012,
 
             },
-            new Carr()
+            new Car()
             {
                 Id = 6,
                 CarMark = "Citroen",
@@ -55,7 +55,7 @@ namespace Warsztat.BLL.Services
                 YearProduction1 = 2020,
 
             },
-             new Carr()
+             new Car()
             {
                 Id = 7,
                 CarMark = "BMW",
@@ -65,7 +65,7 @@ namespace Warsztat.BLL.Services
             }
         };
 
-        public void Update(Carr model)
+        public void Update(Car model)
         {
             var carr = GetById(model.Id);
             carr.CarModel = model.CarModel;
@@ -77,7 +77,7 @@ namespace Warsztat.BLL.Services
 
 
         private static int IdCounter = 7;
-        public List<Carr> GetAll()
+        public List<Car> GetAll()
         {
             // string jasonFromFile = File.ReadAllText(@"C:\Users\Łukasz\Desktop\RepoWarsztat567\jcszr5-Majstry\Warsztat\Warsztat_v2\CarrList.json");
             //Carrs = JsonSerializer.Deserialize<List<Carr>>(jasonFromFile);
@@ -91,11 +91,11 @@ namespace Warsztat.BLL.Services
             SaveToFile();
         }
 
-        public Carr GetById(int id)
+        public Car GetById(int id)
         {
             return Carrs.FirstOrDefault(e => e.Id == id);
         }
-        public void Create(Carr carr)
+        public void Create(Car carr)
         {
             carr.Id = GetNextId();
             Carrs.Add(carr);

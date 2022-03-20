@@ -60,14 +60,16 @@ namespace Warsztat_v2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Order model)
         {
+           
             try
             {
-                if (!ModelState.IsValid)
+                model.OrderNumber = _orderService.OrderNumberGenerator(model/*.RegistrationNumber, model.StartTime.ToString("yyyy"), model.Id.ToString()*/);
+                _orderService.Create(model);
+                if (ModelState.IsValid)
                 {
-                   
                     return View(model);
                 }
-                _orderService.Create(model);
+               // _orderService.Create(model);
                 return RedirectToAction(nameof(Index));
             }
             catch

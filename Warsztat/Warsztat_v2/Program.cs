@@ -1,5 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 using Warsztat.BLL.Repositories;
 using Warsztat.BLL.Services;
+using Warsztat_v2.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IPartService, PartService>();
+
+// var conne = Configuration.GetConnectionString("DefaultConnection");
+var conectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
+builder.Services.AddDbContext<ServiceContext>(options =>
+    options.UseSqlServer(conectionString));
 //builder.Services.AddTransient<ICarService, CarrService>();
 
 var app = builder.Build();
@@ -31,5 +39,23 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+CreateDbIfNotExists(app);//
 app.Run();
+
+ static void CreateDbIfNotExists(IHost host)
+{
+    using (var scope = host.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+        try
+        {
+            var context = services.GetRequiredService<ServiceContext>();
+            DbInitializer.Initialize(context);
+        }
+        catch (Exception ex)
+        {
+            var logger = services.GetRequiredService<ILogger<Program>>();
+            logger.LogError(ex, "An error occurred creating the DB.");
+        }
+    }
+}

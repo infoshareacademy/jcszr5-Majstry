@@ -38,7 +38,7 @@ namespace Warsztat_v2.Controllers
         // POST: PartController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Carr model)
+        public ActionResult Create(Car model)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace Warsztat_v2.Controllers
         // POST: PartController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Carr model)
+        public ActionResult Edit(int id, Car model)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace Warsztat_v2.Controllers
         // POST: PartController1/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Carr model)
+        public ActionResult Delete(int id, Car model)
         {
             try
             {

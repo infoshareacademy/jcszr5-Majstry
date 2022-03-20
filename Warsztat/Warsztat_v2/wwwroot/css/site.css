@@ -5,7 +5,7 @@ html {
 @media (min-width: 768px) {
   html {
     font-size: 16px;
-    background-color:aqua;
+    background-color:lightgrey;
   }
 }
 
@@ -17,12 +17,15 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: aqua;
+    background-color: lightgrey;
 }
 .display-4{
     color:black;
     font-weight:700;
 
+}
+.container-fluid {
+    background-color: white;  
 }
 .table {
     font-weight: 700;
@@ -30,8 +33,10 @@ body {
 }
 .navi {
     font-weight: 700;
+
 }
 .nav-link text-dark {
+    
     font-weight: 700;
 }
 li {
