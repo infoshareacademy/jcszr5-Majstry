@@ -59,8 +59,7 @@ namespace Warsztat_v2.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Order model)
-        {
-           
+        {   
             try
             {
                 model.OrderNumber = _orderService.OrderNumberGenerator(model/*.RegistrationNumber, model.StartTime.ToString("yyyy"), model.Id.ToString()*/);
@@ -97,11 +96,10 @@ namespace Warsztat_v2.Controllers
         {
             try
             {
-                if(!ModelState.IsValid)
+                if(ModelState.IsValid)
                 {
                     return View(model);
-                }
-              
+                }             
                 _orderService.Update(model);
                 return RedirectToAction(nameof(Index));
             }
@@ -126,7 +124,6 @@ namespace Warsztat_v2.Controllers
             try
             {
                 _orderService.Delete(id);
-
                 return RedirectToAction(nameof(Index));
             }
             catch

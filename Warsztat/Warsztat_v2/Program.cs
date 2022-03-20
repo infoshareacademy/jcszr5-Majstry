@@ -14,10 +14,15 @@ builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IPartService, PartService>();
 
 // var conne = Configuration.GetConnectionString("DefaultConnection");
+
+
+
+
+//builder.Services.AddTransient<ICarService, CarrService>();
 var conectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
 builder.Services.AddDbContext<ServiceContext>(options =>
     options.UseSqlServer(conectionString));
-//builder.Services.AddTransient<ICarService, CarrService>();
+
 
 var app = builder.Build();
 
@@ -39,7 +44,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 CreateDbIfNotExists(app);//
+
 app.Run();
 
  static void CreateDbIfNotExists(IHost host)

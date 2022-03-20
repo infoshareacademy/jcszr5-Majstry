@@ -10,116 +10,25 @@
   
     //Model.OrderNumber =Model.RegistrationNumber+ Model.StartTime.ToString("yyyy")+Model.Id.ToString();
 }
-
 <h1>Create</h1>
-
 <h4>Order</h4>
-
-
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          @*  <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-             
-              
-     @*           <label asp-for="OrderNumber" class="control-label"></label>     *@  
-             @*<input asp-for="OrderNumber" class="form-control" /> *@
-               @* <span asp-validation-for="OrderNumber" class="text-danger"></span>**@
-               @*    @Html.LabelFor(m => formModel.OrderNumber);
-                @Html.TextBoxFor(m => formModel.OrderNumber);*@
-            </div>    
-          
-            <div class="form-group">
-             @*         @Html.LabelFor(m => formModel.StartTime);
-                @Html.TextBoxFor(m => formModel.StartTime);*@
-                <label asp-for="StartTime" class="control-label"></label>
-                <input asp-for="StartTime" class="form-control" />
-                <span asp-validation-for="StartTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-            @*          @Html.LabelFor(m => formModel.Status);
-                @Html.TextBoxFor(m => formModel.Status);*@
-                <label asp-for="Status" class="control-label"></label>
-               <select asp-for="Status" asp-items="Html.GetEnumSelectList<Status>()" class="form-control"></select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-@*                      @Html.LabelFor(m => formModel.Fault);
-                @Html.TextBoxFor(m => formModel.Fault);*@
-                <label asp-for="Fault" class="control-label"></label>
-                <input asp-for="Fault" class="form-control" />
-                <span asp-validation-for="Fault" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-            @*          @Html.LabelFor(m => formModel.Client);
-                @Html.TextBoxFor(m => formModel.Client);*@
-                <label asp-for="Client" class="control-label"></label>
-                <input asp-for="Client" class="form-control" />
-                <span asp-validation-for="Client" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-            @*          @Html.LabelFor(m => formModel.RegistrationNumber);
-                @Html.TextBoxFor(m => formModel.RegistrationNumber);*@
-                <label asp-for="RegistrationNumber" class="control-label"></label>
-                <input asp-for="RegistrationNumber" class="form-control" />
-                <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
 
-            </div>
-        
-               <div class="form-group">
-                <label asp-for="Car" class="control-label"></label>
-         @*       @Html.LabelFor(m => Model.Cars);
-                  @Html.TextBoxFor(m => Model.Cars);*@
-                  <select asp-for="Car" asp-items="@(new SelectList(ViewBag.Cars,nameof(Car.CarModel),nameof(Car.CarModel)))"  class ="form-control"></select>   
-                <span asp-validation-for="Car" class="text-danger"></span> 
-            </div>
-               <div class="form-group">
-      @*              @Html.LabelFor(m => Model.Employees);
-                  @Html.TextBoxFor(m => Model.Employees);*@
-                <label asp-for="Mechanic" class="control-label"></label>         
-                <select asp-for="Mechanic" asp-items="@(new SelectList(ViewBag.Mechanics,nameof(Employee.FirstName),nameof(Employee.FirstName)))" class ="form-control"> </select>
-                <span asp-validation-for="Mechanic" class="text-danger"></span> 
-            </div>
-               <div class="form-group">
-                @*    @Html.LabelFor(m => Model.Parts);
-                  @Html.TextBoxFor(m => Model.Parts);*@
-                <label asp-for="Part" class="control-label"></label>              
-                 <select asp-for="Part" asp-items="@(new SelectList(ViewBag.Parts,nameof(Part.PartName),nameof(Part.PartName)))"  class ="form-control"></select>
-                <span asp-validation-for="Part" class="text-danger"></span> 
-            </div>
-            <div class="form-group">
-             @*   @Html.LabelFor(m => formModel.PartPcs);
-                @Html.TextBoxFor(m => formModel.PartPcs);*@
-                <label asp-for="PartPcs" class="control-label"></label>
-                <input asp-for="PartPcs" class="form-control" />
-                <span asp-validation-for="PartPcs" class="text-danger"></span>      
-            </div>
-         
-        @*    <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
+            @*partial view*@ 
+            <partial name="_OrderCreateEdit" model=@Model view-data=ViewData/>@*view-data służu do przekazywania*@ 
 
-                <input type="submit" value="Create" class="btn btn-primary" />
-            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />          
             </div>
         </form>
     </div>
 </div>
-
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
