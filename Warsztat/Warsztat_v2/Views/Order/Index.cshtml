@@ -4,10 +4,13 @@
 
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Oreder";
 }
 
-<h1>Index</h1>
+<h1>Orders</h1>
+<div>
+    @await Component.InvokeAsync("OrderStatistics")
+</div>
 
   
 <p>
