@@ -22,8 +22,8 @@ html {/*DownBar*/
 body {/*Center*/
    
     margin-bottom: 60px;
-    background-color: #2e2c2c;
-    color:#d6d6d6;
+    background-color: lightgray;
+    color:#1e1e1e;
 }
 .display-4{
 
@@ -38,7 +38,7 @@ body {/*Center*/
 .table {
  
     font-weight: 700;
-    color: #d6d6d6;
+    color: #1e1e1e;
 }
 .navi {
  

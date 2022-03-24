@@ -45,10 +45,10 @@ namespace Warsztat.BLL.Services
 
         public void Create(Order order)
         {
-            //orders = GetAll(); 
+            orders = GetAll(); 
             order.Id = GetNextId();
             order.StartTime = DateTime.Now;
-           // order.OrderNumber = OrderNumberGenerator( /*order*/order.RegistrationNumber, order.StartTime.ToString("yyyy"), order.Id.ToString());
+            order.OrderNumber = OrderNumberGenerator(order/*order.RegistrationNumber, order.StartTime.ToString("yyyy"), order.Id.ToString()*/);
             order.Price = GetCostOfOrder(order);
             orders.Add(order);
             orderRepository.SaveToFile(orders);

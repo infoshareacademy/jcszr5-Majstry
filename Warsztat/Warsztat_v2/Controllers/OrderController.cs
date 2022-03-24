@@ -23,14 +23,32 @@ namespace Warsztat_v2.Controllers
             _employeeService = new EmployeeService();//
         }
         // GET: OrderController
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchStringForClient, string searchStringForOrderNumber, string searchStringForMechanic)
         {
             var model = _orderService.GetAll();
-
+            //sortowanie po kolumnach
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             var orders = from o in model
                            select o;
+            //sortowanie po kolumnach
+
+            //Search box
+            if (!String.IsNullOrEmpty(searchStringForClient))
+            {
+                orders = orders.Where(o => o.Client.ToUpper().Contains(searchStringForClient.ToUpper()));                        
+            }
+            if (!String.IsNullOrEmpty(searchStringForOrderNumber))
+            {
+                orders = orders.Where(o => o.OrderNumber.ToString().ToUpper().Contains(searchStringForOrderNumber.ToUpper()));
+            }
+            if (!String.IsNullOrEmpty(searchStringForMechanic))
+            {
+                orders = orders.Where(o => o.Mechanic.ToUpper().Contains(searchStringForMechanic.ToUpper()));
+            }
+            //Search box
+
+            //Switch do sortowania po kolumnach
             switch (sortOrder)
             {
                 case "name_desc":

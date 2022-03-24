@@ -14,6 +14,28 @@
 <p>
 	<a asp-action="Create">Create New</a>
 </p>
+
+@using (Html.BeginForm())
+{
+	<p>
+		Find by Client: @Html.TextBox("searchStringForClient")
+		<input type="submit" value="Search" />
+	</p>
+}
+@using (Html.BeginForm())
+{
+	<p>
+		Find by IDN: @Html.TextBox("searchStringForOrderNumber")
+		<input type="submit" value="Search" />
+	</p>
+}
+@using (Html.BeginForm())
+{
+	<p>
+		Find by mechanic: @Html.TextBox("searchStringForMechanic")
+		<input type="submit" value="Search" />
+	</p>
+}
 <table class="table">
 	<thead>
 		<tr>

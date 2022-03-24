@@ -7,7 +7,7 @@ namespace Warsztat.BLL.Models
 
         [Key]
         public int Id { get; set; }
-        [Display(Name = "Order IDN")]
+        //[Display(Name = "Order IDN")]
         public string OrderNumber { get; set; }
 
         [Display(Name = "Start")]
