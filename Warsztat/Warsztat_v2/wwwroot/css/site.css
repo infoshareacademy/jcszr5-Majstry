@@ -1,47 +1,55 @@
 html {
-  font-size: 14px;
+   
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-    background-color:lightgrey;
-  }
+    html {
+       
+        font-size: 16px;
+        background-color: #011d4c;
+    }
 }
 
 html {
+
     position: relative;
     min-height: 100%;
-    
+    background-color: #011d4c;
 }
 
 body {
+   
     margin-bottom: 60px;
     background-color: lightgrey;
 }
 .display-4{
+
     color:black;
     font-weight:700;
-
+    
 }
 .container-fluid {
-    background-color: white;  
+    
+    background-color: #015ebb /*white*/;
 }
 .table {
+ 
     font-weight: 700;
-    color:brown;
+    color: brown;
 }
 .navi {
+ 
     font-weight: 700;
-
+    background-color: #011d4c;
 }
 .nav-link text-dark {
-    
+
     font-weight: 700;
 }
 li {
     font-weight: 700;
 }
 a {
-    color: black;
+    color: #000000;
 }

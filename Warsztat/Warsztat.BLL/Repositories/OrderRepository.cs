@@ -1,5 +1,7 @@
 ﻿using System.Text.Json;
 using Warsztat.BLL.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Server.Kestrel.Core.Internal;
 
 namespace Warsztat.BLL.Repositories
 {
@@ -7,6 +9,7 @@ namespace Warsztat.BLL.Repositories
     {
         public void SaveToFile(List<Order> orders)
         {
+
             string json = JsonSerializer.Serialize(orders);
             File.WriteAllText(@"D:\InfoShaREaCADEMY\Projekt\Web App V.r\jcszr5-Majstry\Warsztat\Warsztat_v2\OrderList.json", json);
         }
@@ -20,7 +23,25 @@ namespace Warsztat.BLL.Repositories
 
             return orderFromFile;
         }
-    }
+        //public async Task AddOrder()
+        //{
+        //    // adding entry
+        //    using (var context = new ServiceContext())
+        //    {
+        //        var movie = new Order
+        //        {
+        //            Id = 1,
+        //            Title = "Batman",
+        //            Genre = new Genre { Id = 1, Name = "Sci-fi" }
+        //        };
+
+        //        await context.Movies.AddAsync(movie);
+
+        //        await context.SaveChangesAsync();
+        //    }
+
+
+        }
 }
 
 

@@ -1,5 +1,11 @@
 ﻿@model Order
 
+@functions {
+    public string GetWeekDay(DateTime dateTime)
+    {
+        return dateTime.DayOfWeek.ToString();
+    }
+}
    <h4>Order</h4>
     <hr />
     <dl class="row">
@@ -13,7 +19,7 @@
             <label asp-for="StartTime"></label>
         </dt>
         <dd class = "col-sm-10">
-            @Model.StartTime.ToString("dd-MM-yyyy")
+            @Model.StartTime.ToString("dd-MM-yyyy") (@GetWeekDay(@Model.StartTime))
         </dd>
         <dt class = "col-sm-2">
           <label asp-for="Status"></label>

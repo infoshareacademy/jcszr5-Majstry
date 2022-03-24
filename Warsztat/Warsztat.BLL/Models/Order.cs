@@ -14,7 +14,9 @@ namespace Warsztat.BLL.Models
         [DataType(DataType.Date)]
         public DateTime StartTime { get; set; }
         public Status Status { get; set; }
-        public string Fault { get; set; }
+       
+
+        public  string? Fault { get; set; }
         public string Client { get; set; }
 
         [Display(Name = "Reg Number")]
@@ -22,12 +24,15 @@ namespace Warsztat.BLL.Models
 
         public string Car { get; set; }
         public string Mechanic { get; set; }
+
         public string Part { get; set; }
 
         [Display(Name = "Pcs")]
-        public int PartPcs { get; set; }
-        public float Price { get; set; }
 
+        public System.Nullable<int> PartPcs { get; set; }
+        
+        public float Price { get; set; }
+       
     }
 
 }

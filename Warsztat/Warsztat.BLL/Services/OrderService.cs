@@ -47,6 +47,7 @@ namespace Warsztat.BLL.Services
         {
             //orders = GetAll(); 
             order.Id = GetNextId();
+            order.StartTime = DateTime.Now;
            // order.OrderNumber = OrderNumberGenerator( /*order*/order.RegistrationNumber, order.StartTime.ToString("yyyy"), order.Id.ToString());
             order.Price = GetCostOfOrder(order);
             orders.Add(order);
@@ -88,8 +89,8 @@ namespace Warsztat.BLL.Services
         {
             float price = 0;
             var part = partService.GetAll().FirstOrDefault(p => p.PartName == order.Part);
-            order.Price = order.PartPcs * part.PartPrice;
-            price = order.Price;
+            order.Price = (float)order.PartPcs * part.PartPrice;
+            price = (float)order.Price;
             return price;
         }
 

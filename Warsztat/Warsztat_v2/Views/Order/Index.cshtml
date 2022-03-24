@@ -7,11 +7,9 @@
     ViewData["Title"] = "Oreder";
 }
 
-<h1>Orders</h1>
-<div>
-    @await Component.InvokeAsync("OrderStatistics")
-</div>
-
+		
+<div style="float: right; width: 40%; /*height:0%;*/">@await Component.InvokeAsync("OrderStatistics")  </div>
+<h1>Orders</h1> 
   
 <p>
     <a asp-action="Create">Create New</a>

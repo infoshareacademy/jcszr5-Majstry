@@ -30,66 +30,30 @@
 		</tr>
 	</thead>*@
 
-@*	@foreach (var item in model._cacncelledOrders)
-{
-  <tr>
-  <td style="width:7% !important">        
-      @{
-        string eventType = item.EventType.Name;
-      }
-      @if(eventType.Contains("RL Solution Required"){
-        <span style="color:red;">@Html.DisplayFor(model => model._cacncelledOrders)</span>
-      }else{
-        @Html.DisplayFor(model => eventType)
-      }          
-  </td>
-  <td style="width:9% !important">
-      @Html.DisplayFor(modelItem => item.ContactName)
-  </td>*@
 
-@*  <td>
-@{ if (Model.Status == "Waiting" || @Model.Status == "Updated")
-{
-	<span style="color:red">Pending </span> 
-}
-else
-{
-	 <span style="color:green">Paid</span>
-}
-}*@
-</td>
+
 
 		<thead>
 		<tr>
-			<th><span style="color:red">Waiting  @Model._waitingOrders</span> </th>
-			<th>---------------------</th>
-			<th><span style="color:yellow">Verivication @Model._inVerivicationOrders</span> </th>
-			<th>---------------------</th>
-			<th><span style="color:green">In Progress  @Model._inProgressOrders</span> </th>
-			<th>---------------------</th>
-			<th><span style="color:blue">Finished  @Model._finishedOrders</span> </th>
-			<th>---------------------</th>
-			<th><span style="color:black">Cancelled  @Model._cacncelledOrders</span> </th>
+	
+			<th><span style="color:red">|Waiting  @Model.WaitingOrders|</span> </th>
+			@*</tr>*@
+			@*<th>---------------------</th>*@
+			@*<tr>*@
+			<th><span style="color:yellow">|Verivication @Model.InVerivicationOrders|</span> </th>
+			@*</tr>*@
+			@*<th>---------------------</th>*@
+			@*<tr>*@
+			<th><span style="color:green">|In Progress  @Model.InProgressOrders|</span> </th>
+			@*</tr>*@
+			@*<th>---------------------</th>*@
+			@*<tr>*@
+			<th><span style="color:blue">|Finished  @Model.FinishedOrders|</span> </th>
+			@*</tr>*@
+			@*<th>---------------------</th>*@
+			@*<tr>*@
+			<th><span style="color:black">|Cancelled  @Model.CacncelledOrders|</span> </th>
+			
 		</tr>
 	</thead>
-	
-	
-@*	
-	<tbody>
-		<tr>
-			<td>@Model.InVerivicationOrders</td>
-		</tr>
-	</tbody>
-	
-	<tbody>
-		<tr>
-			<td>@Model.FinishedOrders</td>
-		</tr>
-	</tbody>
-	
-	<tbody>
-		<tr>
-			<td>@Model.CacncelledOrders</td>
-		</tr>
-	</tbody>*@
 </table>
