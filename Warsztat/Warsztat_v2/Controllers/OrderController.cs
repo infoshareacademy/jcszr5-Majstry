@@ -23,10 +23,33 @@ namespace Warsztat_v2.Controllers
             _employeeService = new EmployeeService();//
         }
         // GET: OrderController
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
             var model = _orderService.GetAll();
-            return View(model);
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            var orders = from o in model
+                           select o;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    orders = orders.OrderByDescending(o => o.Client);
+                    break;
+                case "Date":
+                    orders = orders.OrderBy(o => o.StartTime);
+                    break;
+                case "date_desc":
+                    orders = orders.OrderByDescending(o => o.StartTime);
+                    break;
+                default:
+                    orders = orders.OrderBy(o => o.Client);
+                    break;
+            }
+
+
+
+            return View(orders);
         }
 
         // GET: OrderController/Details/5

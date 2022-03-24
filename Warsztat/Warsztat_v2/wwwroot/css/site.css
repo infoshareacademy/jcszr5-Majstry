@@ -11,17 +11,19 @@ html {
     }
 }
 
-html {
+html {/*DownBar*/
 
     position: relative;
     min-height: 100%;
     background-color: #011d4c;
+
 }
 
-body {
+body {/*Center*/
    
     margin-bottom: 60px;
-    background-color: lightgrey;
+    background-color: #2e2c2c;
+    color:#d6d6d6;
 }
 .display-4{
 
@@ -29,19 +31,20 @@ body {
     font-weight:700;
     
 }
-.container-fluid {
-    
-    background-color: #015ebb /*white*/;
+.container-fluid { /*UpBar*/
+  
+    background-color: lightgray /*white*/;
 }
 .table {
  
     font-weight: 700;
-    color: brown;
+    color: #d6d6d6;
 }
 .navi {
  
     font-weight: 700;
-    background-color: #011d4c;
+    background-color: #b6ff00;
+
 }
 .nav-link text-dark {
 

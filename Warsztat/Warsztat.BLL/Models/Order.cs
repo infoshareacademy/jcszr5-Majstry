@@ -26,6 +26,8 @@ namespace Warsztat.BLL.Models
         public string Mechanic { get; set; }
 
         public string Part { get; set; }
+        //public  Part[] Part { get; set; }
+        //public List<Part> Part { get; set; }
 
         [Display(Name = "Pcs")]
 

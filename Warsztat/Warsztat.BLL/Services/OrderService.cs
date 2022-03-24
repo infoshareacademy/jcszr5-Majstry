@@ -88,6 +88,7 @@ namespace Warsztat.BLL.Services
         public float GetCostOfOrder(Order order)
         {
             float price = 0;
+
             var part = partService.GetAll().FirstOrDefault(p => p.PartName == order.Part);
             order.Price = (float)order.PartPcs * part.PartPrice;
             price = (float)order.Price;

@@ -4,98 +4,106 @@
 
 
 @{
-    ViewData["Title"] = "Oreder";
+	ViewData["Title"] = "Oreder";
 }
 
-		
+
 <div style="float: right; width: 40%; /*height:0%;*/">@await Component.InvokeAsync("OrderStatistics")  </div>
-<h1>Orders</h1> 
-  
+<h1>Orders</h1>
+
 <p>
-    <a asp-action="Create">Create New</a>
+	<a asp-action="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-   
-            <th>
-               <label asp-for="First().OrderNumber"></label>
-            </th>
-            <th>
-                <label asp-for="First().StartTime"></label>
-            </th>
-            <th>
-                <label asp-for="First().Status"></label>
-            </th>
-        @*    <th>
-                <label asp-for="First().Fault"></label>
-            </th>*@
-            <th>
-               <label asp-for="First().Client"></label>
-            </th>
-            <th>
-                <label asp-for="First().RegistrationNumber"></label>
-            </th>
-             <th>
-                <label asp-for="First().Car"></label>
-            </th>
-             <th>
-                <label asp-for="First().Mechanic"></label>
-            </th>
-             <th>
-                <label asp-for="First().Part"></label>
-            </th>
-            <th>
-                <label asp-for="First().PartPcs"></label>
-            </th>
-            <th>
-                <label asp-for="First().Price"></label>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>          
-            <td>
-                @item.OrderNumber
-            </td>
-            <td>
-                @item.StartTime.ToString("dd-MM-yyyy")
-            </td>
-            <td>
-                @item.Status
-            </td>
-         @*   <td>
-                @item.Fault
-            </td>*@
-            <td>
-                @item.Client
-            </td>
-            <td>
-                @item.RegistrationNumber
-            </td>
-            <td>
-                @item.Car
-            </td>
-            <td>
-                @item.Mechanic
-            </td>
-            <td>
-                @item.Part
-            </td>
-            <td>
-                @item.PartPcs
-            </td>
-            <td>
-                @item.Price
-            </td>
-            <td>   
-             <td><a asp-action = "Edit" asp-route-id ="@item.Id">Edit</a></td>
-             <td><a asp-action = "Details" asp-route-id ="@item.Id">Details</a></td>
-             <td> <a asp-action = "Delete" asp-route-id ="@item.Id">Delete</a></td>
-            </td>
-        </tr>
-}
-    </tbody>
+	<thead>
+		<tr>
+
+			<th>
+				<label asp-for="First().OrderNumber"></label>
+			</th>
+
+			@*   <th>
+				<label asp-for="First().StartTime"></label>
+				</th>*@
+			<th>
+				@Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.DateSortParm })
+			</th>
+			<th>
+				<label asp-for="First().Status"></label>
+			</th>
+			@*<th>
+				<label asp-for="First().Fault"></label>
+				</th>*@
+			@* <th>
+				<label asp-for="First().Client"></label>
+				</th>*@
+			<th>
+				@Html.ActionLink("Client", "Index", new { sortOrder = ViewBag.NameSortParm })
+			</th>
+			<th>
+				<label asp-for="First().RegistrationNumber"></label>
+			</th>
+			<th>
+				<label asp-for="First().Car"></label>
+			</th>
+			<th>
+				<label asp-for="First().Mechanic"></label>
+			</th>
+			<th>
+				<label asp-for="First().Part"></label>
+			</th>
+			<th>
+				<label asp-for="First().PartPcs"></label>
+			</th>
+			<th>
+				<label asp-for="First().Price"></label>
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@item.OrderNumber
+				</td>
+				<td>
+					@item.StartTime@*.ToString("dd-MM-yyyy")*@
+				</td>
+				<td>
+					@item.Status
+				</td>
+				@*   <td>
+					@item.Fault
+					</td>*@
+				<td>
+					@item.Client
+				</td>
+				<td>
+					@item.RegistrationNumber
+				</td>
+				<td>
+					@item.Car
+				</td>
+				<td>
+					@item.Mechanic
+				</td>
+				<td>
+					@item.Part
+				</td>
+				<td>
+					@item.PartPcs
+				</td>
+				<td>
+					@item.Price
+				</td>
+				<td>
+				<td><a asp-action="Edit" asp-route-id="@item.Id">Edit</a></td>
+				<td><a asp-action="Details" asp-route-id="@item.Id">Details</a></td>
+				<td> <a asp-action="Delete" asp-route-id="@item.Id">Delete</a></td>
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>
