@@ -4,6 +4,7 @@ using Warsztat.BLL.Services;
 using Warsztat.BLL.Models;
 using Warsztat.BLL.Enums;
 using Warsztat.BLL.Models;
+using PagedList;
 
 namespace Warsztat_v2.Controllers
 {
@@ -26,12 +27,23 @@ namespace Warsztat_v2.Controllers
         public ActionResult Index(string sortOrder, string searchStringForClient, string searchStringForOrderNumber, string searchStringForMechanic)
         {
             var model = _orderService.GetAll();
+          
+
             //sortowanie po kolumnach
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            ViewBag.WaitingStatus = sortOrder == "Status" ? "WaitingStatus" : "Status";
+            ViewBag.VerivicationStatus = sortOrder == "Status" ? "VerivicationStatus" : "Status";
+            ViewBag.InProgressStatus = sortOrder == "Status" ? "InProgressStatus" : "Status";
+            ViewBag.FinishedStatus = sortOrder == "Status" ? "FinishedStatus" : "Status";
+            ViewBag.CancelledStatus = sortOrder == "Status" ? "CancelledStatus" : "Status";
+
             var orders = from o in model
                            select o;
             //sortowanie po kolumnach
+
+
 
             //Search box
             if (!String.IsNullOrEmpty(searchStringForClient))
@@ -60,12 +72,26 @@ namespace Warsztat_v2.Controllers
                 case "date_desc":
                     orders = orders.OrderByDescending(o => o.StartTime);
                     break;
+                case "WaitingStatus":
+                    orders = orders.Where(o => o.Status == Status.Waiting);
+                    break;
+                case "VerivicationStatus":
+                    orders = orders.Where(o => o.Status == Status.Verification);
+                    break;
+                case "InProgressStatus":
+                    orders = orders.Where(o => o.Status == Status.InProgress);
+                    break;
+                case "FinishedStatus":
+                    orders = orders.Where(o => o.Status == Status.Finished);
+                    break;
+                case "CancelledStatus":
+                    orders = orders.Where(o => o.Status == Status.Cancelled);
+                    break;
+
                 default:
                     orders = orders.OrderBy(o => o.Client);
                     break;
             }
-
-
 
             return View(orders);
         }

@@ -28,6 +28,7 @@
 		<tr>
 			<th> Canceled </th><td>@Model.CacncelledOrders</td>
 		</tr>
+		@Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.DateSortParm })
 	</thead>*@
 
 
@@ -35,24 +36,37 @@
 
 		<thead>
 		<tr>
-	
-			<th><span style="color:red">|Waiting  @Model.WaitingOrders|</span> </th>
+@*	@Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.StatusSortParm })*@
+			<th><span style="color:red">@Html.ActionLink("Waiting", "Index", new { sortOrder = ViewBag.WaitingStatus })  @Model.WaitingOrders|</span> </th>
+			@*<th><span style="color:red">|Waiting  @Model.WaitingOrders|</span> </th>*@
+
 			@*</tr>*@
 			@*<th>---------------------</th>*@
 			@*<tr>*@
-			<th><span style="color:yellow">|Verivication @Model.InVerivicationOrders|</span> </th>
+
+			<th><span style="color:yellow">@Html.ActionLink("Verivication", "Index", new { sortOrder = ViewBag.VerivicationStatus }) @Model.InVerivicationOrders|</span> </th>
+			@*<th><span style="color:yellow">|Verivication @Model.InVerivicationOrders|</span> </th>*@
+
 			@*</tr>*@
 			@*<th>---------------------</th>*@
 			@*<tr>*@
-			<th><span style="color:green">|In Progress  @Model.InProgressOrders|</span> </th>
+
+			<th><span style="color:green">@Html.ActionLink("In progress", "Index", new { sortOrder = ViewBag.InProgressStatus })  @Model.InProgressOrders|</span> </th>
+			@*<th><span style="color:green">|In Progress  @Model.InProgressOrders|</span> </th>*@
+
 			@*</tr>*@
 			@*<th>---------------------</th>*@
 			@*<tr>*@
-			<th><span style="color:blue">|Finished  @Model.FinishedOrders|</span> </th>
+
+			<th><span style="color:blue">@Html.ActionLink("Finished", "Index", new { sortOrder = ViewBag.FinishedStatus })  @Model.FinishedOrders|</span> </th>
+			@*<th><span style="color:blue">|Finished  @Model.FinishedOrders|</span> </th>*@
+
 			@*</tr>*@
 			@*<th>---------------------</th>*@
 			@*<tr>*@
-			<th><span style="color:black">|Cancelled  @Model.CacncelledOrders|</span> </th>
+
+				<th><span style="color:black">@Html.ActionLink("Cancelled", "Index", new { sortOrder = ViewBag.CancelledStatus })  @Model.CacncelledOrders|</span> </th>
+			@*<th><span style="color:black">|Cancelled  @Model.CacncelledOrders|</span> </th>*@
 			
 		</tr>
 	</thead>

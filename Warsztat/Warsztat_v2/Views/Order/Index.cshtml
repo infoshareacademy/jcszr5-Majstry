@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<Warsztat.BLL.Models.Order>
+
+
 @using Warsztat_v2.Controllers
 @using Warsztat.BLL.Services
 
@@ -15,50 +17,46 @@
 	<a asp-action="Create">Create New</a>
 </p>
 
+
+
+
 @using (Html.BeginForm())
 {
 	<p>
 		Find by Client: @Html.TextBox("searchStringForClient")
-		<input type="submit" value="Search" />
+		@*<input type="submit" value="Search" />*@
 	</p>
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Order", FormMethod.Get))
 {
 	<p>
 		Find by IDN: @Html.TextBox("searchStringForOrderNumber")
-		<input type="submit" value="Search" />
+		@*<input type="submit" value="Search" />*@
 	</p>
 }
 @using (Html.BeginForm())
 {
 	<p>
 		Find by mechanic: @Html.TextBox("searchStringForMechanic")
-		<input type="submit" value="Search" />
+		@*<input type="submit" value="Search" />*@
 	</p>
 }
+
 <table class="table">
 	<thead>
 		<tr>
 
-			<th>
+			<th>       
 				<label asp-for="First().OrderNumber"></label>
 			</th>
 
-			@*   <th>
-				<label asp-for="First().StartTime"></label>
-				</th>*@
 			<th>
-				@Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.DateSortParm })
+			@Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.DateSortParm })
 			</th>
 			<th>
 				<label asp-for="First().Status"></label>
 			</th>
-			@*<th>
-				<label asp-for="First().Fault"></label>
-				</th>*@
-			@* <th>
-				<label asp-for="First().Client"></label>
-				</th>*@
+
 			<th>
 				@Html.ActionLink("Client", "Index", new { sortOrder = ViewBag.NameSortParm })
 			</th>
@@ -91,7 +89,7 @@
 					@item.OrderNumber
 				</td>
 				<td>
-					@item.StartTime@*.ToString("dd-MM-yyyy")*@
+					@item.StartTime.ToString("dd-MM-yyyy")
 				</td>
 				<td>
 					@item.Status
@@ -121,11 +119,12 @@
 					@item.Price
 				</td>
 				<td>
-				<td><a asp-action="Edit" asp-route-id="@item.Id">Edit</a></td>
-				<td><a asp-action="Details" asp-route-id="@item.Id">Details</a></td>
-				<td> <a asp-action="Delete" asp-route-id="@item.Id">Delete</a></td>
-				</td>
+				<td><a asp-action="Edit" asp-route-id="@item.Id"><span style="color:blue">Edit</span></a></td>
+				<td><a asp-action="Details" asp-route-id="@item.Id"><span style="color:blue">Details</span></a></td>
+				<td> <a asp-action="Delete" asp-route-id="@item.Id"><span style="color:blue">Delete</span></a></td>
+				
 			</tr>
 		}
 	</tbody>
 </table>
+
