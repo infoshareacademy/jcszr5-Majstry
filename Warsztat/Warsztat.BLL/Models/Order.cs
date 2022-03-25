@@ -7,14 +7,16 @@ namespace Warsztat.BLL.Models
 
         [Key]
         public int Id { get; set; }
-        [Display(Name = "Order IDN")]
+        //[Display(Name = "Order IDN")]
         public string OrderNumber { get; set; }
 
         [Display(Name = "Start")]
         [DataType(DataType.Date)]
         public DateTime StartTime { get; set; }
         public Status Status { get; set; }
-        public string Fault { get; set; }
+       
+
+        public  string? Fault { get; set; }
         public string Client { get; set; }
 
         [Display(Name = "Reg Number")]
@@ -22,12 +24,17 @@ namespace Warsztat.BLL.Models
 
         public string Car { get; set; }
         public string Mechanic { get; set; }
+
         public string Part { get; set; }
+        //public  Part[] Part { get; set; }
+        //public List<Part> Part { get; set; }
 
         [Display(Name = "Pcs")]
-        public int PartPcs { get; set; }
-        public float Price { get; set; }
 
+        public System.Nullable<int> PartPcs { get; set; }
+        
+        public float Price { get; set; }
+       
     }
 
 }

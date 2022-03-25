@@ -45,9 +45,10 @@ namespace Warsztat.BLL.Services
 
         public void Create(Order order)
         {
-            //orders = GetAll(); 
+            orders = GetAll(); 
             order.Id = GetNextId();
-           // order.OrderNumber = OrderNumberGenerator( /*order*/order.RegistrationNumber, order.StartTime.ToString("yyyy"), order.Id.ToString());
+            order.StartTime = DateTime.Now;
+            order.OrderNumber = OrderNumberGenerator(order/*order.RegistrationNumber, order.StartTime.ToString("yyyy"), order.Id.ToString()*/);
             order.Price = GetCostOfOrder(order);
             orders.Add(order);
             orderRepository.SaveToFile(orders);
@@ -87,9 +88,10 @@ namespace Warsztat.BLL.Services
         public float GetCostOfOrder(Order order)
         {
             float price = 0;
+
             var part = partService.GetAll().FirstOrDefault(p => p.PartName == order.Part);
-            order.Price = order.PartPcs * part.PartPrice;
-            price = order.Price;
+            order.Price = (float)order.PartPcs * part.PartPrice;
+            price = (float)order.Price;
             return price;
         }
 

@@ -1,11 +1,14 @@
 ﻿using Warsztat.BLL.Models;
+using Warsztat.BLL.Services;
 
 namespace Warsztat_v2.Data
 {
     public class DbInitializer
     {
+ 
         public static void Initialize(ServiceContext context)
         {
+             
             context.Database.EnsureCreated();
 
             // Look for any students.
@@ -14,10 +17,11 @@ namespace Warsztat_v2.Data
                 return;   // DB has been seeded
             }
 
+
             var orders = new Order[]
             {
             new Order{OrderNumber="Carson",},
-     
+
             };
             foreach (Order order  in orders)
             {
