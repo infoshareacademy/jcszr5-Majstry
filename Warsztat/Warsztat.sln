@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warsztat", "Warsztat\Warszt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warsztat_v2", "Warsztat_v2\Warsztat_v2.csproj", "{9DDF9F50-7DAC-4843-8403-743934F95DAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warsztat.BLL", "Warsztat.BLL\Warsztat.BLL.csproj", "{C624DDC7-8B3C-4D79-BB85-E988FFFE44BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warsztat.BLL", "Warsztat.BLL\Warsztat.BLL.csproj", "{C624DDC7-8B3C-4D79-BB85-E988FFFE44BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

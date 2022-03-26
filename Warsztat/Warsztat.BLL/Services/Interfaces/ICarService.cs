@@ -1,4 +1,4 @@
-﻿namespace Warsztat.BLL.Services
+﻿namespace Warsztat.BLL.Services.Interfaces
 {
     public interface ICarService
     {
