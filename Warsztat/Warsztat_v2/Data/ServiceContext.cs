@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Configuration;
 using Warsztat.BLL.Models;
 
 namespace Warsztat_v2.Data

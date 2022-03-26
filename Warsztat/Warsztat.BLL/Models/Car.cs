@@ -14,6 +14,6 @@ namespace Warsztat.BLL.Models
         public string CarMark { get; set; }
 
         [Display(Name = "Production Year")]
-        public int YearProduction1 { get; set; }
+        public int YearProduction { get; set; }
     }
 }

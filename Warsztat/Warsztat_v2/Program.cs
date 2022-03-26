@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
-using Warsztat.BLL.Repositories;
 using Warsztat.BLL.Services;
+using Warsztat.BLL.Services.Interfaces;
 using Warsztat_v2.Data;
+using Warsztat_v2.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,15 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
-builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddTransient<IPartService, PartService>();
+builder.Services.AddTransient<ICarRepository, CarRepository>();
+
 
 // var conne = Configuration.GetConnectionString("DefaultConnection");
 
 
 
 
-//builder.Services.AddTransient<ICarService, CarrService>();
 var conectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
 builder.Services.AddDbContext<ServiceContext>(options =>
     options.UseSqlServer(conectionString));
@@ -49,7 +50,7 @@ CreateDbIfNotExists(app);//
 
 app.Run();
 
- static void CreateDbIfNotExists(IHost host)
+static void CreateDbIfNotExists(IHost host)
 {
     using (var scope = host.Services.CreateScope())
     {

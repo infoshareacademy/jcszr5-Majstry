@@ -1,29 +1,31 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Warsztat.BLL.Models;
-using Warsztat.BLL.Services;
+using Warsztat_v2.Data;
+using Warsztat_v2.Repositories;
 
 namespace Warsztat_v2.Controllers
 {
     public class EmployeeController : Controller
     {
-        private EmployeeService _employeeService;
-        public EmployeeController()
+        private EmployeeRepository _employeeRepository;
+        public ServiceContext Context { get; set; }
+
+        public EmployeeController(ServiceContext serviceContext)
         {
-           _employeeService = new EmployeeService();
+            Context = serviceContext;
+            _employeeRepository = new EmployeeRepository(serviceContext);
         }
         // GET: EmployeeControler
         public ActionResult Index()
         {
-           var model = _employeeService.GetAll();
+            var model = Context.Employees;
             return View(model);
         }
 
         // GET: EmployeeControler/Details/5
         public ActionResult Details(int id)
         {
-            var model = _employeeService.GetById(id);
+            var model = _employeeRepository.GetById(id);
             return View(model);
         }
 
@@ -44,9 +46,9 @@ namespace Warsztat_v2.Controllers
                 {
                     return View(model);
                 }
-                _employeeService.Create(model);
+                _employeeRepository.Add(model);
                 return RedirectToAction(nameof(Index));
-                
+
             }
             catch
             {
@@ -57,7 +59,7 @@ namespace Warsztat_v2.Controllers
         // GET: EmployeeControler/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = _employeeService.GetById(id);
+            var model = _employeeRepository.GetById(id);
             return View(model);
         }
 
@@ -72,7 +74,7 @@ namespace Warsztat_v2.Controllers
                 {
                     return View(model);
                 }
-                _employeeService.Update(model);
+                _employeeRepository.Update(model);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -84,7 +86,7 @@ namespace Warsztat_v2.Controllers
         // GET: EmployeeControler/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = _employeeService.GetById(id);
+            var model = _employeeRepository.GetById(id);
             return View(model);
         }
 
@@ -95,7 +97,7 @@ namespace Warsztat_v2.Controllers
         {
             try
             {
-                _employeeService.Delete(id);
+                _employeeRepository.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

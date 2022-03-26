@@ -1,31 +1,35 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Warsztat.BLL.Models;
-using Warsztat.BLL.Services;
+using Warsztat_v2.Data;
+using Warsztat_v2.Repositories;
+
+
 
 namespace Warsztat_v2.Controllers
 {
-    public class CarrController : Controller
+    public class CarController : Controller
     {
-        private CarService _carrService;
-        public CarrController()
+        private readonly CarRepository _carRepository;
+        public ServiceContext Context { get; set; }
+        public CarController(ServiceContext serviceContext)
         {
-            _carrService = new CarService();
-            SelectList list = new SelectList(_carrService.GetAll(), "CarModel", "CarMark");
+            Context = serviceContext;
+            _carRepository = new CarRepository(Context);
+            SelectList list = new SelectList(Context.Cars, "CarModel", "CarMark");
             ViewBag.Roles = list;
         }
         // GET: CarrController
         public ActionResult Index()
         {
-            var model = _carrService.GetAll();
+            var model = Context.Cars;
             return View(model);
         }
 
         // GET: PartController1/Details/5
         public ActionResult Details(int id)
         {
-            var model = _carrService.GetById(id);
+            var model = _carRepository.GetById(id);
             return View(model);
         }
 
@@ -46,7 +50,7 @@ namespace Warsztat_v2.Controllers
                 {
                     return View(model);
                 }
-                _carrService.Create(model);
+                _carRepository.Add(model);
 
                 return RedirectToAction(nameof(Index));
 
@@ -60,7 +64,7 @@ namespace Warsztat_v2.Controllers
         // GET: PartController1/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = _carrService.GetById(id);
+            var model = _carRepository.GetById(id);
             return View(model);
         }
 
@@ -75,7 +79,7 @@ namespace Warsztat_v2.Controllers
                 {
                     return View(model);
                 }
-                _carrService.Update(model);
+                _carRepository.Update(model);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -87,7 +91,7 @@ namespace Warsztat_v2.Controllers
         // GET: PartController1/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = _carrService.GetById(id);
+            var model = _carRepository.GetById(id);
             return View(model);
         }
 
@@ -98,7 +102,7 @@ namespace Warsztat_v2.Controllers
         {
             try
             {
-                _carrService.Delete(id);
+                _carRepository.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
