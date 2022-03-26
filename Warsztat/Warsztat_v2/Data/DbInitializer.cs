@@ -1,11 +1,11 @@
-﻿using Warsztat.BLL.Models;
-
-namespace Warsztat_v2.Data
+﻿namespace Warsztat_v2.Data
 {
     public class DbInitializer
     {
+
         public static void Initialize(ServiceContext context)
         {
+
             context.Database.EnsureCreated();
 
             // Look for any students.

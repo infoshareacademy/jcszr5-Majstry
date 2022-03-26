@@ -1,12 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Warsztat.BLL.Enums;
-using Warsztat.BLL.Models;
-using Warsztat.BLL.Services.Interfaces;
-using Warsztat_v2.Data;
-using Warsztat_v2.Repositories;
-
-
-namespace Warsztat_v2.Controllers
+﻿namespace Warsztat_v2.Controllers
 {
 
     public class OrderController : Controller
@@ -27,7 +19,7 @@ namespace Warsztat_v2.Controllers
             Context = serviceContext;
         }
         // GET: OrderController
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchStringForClient, string searchStringForOrderNumber, string searchStringForMechanic)
         {
             var model = Context.Orders;
             return View(model);
