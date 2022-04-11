@@ -10,5 +10,6 @@ namespace Warsztat_v2.Views.Order.Components
         public int InProgressOrders { get; set; }
         public int FinishedOrders { get; set; }
         public int CacncelledOrders { get; set; }
+        public int Total { get; set; }
     }
 }

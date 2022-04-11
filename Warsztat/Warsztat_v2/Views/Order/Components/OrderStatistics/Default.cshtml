@@ -2,72 +2,47 @@
 
 @model OrderStatisticViewModel
 
-<h5>Oreders Stats</h5>
-<table>
-@*	<thead>
-		<tr>
-			<th> Waiting </th><td>@Model.WaitingOrders</td>
-		</tr>
-	</thead>
-		<thead>
-		<tr>
-			<th> Verivication </th><td>@Model.InVerivicationOrders</td>
-		</tr>
-	</thead>
-		<thead>
-		<tr>
-			<th> In Progress </th><td>@Model.InProgressOrders</td>
-		</tr>
-	</thead>
-		<thead>
-		<tr>
-			<th> Finished </th><td>@Model.FinishedOrders</td>
-		</tr>
-	</thead>
-		<thead>
-		<tr>
-			<th> Canceled </th><td>@Model.CacncelledOrders</td>
-		</tr>
-		@Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.DateSortParm })
-	</thead>*@
+<div style="float: right; width: 30%; /*height:0%;*/"><h5>Orders Stats</h5></div>
+<div style="float: right; width: 50%; /*height:0%;*/"><h5>Search</h5></div>
 
-
-
-
-		<thead>
+<table class="table">
+	<thead>
 		<tr>
-@*	@Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.StatusSortParm })*@
-			<th><span style="color:red">@Html.ActionLink("Waiting", "Index", new { sortOrder = ViewBag.WaitingStatus })  @Model.WaitingOrders|</span> </th>
+
+			<th>IDN</th>
+			<th>CLIENT</th>
+			<th>MECHANIC</th>
+			@*	@Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.StatusSortParm })*@
+			<th>@Html.ActionLink("WAITING", "Index", new { sortOrder = ViewBag.WaitingStatus })</th>
 			@*<th><span style="color:red">|Waiting  @Model.WaitingOrders|</span> </th>*@
 
-			@*</tr>*@
-			@*<th>---------------------</th>*@
-			@*<tr>*@
-
-			<th><span style="color:yellow">@Html.ActionLink("Verivication", "Index", new { sortOrder = ViewBag.VerivicationStatus }) @Model.InVerivicationOrders|</span> </th>
+			<th>@Html.ActionLink("VERIVICATION", "Index" , new { sortOrder=ViewBag.VerivicationStatus }) </th>
 			@*<th><span style="color:yellow">|Verivication @Model.InVerivicationOrders|</span> </th>*@
 
-			@*</tr>*@
-			@*<th>---------------------</th>*@
-			@*<tr>*@
-
-			<th><span style="color:green">@Html.ActionLink("In progress", "Index", new { sortOrder = ViewBag.InProgressStatus })  @Model.InProgressOrders|</span> </th>
+			<th>@Html.ActionLink("IN PROGRESS", "Index", new { sortOrder = ViewBag.InProgressStatus }) </th>
 			@*<th><span style="color:green">|In Progress  @Model.InProgressOrders|</span> </th>*@
 
-			@*</tr>*@
-			@*<th>---------------------</th>*@
-			@*<tr>*@
-
-			<th><span style="color:blue">@Html.ActionLink("Finished", "Index", new { sortOrder = ViewBag.FinishedStatus })  @Model.FinishedOrders|</span> </th>
+			<th>@Html.ActionLink("FINISHED", "Index", new { sortOrder = ViewBag.FinishedStatus }) </th>
 			@*<th><span style="color:blue">|Finished  @Model.FinishedOrders|</span> </th>*@
 
-			@*</tr>*@
-			@*<th>---------------------</th>*@
-			@*<tr>*@
-
-				<th><span style="color:black">@Html.ActionLink("Cancelled", "Index", new { sortOrder = ViewBag.CancelledStatus })  @Model.CacncelledOrders|</span> </th>
+			<th>@Html.ActionLink("CANCELLED", "Index", new { sortOrder = ViewBag.CancelledStatus }) </th>
 			@*<th><span style="color:black">|Cancelled  @Model.CacncelledOrders|</span> </th>*@
-			
+
+			<th>@Html.ActionLink("TOTAL", "Index", new { sortOrder = ViewBag.TotalOrders })  </th>
+
 		</tr>
 	</thead>
+	<tbody>
+		<tr>
+			<td>@using (Html.BeginForm("Index", "Order", FormMethod.Get)){<p>@Html.TextBox("searchStringForOrderNumber")</p>}</td>
+			<td>@using (Html.BeginForm()){<p>@Html.TextBox("searchStringForClient")</p>}</td>
+			<td>@using (Html.BeginForm()){<p>@Html.TextBox("searchStringForMechanic")</p>}</td>
+			<td><span style="color:red">@Model.WaitingOrders</span> </td>
+			<td><span style="color:orange">@Model.InVerivicationOrders</span> </td>
+			<td><span style="color:green">@Model.InProgressOrders</span> </td>
+			<td><span style="color:blue"> @Model.FinishedOrders</span> </td>
+			<td><span style="color:black">@Model.CacncelledOrders</span> </td>
+			<td><span style="color:black">@Model.Total</span> </td>
+		</tr>
+	</tbody>
 </table>

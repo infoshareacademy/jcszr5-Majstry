@@ -1,35 +1,105 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Warsztat.BLL.Services;
+using Warsztat.BLL.Models;
 using Warsztat.BLL.Enums;
 using Warsztat.BLL.Models;
-using Warsztat.BLL.Services.Interfaces;
-using Warsztat_v2.Data;
+using PagedList;
 using Warsztat_v2.Repositories.Interfaces;
+using Warsztat_v2.Data;
 
 namespace Warsztat_v2.Controllers
 {
-
     public class OrderController : Controller
     {
-        public ServiceContext Context { get; set; }
-
         private IOrderRepository _orderRepository;
-        private ICarRepository _carRepository;//
-        private IEmployeeRepository _employeeRepository;//
-        private IPartService _partService;//
+        private ServiceContext _context;
+        private CarService _carrService;//
+        private EmployeeService _employeeService;//
+        //private IPartRepository _partRepository;//
 
-        public OrderController(IOrderRepository orderRepository, IPartService partRepository, ICarRepository carRepository, IEmployeeRepository employeeRepository, ServiceContext serviceContext)
+        public OrderController(ServiceContext context, IOrderRepository orderRepository/*IPartRepository partRepository*//*,ICarService carService*/)
         {
+            _context = context;
             _orderRepository = orderRepository;
-            _partService = partRepository;//
-            _carRepository = carRepository;//
-            _employeeRepository = employeeRepository;//
-            Context = serviceContext;
+            //_partRepository = partRepository;//
+            _carrService = new CarService();//
+            _employeeService = new EmployeeService();//
         }
         // GET: OrderController
         public ActionResult Index(string sortOrder, string searchStringForClient, string searchStringForOrderNumber, string searchStringForMechanic)
         {
-            var model = Context.Orders;
-            return View(model);
+            var model = _orderRepository.GetAll();
+
+
+            //sortowanie po kolumnach
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.WaitingStatus = sortOrder == "Status" ? "WaitingStatus" : "Status";
+            ViewBag.VerivicationStatus = sortOrder == "Status" ? "VerivicationStatus" : "Status";
+            ViewBag.InProgressStatus = sortOrder == "Status" ? "InProgressStatus" : "Status";
+            ViewBag.FinishedStatus = sortOrder == "Status" ? "FinishedStatus" : "Status";
+            ViewBag.CancelledStatus = sortOrder == "Status" ? "CancelledStatus" : "Status";
+            ViewBag.TotalOrders = sortOrder == "Status" ? "TotalOrders" : "Status";
+
+            var orders = from o in model
+                         select o;
+            //sortowanie po kolumnach
+
+
+
+            //Search box
+            if (!String.IsNullOrEmpty(searchStringForClient))
+            {
+                orders = orders.Where(o => o.Client.ToUpper().Contains(searchStringForClient.ToUpper()));
+            }
+            if (!String.IsNullOrEmpty(searchStringForOrderNumber))
+            {
+                orders = orders.Where(o => o.OrderNumber.ToString().ToUpper().Contains(searchStringForOrderNumber.ToUpper()));
+            }
+            if (!String.IsNullOrEmpty(searchStringForMechanic))
+            {
+                orders = orders.Where(o => o.Mechanic.ToUpper().Contains(searchStringForMechanic.ToUpper()));
+            }
+            //Search box
+
+            //Switch do sortowania po kolumnach
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    orders = orders.OrderByDescending(o => o.Client);
+                    break;
+                case "Date":
+                    orders = orders.OrderBy(o => o.StartTime);
+                    break;
+                case "date_desc":
+                    orders = orders.OrderByDescending(o => o.StartTime);
+                    break;
+                case "WaitingStatus":
+                    orders = orders.Where(o => o.Status == Status.Waiting);
+                    break;
+                case "VerivicationStatus":
+                    orders = orders.Where(o => o.Status == Status.Verification);
+                    break;
+                case "InProgressStatus":
+                    orders = orders.Where(o => o.Status == Status.InProgress);
+                    break;
+                case "FinishedStatus":
+                    orders = orders.Where(o => o.Status == Status.Finished);
+                    break;
+                case "CancelledStatus":
+                    orders = orders.Where(o => o.Status == Status.Cancelled);
+                    break;
+                case "TotalOrders":
+                    orders = _orderRepository.GetAll().ToList();
+                    break;
+
+                default:
+                    orders = orders.OrderBy(o => o.Client);
+                    break;
+            }
+
+            return View(orders);
         }
 
         // GET: OrderController/Details/5
@@ -42,9 +112,9 @@ namespace Warsztat_v2.Controllers
         // GET: OrderController/Create
         public ActionResult Create()
         {
-            ViewBag.Cars = Context.Cars.ToList();
-            ViewBag.Parts = Context.Parts.ToList();
-            ViewBag.Mechanics = Context.Employees.Where(e => e.Role == Role.Mechanic).ToList();
+            ViewBag.Cars = _context.Cars.ToList();
+            ViewBag.Parts = _context.Parts.ToList();
+            ViewBag.Mechanics = _context.Employees.Where(e => e.Role == Role.Mechanic).ToList();
             //ViewBag.Employees = _employeeService.GetAll().ToList();
 
             //var model = new CreateOrderViewModel()
@@ -65,7 +135,7 @@ namespace Warsztat_v2.Controllers
         {
             try
             {
-                model.OrderNumber = _orderRepository.OrderNumberGenerator(model);
+                model.OrderNumber = _orderRepository.OrderNumberGenerator(model/*.RegistrationNumber, model.StartTime.ToString("yyyy"), model.Id.ToString()*/);
                 _orderRepository.Add(model);
                 if (ModelState.IsValid)
                 {
@@ -83,9 +153,9 @@ namespace Warsztat_v2.Controllers
         // GET: OrderController/Edit/5
         public ActionResult Edit(int id)
         {
-            ViewBag.Cars = Context.Cars.ToList();
-            ViewBag.Parts = Context.Parts.ToList();
-            ViewBag.Mechanics = Context.Employees.Where(m => m.Role == Role.Mechanic).ToList();
+            ViewBag.Cars = _context.Cars.ToList();
+            ViewBag.Parts = _context.Parts.ToList();
+            ViewBag.Mechanics = _context.Employees.Where(m => m.Role == Role.Mechanic).ToList();
 
 
             var model = _orderRepository.GetById(id);
