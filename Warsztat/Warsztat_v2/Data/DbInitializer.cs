@@ -165,7 +165,7 @@ namespace Warsztat_v2.Data
                         RegistrationNumber = "HPD02378",
                         Car = "Laguna",
                         Mechanic = "Tomasz",
-                        Part = "Brake pads",
+                        //Part = "Brake pads",
                         PartPcs = 0,
                         Price = 0
                     },
@@ -179,7 +179,7 @@ namespace Warsztat_v2.Data
                         RegistrationNumber = "HPD32819",
                         Car = "C5",
                         Mechanic = "Konrad",
-                        Part = "Oil Engine",
+                        //Part = "Oil Engine",
                         PartPcs = 5,
                         Price = 370
                 },
@@ -193,7 +193,7 @@ namespace Warsztat_v2.Data
                         RegistrationNumber = "LCH32145",
                         Car = "Corolla",
                         Mechanic = "Kuba",
-                        Part = "Wheel",
+                        //Part = "Wheel",
                         PartPcs = 4,
                         Price = 3060
                 },

@@ -25,7 +25,7 @@ namespace Warsztat.BLL.Models
         public string Car { get; set; }
         public string Mechanic { get; set; }
 
-        public string Part { get; set; }
+        public List<Part> OrderParts { get; set; }
         //public  Part[] Part { get; set; }
         //public List<Part> Part { get; set; }
 

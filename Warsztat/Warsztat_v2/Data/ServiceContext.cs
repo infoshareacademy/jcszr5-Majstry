@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 using Warsztat.BLL.Models;
 
 namespace Warsztat_v2.Data
@@ -14,6 +15,7 @@ namespace Warsztat_v2.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Part> Parts { get; set; }
+        public DbSet<OrderParts> OrdersParts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,14 +23,19 @@ namespace Warsztat_v2.Data
             modelBuilder.Entity<Employee>().ToTable("Employees");
             modelBuilder.Entity<Car>().ToTable("Cars");
             modelBuilder.Entity<Part>().ToTable("Parts");
+            modelBuilder.Entity<OrderParts>().ToTable("OrderParts").HasNoKey();
             base.OnModelCreating(modelBuilder);
         }
 
 
-        //public void ConfigureServices(IServiceCollection services)
-        //{
-        //    services.AddDbContext<ServiceContext>(options =>
-        //        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            //optionsBuilder.UseLazyLoadingProxies();
+
+            optionsBuilder
+                .UseSqlServer("Server=localhost;Database=Service;Trusted_Connection=True;MultipleActiveResultSets=true");
+        }
     }
 }

@@ -43,7 +43,7 @@ namespace Warsztat_v2.Repositories
             order.Car = model.Car;
             order.Client = model.Client;
             order.Price = GetCostOfOrder(model);
-            order.Part = model.Part;
+            //order.Part = model.Part;
             order.Fault = model.Fault;
             order.Mechanic = model.Mechanic;
             Context.SaveChanges();
@@ -64,7 +64,7 @@ namespace Warsztat_v2.Repositories
         public float GetCostOfOrder(Order order)
         {
             float price = 0;
-            var part = OrderList.FirstOrDefault(p => p.Part == order.Part);
+            var part = OrderList.FirstOrDefault(p => p.OrderParts == order.OrderParts);
             order.Price = (float)(order.PartPcs * part.Price);
             price = order.Price;
             return price;
