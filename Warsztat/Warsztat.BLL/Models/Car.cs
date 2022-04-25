@@ -16,7 +16,6 @@ namespace Warsztat.BLL.Models
 
         [Display(Name = "Production Year")]
         public int YearProduction { get; set; }
-        //public Order Order { get; set; }
-        //public int OrderId { get; set; }
+     
     }
 }

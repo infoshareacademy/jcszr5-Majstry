@@ -10,7 +10,7 @@ namespace Warsztat.BLL.Models
         [Display(Name = "Part Name")]
 
        
-        public string? PartName { get; set; }
+        public string PartName { get; set; }
 
         [Display(Name = "Part Price")]
         public int PartPrice { get; set; }

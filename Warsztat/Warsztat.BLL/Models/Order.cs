@@ -13,7 +13,7 @@ namespace Warsztat.BLL.Models
         public DateTime EndTime { get; set; }
         public TimeSpan WorkTime { get; set; }// czy można przypisywać wartość właściwości bezpośrednio przy ich deklaracji???        
         public Status Status { get; set; }
-        public string? Fault { get; set; }
+        public string Fault { get; set; }
         public string Client { get; set; }
         [Display(Name = "Reg Number")]
         public string RegistrationNumber { get; set; }
@@ -22,10 +22,10 @@ namespace Warsztat.BLL.Models
         public Car Car { get; set; }
         public int EmployeeId { get; set; }
         public Employee Mechanic { get; set; }
-        //public int PartId { get; set; }
+    
         public ICollection<Part> Parts { get; set; }
         [Display(Name = "Pcs")]
-        public System.Nullable<int> PartPcs { get; set; }
+        public int PartPcs { get; set; }
         public float Price { get; set; }
 
     }

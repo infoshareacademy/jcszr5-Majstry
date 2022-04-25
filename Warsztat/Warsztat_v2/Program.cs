@@ -59,8 +59,8 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 CreateDbIfNotExists(app);//
-ServiceContext context = new ServiceContext();
-DbInitializer.Initialize(context);
+//ServiceContext context = new ServiceContext();
+//DbInitializer.Initialize(context);
 app.MapRazorPages();
 
 app.Run();

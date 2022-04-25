@@ -19,7 +19,7 @@ namespace Warsztat_v2.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Part> Parts { get; set; }
-      
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,7 @@ namespace Warsztat_v2.Data
             //modelBuilder.Entity<Employee>().ToTable("Employees");
             //modelBuilder.Entity<Car>().ToTable("Cars");
             //modelBuilder.Entity<Part>().ToTable("Parts");
- 
+
             var order = modelBuilder.Entity<Order>();
             var car = modelBuilder.Entity<Car>();
 
