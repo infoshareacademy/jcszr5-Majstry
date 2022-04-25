@@ -59,6 +59,8 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 CreateDbIfNotExists(app);//
+ServiceContext context = new ServiceContext();
+DbInitializer.Initialize(context);
 app.MapRazorPages();
 
 app.Run();
@@ -68,15 +70,15 @@ static void CreateDbIfNotExists(IHost host)
     using (var scope = host.Services.CreateScope())
     {
         var services = scope.ServiceProvider;
-        try
-        {
+        //try
+        //{
             var context = services.GetRequiredService<ServiceContext>();
             DbInitializer.Initialize(context);
-        }
-        catch (Exception ex)
-        {
-            var logger = services.GetRequiredService<ILogger<Program>>();
-            logger.LogError(ex, "An error occurred creating the DB.");
-        }
+        //}
+        //catch (Exception ex)
+        //{
+        //    var logger = services.GetRequiredService<ILogger<Program>>();
+        //    logger.LogError(ex, "An error occurred creating the DB.");
+        //}
     }
 }

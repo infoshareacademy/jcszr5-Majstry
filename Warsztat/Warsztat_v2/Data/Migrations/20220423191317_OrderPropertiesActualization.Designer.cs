@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Warsztat_v2.Data;
 
@@ -11,9 +12,10 @@ using Warsztat_v2.Data;
 namespace WarsztatAuthentication.Data.Migrations
 {
     [DbContext(typeof(ServiceContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220423191317_OrderPropertiesActualization")]
+    partial class OrderPropertiesActualization
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -330,8 +332,7 @@ namespace WarsztatAuthentication.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CarId")
-                        .IsUnique();
+                    b.HasIndex("CarId");
 
                     b.HasIndex("EmployeeId");
 
@@ -420,8 +421,8 @@ namespace WarsztatAuthentication.Data.Migrations
             modelBuilder.Entity("Warsztat.BLL.Models.Order", b =>
                 {
                     b.HasOne("Warsztat.BLL.Models.Car", "Car")
-                        .WithOne()
-                        .HasForeignKey("Warsztat.BLL.Models.Order", "CarId")
+                        .WithMany()
+                        .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

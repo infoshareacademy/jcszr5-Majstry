@@ -1,23 +1,13 @@
 ﻿using Warsztat.BLL.Models;
+using Warsztat_v2.Data;
 
-namespace Warsztat_v2.Data
-{
-    public class DbInitializer
-    {
 
-        public static void Initialize(ServiceContext context)
+ServiceContext context = new ServiceContext();
+//using (var context = new ServiceContext())
+//{
+
+var cars = new Car[]
         {
-
-            context.Database.EnsureCreated();
-
-            // Look for any students.
-            if (context.Orders.Any())
-            {
-                return;   // DB has been seeded
-            }
-
-            var cars = new Car[]
-            {
             new Car
             {
                 CarModel = "A6",
@@ -60,11 +50,10 @@ namespace Warsztat_v2.Data
                 CarMark = "Audi",
                 YearProduction = 2013
             }
-            };
-          
+        };
 
-            var employees = new Employee[]
-            {
+var employees = new Employee[]
+    {
             new Employee
             {
                 FirstName = "Kuba",
@@ -105,10 +94,10 @@ namespace Warsztat_v2.Data
                 Salary = 3245,
                 Role = Warsztat.BLL.Enums.Role.Mechanic
             }
-            };
+    };
 
-            var parts = new Part[]
-            {
+var parts = new Part[]
+{
             new Part
             {
                 PartName = "Filter Air",
@@ -152,10 +141,10 @@ namespace Warsztat_v2.Data
                 Quantity = 2
             }
 
-            };
+};
 
-            var orders = new Order[]
-             {
+var orders = new Order[]
+{
                 new Order
                     {
                         OrderNumber = "LCH32145/2022/4",
@@ -164,70 +153,65 @@ namespace Warsztat_v2.Data
                         Fault = "Wheels change",
                         Client = "Iwona Krajewska",
                         RegistrationNumber = "LCH32145",
-                        CarId = 3,
-                        EmployeeId = 1,
+                        Car = context.Cars.FirstOrDefault(c=>c.Id == 2),
+                        Mechanic = context.Employees.FirstOrDefault(e=>e.Role == Warsztat.BLL.Enums.Role.Mechanic),
                         Parts =  context.Parts.ToArray(),
                         PartPcs = 4,
                         Price = 3060
                     },
-
-                 new Order
-                 {
+                new Order
+                {
                         OrderNumber = "HPD32819/2022/3",
                         StartTime = DateTime.Parse("2022-03-11"),
                         Status = Warsztat.BLL.Enums.Status.InProgress,
                         Fault = "Engine fault",
                         Client = "Zbigniew Stonoga",
                         RegistrationNumber = "HPD32819",
-                         CarId =2,
-                        EmployeeId=3,
+                        Car =  context.Cars.FirstOrDefault(c=>c.Id == 2),
+                        Mechanic = context.Employees.FirstOrDefault(e=>e.Role == Warsztat.BLL.Enums.Role.Mechanic),
                         Parts =  context.Parts.ToArray(),
                         PartPcs = 5,
                         Price = 370
-                 },
-
+                },
                 new Order
                 {
-                        OrderNumber = "HPD02378/2022/2",
+                       OrderNumber = "HPD02378/2022/2",
                         StartTime = DateTime.Parse("2022-03-11"),
                         Status = Warsztat.BLL.Enums.Status.Waiting,
                         Fault = "Break system fault",
                         Client = "Bogdan Frankowski",
                         RegistrationNumber = "HPD02378",
-                        CarId =1,
-                        EmployeeId=2,                    
+                        Car = context.Cars.FirstOrDefault(c=>c.Id == 1),
+                        Mechanic = context.Employees.FirstOrDefault(e=>e.Role == Warsztat.BLL.Enums.Role.Mechanic),
                         Parts = parts,
                         PartPcs = 0,
                         Price = 0
                 },
-            };
-        
+};
 
-            foreach (Car car in cars)
-            {
-                context.Cars.Add(car);
-                context.SaveChanges();
-            }
-
-            foreach (Employee employee in employees)
-            {
-                context.Employees.Add(employee);
-                context.SaveChanges();
-            }
-
-            foreach (Part part in parts)
-            {
-                context.Parts.Add(part);
-                context.SaveChanges();
-            }
-
-            foreach (Order order in orders)
-            {
-                context.Orders.Add(order);
-                context.SaveChanges();
-            }
-
-            //context.SaveChanges();
-        }
-    }
+foreach (Car car in cars)
+{
+    context.Cars.Add(car);
+    context.SaveChanges();
 }
+
+foreach (Employee employee in employees)
+{
+    context.Employees.Add(employee);
+    context.SaveChanges();
+}
+
+foreach (Part part in parts)
+{
+    context.Parts.Add(part);
+    context.SaveChanges();
+}
+
+foreach (Order order in orders)
+    {
+        context.Orders.Add(order);
+        context.SaveChanges();
+    }
+
+    //context.SaveChanges();
+//}

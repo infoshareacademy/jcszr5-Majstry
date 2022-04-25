@@ -5,6 +5,7 @@ namespace Warsztat.BLL.Models
     public class Car
 
     {
+        [Key]
         public int Id { get; set; }
 
         [Display(Name = "Car Model")]
@@ -15,5 +16,7 @@ namespace Warsztat.BLL.Models
 
         [Display(Name = "Production Year")]
         public int YearProduction { get; set; }
+        //public Order Order { get; set; }
+        //public int OrderId { get; set; }
     }
 }

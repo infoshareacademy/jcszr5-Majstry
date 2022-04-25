@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warsztat_v2", "Warsztat_v2\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warsztat.BLL", "Warsztat.BLL\Warsztat.BLL.csproj", "{C624DDC7-8B3C-4D79-BB85-E988FFFE44BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warsztat.Database", "Warsztat.Database\Warsztat.Database.csproj", "{232BF24E-F2C6-4E56-A12C-F5CAEB0BAFFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C624DDC7-8B3C-4D79-BB85-E988FFFE44BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C624DDC7-8B3C-4D79-BB85-E988FFFE44BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C624DDC7-8B3C-4D79-BB85-E988FFFE44BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{232BF24E-F2C6-4E56-A12C-F5CAEB0BAFFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{232BF24E-F2C6-4E56-A12C-F5CAEB0BAFFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{232BF24E-F2C6-4E56-A12C-F5CAEB0BAFFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{232BF24E-F2C6-4E56-A12C-F5CAEB0BAFFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
