@@ -165,7 +165,7 @@ namespace Warsztat_v2.Data
                         Client = "Iwona Krajewska",
                         RegistrationNumber = "LCH32145",
                         CarId = 3,
-                        EmployeeId = 1,
+                        MechanicId = 1,
                         Parts =  context.Parts.ToArray(),
                         PartPcs = 4,
                         Price = 3060
@@ -180,7 +180,7 @@ namespace Warsztat_v2.Data
                         Client = "Zbigniew Stonoga",
                         RegistrationNumber = "HPD32819",
                          CarId =2,
-                        EmployeeId=3,
+                        MechanicId=3,
                         Parts =  context.Parts.ToArray(),
                         PartPcs = 5,
                         Price = 370
@@ -195,7 +195,7 @@ namespace Warsztat_v2.Data
                         Client = "Bogdan Frankowski",
                         RegistrationNumber = "HPD02378",
                         CarId =1,
-                        EmployeeId=2,                    
+                        MechanicId=2,                    
                         Parts = parts,
                         PartPcs = 0,
                         Price = 0

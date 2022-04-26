@@ -20,8 +20,9 @@ namespace Warsztat.BLL.Models
 
         public int CarId { get; set; }
         public Car Car { get; set; }
-        public int EmployeeId { get; set; }
+        public int MechanicId { get; set; }
         public Employee Mechanic { get; set; }
+   
     
         public ICollection<Part> Parts { get; set; }
         [Display(Name = "Pcs")]

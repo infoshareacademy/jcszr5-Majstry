@@ -15,6 +15,6 @@ namespace Warsztat.BLL.Models
         [Display(Name = "Part Price")]
         public int PartPrice { get; set; }
         public int Quantity { get; set; }
-        public ICollection<Order>? Orders { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 }

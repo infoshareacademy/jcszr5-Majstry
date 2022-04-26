@@ -7,30 +7,27 @@ using Warsztat.BLL.Enums;
 
 using Warsztat_v2.Repositories.Interfaces;
 using Warsztat_v2.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Warsztat_v2.Controllers
 {
     public class OrderController : Controller
     {
-        private IOrderRepository _orderRepository;
-        private ServiceContext _context;
-        private CarService _carrService;//
-        private EmployeeService _employeeService;//
-        //private IPartRepository _partRepository;//
+        private readonly ServiceContext _context;
+        private readonly IOrderRepository _orderRepository;
 
-        public OrderController(ServiceContext context, IOrderRepository orderRepository/*IPartRepository partRepository*//*,ICarService carService*/)
+        public OrderController(ServiceContext context, IOrderRepository orderRepository)
         {
             _context = context;
             _orderRepository = orderRepository;
-            //_partRepository = partRepository;//
-            _carrService = new CarService();//
-            _employeeService = new EmployeeService();//
         }
-        // GET: OrderController
-        public ActionResult Index(string sortOrder, string searchStringForClient, string searchStringForOrderNumber, string searchStringForMechanic)
+
+        // GET: Orders
+        public  /*Task<IActionResult>*/ActionResult Index(string sortOrder, string searchStringForClient, string searchStringForOrderNumber, string searchStringForMechanic)
         {
             var model = _orderRepository.GetAll();
-
+            //var model = _context.Orders.Include(o => o.Car).Include(o => o.Mechanic);
 
             //sortowanie po kolumnach
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -47,7 +44,6 @@ namespace Warsztat_v2.Controllers
             //sortowanie po kolumnach
 
 
-
             //Search box
             if (!String.IsNullOrEmpty(searchStringForClient))
             {
@@ -57,10 +53,10 @@ namespace Warsztat_v2.Controllers
             {
                 orders = orders.Where(o => o.OrderNumber.ToString().ToUpper().Contains(searchStringForOrderNumber.ToUpper()));
             }
-            //if (!String.IsNullOrEmpty(searchStringForMechanic))
-            //{
-            //    orders = orders.Where(o => o.Mechanic.ToUpper().Contains(searchStringForMechanic.ToUpper()));
-            //}
+            if (!String.IsNullOrEmpty(searchStringForMechanic))
+            {
+                orders = orders.Where(o => o.Mechanic.LastName.ToUpper().Contains(searchStringForMechanic.ToUpper()));
+            }
             //Search box
 
             //Switch do sortowania po kolumnach
@@ -91,118 +87,153 @@ namespace Warsztat_v2.Controllers
                     orders = orders.Where(o => o.Status == Status.Cancelled);
                     break;
                 case "TotalOrders":
-                    orders = _orderRepository.GetAll().ToList();
+                    orders = /*_orderRepository.GetAll().ToList();*/model;
                     break;
-
                 default:
                     orders = orders.OrderBy(o => o.Client);
                     break;
             }
-
-            return View(orders);
+            return View(/*await serviceContext.ToListAsync()*/model);
         }
 
-        // GET: OrderController/Details/5
-        public ActionResult Details(int id)
+        // GET: Orders/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
-            var model = _orderRepository.GetById(id);
-            return View(model);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var order = await _context.Orders
+                .Include(o => o.Car)
+                .Include(o => o.Mechanic)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return View(order);
         }
 
-        // GET: OrderController/Create
-        public ActionResult Create()
+        // GET: Orders/Create
+        public IActionResult Create()
         {
-            ViewBag.Cars = _context.Cars.ToList();
-            ViewBag.Parts = _context.Parts.ToList();
-            ViewBag.Mechanics = _context.Employees.Where(e => e.Role == Role.Mechanic).ToList();
-            //ViewBag.Employees = _employeeService.GetAll().ToList();
-
-            //var model = new CreateOrderViewModel()
-            //{
-            //    Cars = _carrService.GetAll(),
-            //    Parts = _partService.GetAll(),
-            //    Employees = _employeeService.GetAll().Where(e => e.Role == Role.Mechanic).ToList()
-            //};
-
-            return View(/*model*/);
-
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "CarMark");
+            ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e => e.Role == Role.Mechanic), "Id", "FirstName");
+            return View();
         }
 
-        // POST: OrderController/Create
+        // POST: Orders/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Order model)
+        public async Task<IActionResult> Create([Bind("Id,OrderNumber,StartTime,WorkTime,EndTime,Status,Fault,Client,RegistrationNumber,CarId,MechanicId,Price")] Order order)
         {
-            try
+            if (ModelState.IsValid)
             {
-                model.OrderNumber = _orderRepository.OrderNumberGenerator(model/*.RegistrationNumber, model.StartTime.ToString("yyyy"), model.Id.ToString()*/);
-                _orderRepository.Add(model);
-                if (ModelState.IsValid)
+                _context.Add(order);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "CarMark", order.CarId);
+            ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e=>e.Role == Role.Mechanic), "Id", "FirstName", order.MechanicId);
+            return View(order);
+        }
+
+        // GET: Orders/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            Employee employee = new Employee();
+            string mechanic = employee.FirstName+employee.LastName;
+
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "CarMark", order.CarId);
+            ViewData["MechanicId"] = new SelectList(_context.Employees, "FirstName", "LastName", order.MechanicId);
+            return View(order);
+        }
+
+        // POST: Orders/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,OrderNumber,StartTime,WorkTime,EndTime,Status,Fault,Client,RegistrationNumber,CarId,MechanicId,Price")] Order order)
+        {
+            if (id != order.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
                 {
-                    return View(model);
+                    _context.Update(order);
+                    await _context.SaveChangesAsync();
                 }
-                // _orderService.Create(model);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: OrderController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            ViewBag.Cars = _context.Cars.ToList();
-            ViewBag.Parts = _context.Parts.ToList();
-            ViewBag.Mechanics = _context.Employees.Where(m => m.Role == Role.Mechanic).ToList();
-
-
-            var model = _orderRepository.GetById(id);
-            return View(model);
-        }
-
-        // POST: OrderController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Order model)
-        {
-            try
-            {
-                if (ModelState.IsValid)
+                catch (DbUpdateConcurrencyException)
                 {
-                    return View(model);
+                    if (!OrderExists(order.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
-                _orderRepository.Update(model);
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "CarMark", order.CarId);
+            ViewData["MechanicId"] = new SelectList(_context.Employees, "Id", "FirstName", order.MechanicId);
+            return View(order);
         }
 
-        // GET: OrderController/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Orders/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
-            var model = _orderRepository.GetById(id);
-            return View(model);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var order = await _context.Orders
+                .Include(o => o.Car)
+                .Include(o => o.Mechanic)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return View(order);
         }
 
-        // POST: OrderController/Delete/5
-        [HttpPost]
+        // POST: Orders/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Order model)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            try
-            {
-                _orderRepository.Delete(id);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var order = await _context.Orders.FindAsync(id);
+            _context.Orders.Remove(order);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool OrderExists(int id)
+        {
+            return _context.Orders.Any(e => e.Id == id);
         }
     }
 }
