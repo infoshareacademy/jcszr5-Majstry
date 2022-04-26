@@ -24,10 +24,10 @@ namespace Warsztat_v2.Controllers
         }
 
         // GET: Orders
-        public  /*Task<IActionResult>*/ActionResult Index(string sortOrder, string searchStringForClient, string searchStringForOrderNumber, string searchStringForMechanic)
+        public async Task<IActionResult>/*ActionResult*/ Index(string sortOrder, string searchStringForClient, string searchStringForOrderNumber, string searchStringForMechanic)
         {
-            var model = _orderRepository.GetAll();
-            //var model = _context.Orders.Include(o => o.Car).Include(o => o.Mechanic);
+            //var model = _orderRepository.GetAll();
+            var model = _context.Orders.Include(o => o.Car).Include(o => o.Mechanic);
 
             //sortowanie po kolumnach
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -93,7 +93,7 @@ namespace Warsztat_v2.Controllers
                     orders = orders.OrderBy(o => o.Client);
                     break;
             }
-            return View(/*await serviceContext.ToListAsync()*/model);
+            return View(/*await _context.Orders.ToListAsync()*/model);
         }
 
         // GET: Orders/Details/5
@@ -119,8 +119,8 @@ namespace Warsztat_v2.Controllers
         // GET: Orders/Create
         public IActionResult Create()
         {
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "CarMark");
-            ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e => e.Role == Role.Mechanic), "Id", "FirstName");
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "FullName");
+            ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e => e.Role == Role.Mechanic), "Id", "FullName");
             return View();
         }
 
@@ -137,8 +137,9 @@ namespace Warsztat_v2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "CarMark", order.CarId);
-            ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e=>e.Role == Role.Mechanic), "Id", "FirstName", order.MechanicId);
+         
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "FullName", order.CarId);
+            ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e=>e.Role == Role.Mechanic), "Id", "FullName", order.MechanicId);
             return View(order);
         }
 
@@ -158,8 +159,8 @@ namespace Warsztat_v2.Controllers
             Employee employee = new Employee();
             string mechanic = employee.FirstName+employee.LastName;
 
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "CarMark", order.CarId);
-            ViewData["MechanicId"] = new SelectList(_context.Employees, "FirstName", "LastName", order.MechanicId);
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "FullName", order.CarId);
+            ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e => e.Role == Role.Mechanic), "Id", "FullName", order.MechanicId);
             return View(order);
         }
 
@@ -195,8 +196,8 @@ namespace Warsztat_v2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "CarMark", order.CarId);
-            ViewData["MechanicId"] = new SelectList(_context.Employees, "Id", "FirstName", order.MechanicId);
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "FullName", order.CarId);
+            ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e => e.Role == Role.Mechanic), "Id", "FullName", order.MechanicId);
             return View(order);
         }
 

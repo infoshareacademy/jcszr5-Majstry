@@ -17,13 +17,10 @@ namespace Warsztat.BLL.Models
         public string Client { get; set; }
         [Display(Name = "Reg Number")]
         public string RegistrationNumber { get; set; }
-
-        public int CarId { get; set; }
         public Car Car { get; set; }
-        public int MechanicId { get; set; }
+        public int CarId { get; set; }
         public Employee Mechanic { get; set; }
-   
-    
+        public int MechanicId { get; set; }
         public ICollection<Part> Parts { get; set; }
         [Display(Name = "Pcs")]
         public int PartPcs { get; set; }

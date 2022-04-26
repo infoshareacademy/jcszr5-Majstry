@@ -17,24 +17,15 @@
                 @Html.DisplayNameFor(model => model.OrderNumber)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.StartTime)*@
+
                 @Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.DateSortParm })
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndTime)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Fault)
-            </th>
-            <th>
-                @*@Html.DisplayNameFor(model => model.Client)*@
-                @Html.ActionLink("Client", "Index", new { sortOrder = ViewBag.NameSortParm })
+                    @Html.ActionLink("Client", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RegistrationNumber)
@@ -61,16 +52,7 @@
                 @Html.DisplayFor(modelItem => item.StartTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.WorkTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndTime)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fault)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Client)
@@ -79,10 +61,10 @@
                 @Html.DisplayFor(modelItem => item.RegistrationNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Car.CarMark)
+                @Html.DisplayFor(modelItem => item.Car.FullName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Mechanic.FirstName)
+                @Html.DisplayFor(modelItem => item.Mechanic.FullName )
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
