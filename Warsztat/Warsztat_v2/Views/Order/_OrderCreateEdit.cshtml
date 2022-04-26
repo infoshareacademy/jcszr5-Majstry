@@ -46,7 +46,7 @@
             <div class="form-group">
                 <label asp-for="Mechanic" class="control-label"></label>
                @* <input asp-for="Mechanic" class="form-control" />*@
-                  <select asp-for="Mechanic" asp-items="@(new SelectList(ViewBag.Mechanics,nameof(Employee.FirstName),nameof(Employee.FirstName)))" class ="form-control"></select>
+                  <select asp-for="Mechanic" asp-items="@(new SelectList(ViewBag.Mechanics,nameof(Employee.FirstName),nameof(Employee.FirstLastName)))" class ="form-control"></select>
                 <span asp-validation-for="Mechanic" class="text-danger"></span>     
             </div>
   

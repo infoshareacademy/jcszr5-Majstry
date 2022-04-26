@@ -15,5 +15,9 @@ namespace Warsztat.BLL.Models
         public DateTime DateOfBirth { get; set; }
         public double Salary { get; set; }
         public Role Role { get; set; }
+        public string FirstLastName 
+        { 
+            get { return $"{FirstName} {LastName}"; }           
+        }
     }
 }
