@@ -11,9 +11,9 @@ namespace Warsztat.BLL.Models
         [DataType(DataType.Date)]
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public TimeSpan WorkTime { get; set; }// czy można przypisywać wartość właściwości bezpośrednio przy ich deklaracji???        
+        public TimeSpan? WorkTime { get; set; }// czy można przypisywać wartość właściwości bezpośrednio przy ich deklaracji???        
         public Status Status { get; set; }
-        public string Fault { get; set; }
+        public string? Fault { get; set; }
         public string Client { get; set; }
         [Display(Name = "Reg Number")]
         public string RegistrationNumber { get; set; }
@@ -23,7 +23,7 @@ namespace Warsztat.BLL.Models
         public int MechanicId { get; set; }
         public ICollection<Part> Parts { get; set; }
         [Display(Name = "Pcs")]
-        public int PartPcs { get; set; }
+        public int? PartPcs { get; set; }
         public float Price { get; set; }
 
     }

@@ -17,15 +17,13 @@
                 @Html.DisplayNameFor(model => model.OrderNumber)
             </th>
             <th>
-
                 @Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.DateSortParm })
             </th>
-
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                    @Html.ActionLink("Client", "Index", new { sortOrder = ViewBag.NameSortParm })
+                @Html.ActionLink("Client", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RegistrationNumber)
