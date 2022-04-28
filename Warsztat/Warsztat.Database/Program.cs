@@ -151,7 +151,7 @@ var orders = new Order[]
 {
                 new Order
                     {
-                        OrderNumber = "LCH32145/2022/4",
+                        //OrderNumber = "LCH32145/2022/4",
                         StartTime = DateTime.Parse("2022-03-02"),
                         Status = Warsztat.BLL.Enums.Status.Cancelled,
                         Fault = "Wheels change",
@@ -165,7 +165,7 @@ var orders = new Order[]
                     },
                 new Order
                 {
-                        OrderNumber = "HPD32819/2022/3",
+                        //OrderNumber = "HPD32819/2022/3",
                         StartTime = DateTime.Parse("2022-03-11"),
                         Status = Warsztat.BLL.Enums.Status.InProgress,
                         Fault = "Engine fault",
@@ -179,7 +179,7 @@ var orders = new Order[]
                 },
                 new Order
                 {
-                       OrderNumber = "HPD02378/2022/2",
+                       //OrderNumber = "HPD02378/2022/2",
                         StartTime = DateTime.Parse("2022-03-11"),
                         Status = Warsztat.BLL.Enums.Status.Waiting,
                         Fault = "Break system fault",

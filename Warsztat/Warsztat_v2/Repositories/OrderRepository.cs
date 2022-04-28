@@ -42,7 +42,7 @@ namespace Warsztat_v2.Repositories
             order.Status = model.Status;
             order.Car = model.Car;
             order.Client = model.Client;
-            order.Price = GetCostOfOrder(model);
+            //order.Price = GetCostOfOrder(model);
             //order.Part = model.Part;
             order.Fault = model.Fault;
             order.Mechanic = model.Mechanic;
@@ -61,19 +61,7 @@ namespace Warsztat_v2.Repositories
             return OrderList.FirstOrDefault(o => o.Id == id);
         }
 
-        public float GetCostOfOrder(Order order)
-        {
-            float price = 0;
-            //var part = OrderList.FirstOrDefault(p => p.Part == order.Part);
-            //order.Price = (float)(order.PartPcs * part.Price);
-            price = order.Price;
-            return price;
-        }
-
-        public string OrderNumberGenerator(Order order)
-        {
-            return order.RegistrationNumber + "/" + order.StartTime.ToString("yyyy") + "/" + order.Id.ToString();
-        }
+  
     }
 }
 

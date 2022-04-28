@@ -9,7 +9,6 @@ namespace Warsztat_v2.Repositories.Interfaces
         void Delete(int id);
         void Update(Order order);
         public Order GetById(int id);
-        public string OrderNumberGenerator(Order order);
 
     }
 }
