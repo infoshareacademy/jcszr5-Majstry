@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Warsztat_v2.Data;
 
@@ -11,9 +12,10 @@ using Warsztat_v2.Data;
 namespace WarsztatAuthentication.Data.Migrations
 {
     [DbContext(typeof(ServiceContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220428192802_SetOrderNumber")]
+    partial class SetOrderNumber
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -236,7 +238,7 @@ namespace WarsztatAuthentication.Data.Migrations
 
                     b.HasIndex("PartsId");
 
-                    b.ToTable("OrderPart", (string)null);
+                    b.ToTable("OrderPart");
                 });
 
             modelBuilder.Entity("Warsztat.BLL.Models.Car", b =>
@@ -260,7 +262,7 @@ namespace WarsztatAuthentication.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cars", (string)null);
+                    b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("Warsztat.BLL.Models.Employee", b =>
@@ -290,7 +292,7 @@ namespace WarsztatAuthentication.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees", (string)null);
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("Warsztat.BLL.Models.Order", b =>
@@ -340,7 +342,7 @@ namespace WarsztatAuthentication.Data.Migrations
 
                     b.HasIndex("MechanicId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Warsztat.BLL.Models.Part", b =>
@@ -363,7 +365,7 @@ namespace WarsztatAuthentication.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Parts", (string)null);
+                    b.ToTable("Parts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

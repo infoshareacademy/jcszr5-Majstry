@@ -1,4 +1,5 @@
 ﻿using Warsztat.BLL.Models;
+using Warsztat.BLL.Services.Interfaces;
 using Warsztat_v2.Data;
 using Warsztat_v2.Repositories.Interfaces;
 
@@ -9,10 +10,13 @@ namespace Warsztat_v2.Repositories
         public ServiceContext Context { get; set; }
         public List<Order> OrderList { get; set; }
 
-        public OrderRepository(ServiceContext context)
+        private IOrderService _orderservice;
+
+        public OrderRepository(ServiceContext context, IOrderService orderService)
         {
             Context = context;
             OrderList = context.Orders.ToList();
+            _orderservice = orderService;
         }
         /*
         public List<Order> ReadFromDB(ServiceContext context)
@@ -29,7 +33,11 @@ namespace Warsztat_v2.Repositories
         public void Add(Order order)
         {
             //order.Price = GetCostOfOrder(order);
+            order.StartTime = DateTime.Now;
+            int orderId = Context.Orders.Count() + 1;
+            order.OrderNumber = _orderservice.OrderNumberGenerator(order.RegistrationNumber,order.StartTime, orderId);
             Context.Orders.Add(order);
+
             Context.SaveChanges();
         }
 
@@ -60,8 +68,6 @@ namespace Warsztat_v2.Repositories
         {
             return OrderList.FirstOrDefault(o => o.Id == id);
         }
-
-  
     }
 }
 

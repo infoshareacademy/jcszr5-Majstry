@@ -20,7 +20,7 @@ namespace Warsztat.BLL.Services
         //    return order.RegistrationNumber + "/" + order.StartTime.ToString("yyyy") + "/" + order.Id.ToString();
         //}
 
-        public string OrderNumberGenerator(string registrationNumber,DateTime startTime, int id)
+        public  string OrderNumberGenerator(string registrationNumber,DateTime startTime, int id)
         {
             return  registrationNumber + "/" + startTime.ToString("yyyy") + "/" + id.ToString();
         }

@@ -10,62 +10,7 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-       @*     <div class="form-group">
-                <label asp-for="OrderNumber" class="control-label"></label>
-                <input asp-for="OrderNumber" class="form-control" />
-                <span asp-validation-for="OrderNumber" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="StartTime" class="control-label"></label>
-                <input asp-for="StartTime" class="form-control" />
-                <span asp-validation-for="StartTime" class="text-danger"></span>
-            </div>
-    @*        <div class="form-group">
-                <label asp-for="WorkTime" class="control-label"></label>
-                <input asp-for="WorkTime" class="form-control" />
-                <span asp-validation-for="WorkTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndTime" class="control-label"></label>
-                <input asp-for="EndTime" class="form-control" />
-                <span asp-validation-for="EndTime" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                 <select asp-for="Status" asp-items ="Html.GetEnumSelectList<Status>()" class = "form-control">
-                    <option selected = "selected" value = "">Please select status</option>
-                 </select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fault" class="control-label"></label>
-                <input asp-for="Fault" class="form-control" />
-                <span asp-validation-for="Fault" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Client" class="control-label"></label>
-                <input asp-for="Client" class="form-control" />
-                <span asp-validation-for="Client" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RegistrationNumber" class="control-label"></label>
-                <input asp-for="RegistrationNumber" class="form-control" />
-                <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CarId" class="control-label"></label>
-                <select asp-for="CarId" class ="form-control" asp-items="ViewBag.CarId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="MechanicId" class="control-label"></label>
-                <select asp-for="MechanicId" class ="form-control" asp-items="ViewBag.MechanicId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
+           <partial name="_OrderCreateEdit" model=@Model view-data=ViewData/>      
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

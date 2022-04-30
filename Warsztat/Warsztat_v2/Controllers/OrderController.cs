@@ -26,8 +26,8 @@ namespace Warsztat_v2.Controllers
         // GET: Orders
         public async Task<IActionResult>/*ActionResult*/ Index(string sortOrder, string searchStringForClient, string searchStringForOrderNumber, string searchStringForMechanic)
         {
-            //var model = _orderRepository.GetAll();
-            var model = _context.Orders.Include(o => o.Car).Include(o => o.Mechanic);
+            var model = _orderRepository.GetAll();
+            //var model = _context.Orders.Include(o => o.Car).Include(o => o.Mechanic);
 
             //sortowanie po kolumnach
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -87,13 +87,13 @@ namespace Warsztat_v2.Controllers
                     orders = orders.Where(o => o.Status == Status.Cancelled);
                     break;
                 case "TotalOrders":
-                    orders = /*_orderRepository.GetAll().ToList();*/model;
+                    orders = /*_orderRepository.GetAll().ToList();*/model.ToList();
                     break;
                 default:
                     orders = orders.OrderBy(o => o.Client);
                     break;
             }
-            return View(/*await _context.Orders.ToListAsync()*/model);
+            return View(/*await _context.Orders.ToListAsync()*/orders);
         }
 
         // GET: Orders/Details/5
@@ -133,7 +133,8 @@ namespace Warsztat_v2.Controllers
         {
             //if (ModelState.IsValid)
             {
-                _context.Add(order);
+                //_context.Add(order);
+                _orderRepository.Add(order);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -176,7 +177,7 @@ namespace Warsztat_v2.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
             {
                 try
                 {
