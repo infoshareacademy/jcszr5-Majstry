@@ -24,12 +24,14 @@ namespace Warsztat_v2.Controllers
         }
 
         // GET: Orders
-        public async Task<IActionResult>/*ActionResult*/ Index(string sortOrder, string searchStringForClient, string searchStringForOrderNumber, string searchStringForMechanic)
+        public async Task<IActionResult> Index(string sortOrder, string searchStringForClient, string searchStringForOrderNumber, string searchStringForMechanic)
         {
-            var model = _orderRepository.GetAll();
-            //var model = _context.Orders.Include(o => o.Car).Include(o => o.Mechanic);
+            
+            var model = _context.Orders
+              .Include(o => o.Car)
+              .Include(o => o.Mechanic)
+              .ToList(); 
 
-            //sortowanie po kolumnach
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.WaitingStatus = sortOrder == "Status" ? "WaitingStatus" : "Status";
@@ -41,10 +43,7 @@ namespace Warsztat_v2.Controllers
 
             var orders = from o in model
                          select o;
-            //sortowanie po kolumnach
 
-
-            //Search box
             if (!String.IsNullOrEmpty(searchStringForClient))
             {
                 orders = orders.Where(o => o.Client.ToUpper().Contains(searchStringForClient.ToUpper()));
@@ -55,11 +54,9 @@ namespace Warsztat_v2.Controllers
             }
             if (!String.IsNullOrEmpty(searchStringForMechanic))
             {
-                orders = orders.Where(o => o.Mechanic.LastName.ToUpper().Contains(searchStringForMechanic.ToUpper()));
+                orders = orders.Where(o => o.Mechanic.FullName.ToUpper().Contains(searchStringForMechanic.ToUpper()));
             }
-            //Search box
 
-            //Switch do sortowania po kolumnach
             switch (sortOrder)
             {
                 case "name_desc":
@@ -87,13 +84,13 @@ namespace Warsztat_v2.Controllers
                     orders = orders.Where(o => o.Status == Status.Cancelled);
                     break;
                 case "TotalOrders":
-                    orders = /*_orderRepository.GetAll().ToList();*/model.ToList();
+                    orders =model.ToList();
                     break;
                 default:
                     orders = orders.OrderBy(o => o.Client);
                     break;
             }
-            return View(/*await _context.Orders.ToListAsync()*/orders);
+            return View(orders);
         }
 
         // GET: Orders/Details/5
