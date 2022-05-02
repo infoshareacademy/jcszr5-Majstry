@@ -154,8 +154,7 @@ namespace Warsztat_v2.Controllers
             {
                 return NotFound();
             }
-            Employee employee = new Employee();
-            string mechanic = employee.FirstName+employee.LastName;
+  
 
             ViewData["CarId"] = new SelectList(_context.Cars, "Id", "FullName", order.CarId);
             ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e => e.Role == Role.Mechanic), "Id", "FullName", order.MechanicId);
@@ -178,7 +177,8 @@ namespace Warsztat_v2.Controllers
             {
                 try
                 {
-                    _context.Update(order);
+                    //_context.Update(order);
+                    _orderRepository.Update(order);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

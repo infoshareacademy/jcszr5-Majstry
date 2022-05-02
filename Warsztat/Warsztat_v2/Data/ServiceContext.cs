@@ -25,15 +25,18 @@ namespace Warsztat_v2.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.Entity<Order>().ToTable("Orders");
-            //modelBuilder.Entity<Employee>().ToTable("Employees");
-            //modelBuilder.Entity<Car>().ToTable("Cars");
-            //modelBuilder.Entity<Part>().ToTable("Parts");
 
             var order = modelBuilder.Entity<Order>();
             var car = modelBuilder.Entity<Car>();
 
-            //order.HasOne(o => o.Car).WithOne().HasForeignKey("CarId");
+            order.HasOne(o => o.Car).WithMany().HasForeignKey("CarId");
+            order.HasOne(o => o.Mechanic).WithMany().HasForeignKey("MechanicId");
+            //order.HasOne<Employee>().WithMany().HasForeignKey();
+            //order.Property(o=>o.StartTime)
+            //order.HasOne<Employee>().WithMany().HasForeignKey();
+            order.Property(o => o.Fault).HasMaxLength(200);
+            order.Property(o=>o.RegistrationNumber).HasMaxLength(10);
+       
         }
 
         //public void ConfigureServices(IServiceCollection services)
@@ -48,7 +51,6 @@ namespace Warsztat_v2.Data
 
             optionsBuilder
                 .UseSqlServer("Server=localhost;Database=Service;Trusted_Connection=True;MultipleActiveResultSets=true");
-
         }
     }
 }
