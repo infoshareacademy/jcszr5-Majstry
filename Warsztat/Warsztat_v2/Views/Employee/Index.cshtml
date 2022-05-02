@@ -5,6 +5,9 @@
 }
 
 <h1>Employees</h1>
+<div>
+    @await Component.InvokeAsync("EmployeeStatistics")
+</div>
 
 <p>
     <a asp-action="Create">Create New</a>
