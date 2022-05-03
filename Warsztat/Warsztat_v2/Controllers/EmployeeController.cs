@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Warsztat.BLL.Models;
 using Warsztat_v2.Data;
-using Warsztat_v2.Repositories;
 
 namespace Warsztat_v2.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly ServiceContext _context;
@@ -146,5 +147,5 @@ namespace Warsztat_v2.Controllers
             return _context.Employees.Any(e => e.Id == id);
         }
     }
-    
+
 }

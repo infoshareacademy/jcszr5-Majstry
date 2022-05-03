@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Warsztat.BLL.Models;
 using Warsztat_v2.Data;
@@ -8,6 +9,7 @@ using Warsztat_v2.Repositories;
 
 namespace Warsztat_v2.Controllers
 {
+    [Authorize]
     public class CarController : Controller
     {
         private readonly CarRepository _carRepository;

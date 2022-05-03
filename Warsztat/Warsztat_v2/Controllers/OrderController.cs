@@ -1,17 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Warsztat.BLL.Services;
-using Warsztat.BLL.Models;
-using Warsztat.BLL.Enums;
-//using Warsztat.BLL.Models;
-
-using Warsztat_v2.Repositories.Interfaces;
-using Warsztat_v2.Data;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Warsztat.BLL.Enums;
+using Warsztat.BLL.Models;
+using Warsztat_v2.Data;
+//using Warsztat.BLL.Models;
+using Warsztat_v2.Repositories.Interfaces;
 
 namespace Warsztat_v2.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly ServiceContext _context;
@@ -26,11 +25,11 @@ namespace Warsztat_v2.Controllers
         // GET: Orders
         public async Task<IActionResult> Index(string sortOrder, string searchStringForClient, string searchStringForOrderNumber, string searchStringForMechanic)
         {
-            
+
             var model = _context.Orders
               .Include(o => o.Car)
               .Include(o => o.Mechanic)
-              .ToList(); 
+              .ToList();
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -84,7 +83,7 @@ namespace Warsztat_v2.Controllers
                     orders = orders.Where(o => o.Status == Status.Cancelled);
                     break;
                 case "TotalOrders":
-                    orders =model.ToList();
+                    orders = model.ToList();
                     break;
                 default:
                     orders = orders.OrderBy(o => o.Client);
@@ -135,9 +134,9 @@ namespace Warsztat_v2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-         
+
             ViewData["CarId"] = new SelectList(_context.Cars, "Id", "FullName", order.CarId);
-            ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e=>e.Role == Role.Mechanic), "Id", "FullName", order.MechanicId);
+            ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e => e.Role == Role.Mechanic), "Id", "FullName", order.MechanicId);
             return View(order);
         }
 
@@ -154,7 +153,7 @@ namespace Warsztat_v2.Controllers
             {
                 return NotFound();
             }
-  
+
 
             ViewData["CarId"] = new SelectList(_context.Cars, "Id", "FullName", order.CarId);
             ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e => e.Role == Role.Mechanic), "Id", "FullName", order.MechanicId);

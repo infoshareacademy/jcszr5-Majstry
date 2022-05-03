@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warsztat.BLL", "Warsztat.BL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warsztat.Database", "Warsztat.Database\Warsztat.Database.csproj", "{232BF24E-F2C6-4E56-A12C-F5CAEB0BAFFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poligon", "Poligon\Poligon.csproj", "{CDADE7D0-B499-4EFB-A038-960CDDD95146}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{232BF24E-F2C6-4E56-A12C-F5CAEB0BAFFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{232BF24E-F2C6-4E56-A12C-F5CAEB0BAFFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{232BF24E-F2C6-4E56-A12C-F5CAEB0BAFFE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CDADE7D0-B499-4EFB-A038-960CDDD95146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CDADE7D0-B499-4EFB-A038-960CDDD95146}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CDADE7D0-B499-4EFB-A038-960CDDD95146}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CDADE7D0-B499-4EFB-A038-960CDDD95146}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

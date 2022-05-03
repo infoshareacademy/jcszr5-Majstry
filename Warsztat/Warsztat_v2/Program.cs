@@ -9,7 +9,6 @@ using Warsztat_v2.Repositories.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
@@ -19,9 +18,6 @@ builder.Services.AddTransient<ICarRepository, CarRepository>();
 
 
 // var conne = Configuration.GetConnectionString("DefaultConnection");
-
-
-
 
 var conectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
 builder.Services.AddDbContext<ServiceContext>(options =>
@@ -51,18 +47,21 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
+app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
+
+
 CreateDbIfNotExists(app);//
 //ServiceContext context = new ServiceContext();
 //DbInitializer.Initialize(context);
-app.MapRazorPages();
+
 
 app.Run();
 
@@ -73,8 +72,8 @@ static void CreateDbIfNotExists(IHost host)
         var services = scope.ServiceProvider;
         //try
         //{
-            var context = services.GetRequiredService<ServiceContext>();
-            DbInitializer.Initialize(context);
+        var context = services.GetRequiredService<ServiceContext>();
+        DbInitializer.Initialize(context);
         //}
         //catch (Exception ex)
         //{
