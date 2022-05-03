@@ -4,25 +4,26 @@ using Warsztat.BLL.Enums;
 using Warsztat.BLL.Models;
 using Warsztat_v2.Data;
 using Warsztat_v2.Repositories;
+using Warsztat_v2.Repositories.Interfaces;
 
 namespace Warsztat_v2.Controllers
 {
     public class EmployeeController : Controller
     {
         private readonly ServiceContext _context;
-       // private readonly EmployeeRepository _employeeRepository;
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public EmployeeController(ServiceContext context)
+        public EmployeeController(ServiceContext context, IEmployeeRepository employeeRepository)
         {
             _context = context;
-           // _employeeRepository = employeeRepository;
+            _employeeRepository = employeeRepository;
         }
 
         // GET: Employees
         public async Task<IActionResult> Index()
         {
             ClearTable();
-            AddFinishedOrder();
+            var finishedOrder_= _employeeRepository.AddFinishedOrder;
             _context.SaveChanges();
             
             return View(await _context.Employees.ToListAsync());
@@ -147,18 +148,7 @@ namespace Warsztat_v2.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        private void AddFinishedOrder()
-        {
-            var mechanicId = 0;
-            foreach (var order in _context.Orders)
-            {
-                if (order.Status == Status.Finished)
-                    mechanicId = order.MechanicId;
-                var employee = _context.Employees.First(e => e.Id == mechanicId);
-                employee.FinishedOrder =+ 1;
-            }
-            _context.SaveChanges();
-        }
+        
 
         private bool EmployeeExists(int id)
         {

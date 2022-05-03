@@ -22,8 +22,8 @@ namespace Warsztat_v2.Views.Employee.Components
         {
             var viewModel = new EmployeeStatiscsViewModel
             {
-                FinishedOrders = 5,
-                EmployeeOfMonthName = "Jacek"
+                FinishedOrders = _repository.HowManyFinishedOrder(),
+                EmployeeOfMonthName = _repository.DisplayName()
             //var finished = orders.Select(o => new Order { MechanicId = o.MechanicId, Status = Status.Finished });
             };
             return View(viewModel);

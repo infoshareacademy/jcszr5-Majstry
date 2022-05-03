@@ -26,23 +26,35 @@ namespace Warsztat_v2.Repositories
                 employee.FinishedOrder = 0;
             }
         }
-        //public int AddFinishedOrder()
-        //{
-        //    var results = orders.Count();
+        public void AddFinishedOrder()
+        {
+            var mechanicId = 0;
+            foreach (var order in _context.Orders)
+            {
+                if (order.Status == Status.Finished)
+                    mechanicId = order.MechanicId;
+                var employee = _context.Employees.First(e => e.Id == mechanicId);
+                employee.FinishedOrder = +1;
+            }
+            _context.SaveChanges();
+        }
+        public int HowManyFinishedOrder()
+        {
+            var result = _context.Employees.GroupBy(e => e.FinishedOrder)
+                .OrderByDescending(f => f.Count())
+                .Count();
             
-        //    //var json5 = Newtonsoft.Json.JsonConvert.SerializeObject(x);
-        //   //Debugger.Break();
- 
-        //    return results;
-        //}
-        //public string DisplayName()
-        //{
-        //    var result = orders
-        //        .FirstOrDefault()
-        //        .ToString();
-            
-        //    return result;
-        //}
+            var json2 = Newtonsoft.Json.JsonConvert.SerializeObject(result);
+
+            return result;
+        }
+        public string DisplayName()
+        {
+            var result = _context.Employees.OrderByDescending(e => e.FinishedOrder)
+                .FirstOrDefault().FullName;
+
+            return result;
+        }
         public void Add(Employee employee)
         {
             _context.Employees.Add(employee);
