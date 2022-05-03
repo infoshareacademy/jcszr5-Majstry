@@ -28,7 +28,7 @@ namespace Warsztat_v2.Repositories
             var results = orders.Where(o => o.Status == Status.Finished)
                 .GroupBy(o => o.MechanicId)
                 .OrderByDescending(o => o.Count())
-                .First().ToList().Count();
+                .FirstOrDefault().ToList().Count();
             
             //var json5 = Newtonsoft.Json.JsonConvert.SerializeObject(x);
            //Debugger.Break();

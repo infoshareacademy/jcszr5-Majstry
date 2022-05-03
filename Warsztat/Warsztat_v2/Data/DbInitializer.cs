@@ -200,6 +200,21 @@ namespace Warsztat_v2.Data
                         PartPcs = 0,
                         Price = 0
                 },
+
+                new Order
+                {
+                        OrderNumber = "WMM02378/2022/2",
+                        StartTime = DateTime.Parse("2022-05-01"),
+                        Status = Warsztat.BLL.Enums.Status.Finished,
+                        Fault = " computer diagnostics",
+                        Client = "Jan Kowalski",
+                        RegistrationNumber = "WMM02378",
+                        CarId =5,
+                        MechanicId=1,
+                        Parts = parts,
+                        PartPcs = 0,
+                        Price = 0
+                },
             };
         
 
