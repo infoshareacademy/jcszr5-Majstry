@@ -9,61 +9,56 @@ namespace Warsztat_v2.Repositories
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        public ServiceContext Context { get; set; }
-        public List<Employee> employees { get; set; }
-        public List<Order> orders { get; set; }
+        private readonly ServiceContext _context;
+
+        //public List<Employee> employees { get; set; }
+        //public List<Order> orders { get; set; }
         public EmployeeRepository(ServiceContext context)
         {
-            Context = context;
-            employees = Context.Employees.ToList();
-            orders = Context.Orders.ToList();
-            //var postAll = blogs.SelectMany(b => b.Posts).Select(b => b.Subject).Distinct();
-            //var json1 = Newtonsoft.Json.JsonConvert.SerializeObject(postAll);
-            
+            _context = context;
         }
         
-        public int AddFinishedOrder()
+        public void ClearTable()
         {
+            foreach (var finishedOrders in _context.Employees)
+            {
+                var employee = _context.Employees.First(e => e.Id == finishedOrders.Id);
+                employee.FinishedOrder = 0;
+            }
+        }
+        //public int AddFinishedOrder()
+        //{
+        //    var results = orders.Count();
             
-            var results = orders.Where(o => o.Status == Status.Finished)
-                .GroupBy(o => o.MechanicId)
-                .OrderByDescending(o => o.Count())
-                .FirstOrDefault().ToList().Count();
-            
-            //var json5 = Newtonsoft.Json.JsonConvert.SerializeObject(x);
-           //Debugger.Break();
+        //    //var json5 = Newtonsoft.Json.JsonConvert.SerializeObject(x);
+        //   //Debugger.Break();
  
-            return results;
-        }
-        public string DisplayName()
-        {
-            var result = orders.Where(o => o.Status == Status.Finished)
-                .GroupBy(o => o.MechanicId)
-                .OrderByDescending(o => o.Count())
-                .FirstOrDefault()
-                .Select(o => o.Mechanic.FullName)
-                .Distinct()
-                .FirstOrDefault()
-                .ToString();
+        //    return results;
+        //}
+        //public string DisplayName()
+        //{
+        //    var result = orders
+        //        .FirstOrDefault()
+        //        .ToString();
             
-            return result;
-        }
+        //    return result;
+        //}
         public void Add(Employee employee)
         {
-            Context.Employees.Add(employee);
-            Context.SaveChanges();
+            _context.Employees.Add(employee);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var employee = GetById(id);
-            Context.Employees.Remove(employee);
-            Context.SaveChanges();
+            _context.Employees.Remove(employee);
+            _context.SaveChanges();
         }
 
         public Employee GetById(int id)
         {
-            return employees.FirstOrDefault(e => e.Id == id);
+            return _context.Employees.FirstOrDefault(e => e.Id == id);
         }
 
         public void Update(Employee model)
@@ -74,7 +69,7 @@ namespace Warsztat_v2.Repositories
             //employee.DateOfBirth = model.DateOfBirth;
             employee.Salary = model.Salary;
             employee.Role = model.Role;
-            Context.SaveChanges();
+            _context.SaveChanges();
         }
 
        

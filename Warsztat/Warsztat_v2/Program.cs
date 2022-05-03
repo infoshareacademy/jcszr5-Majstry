@@ -18,6 +18,7 @@ builder.Services.AddTransient<IPartService, PartService>();
 builder.Services.AddTransient<ICarRepository, CarRepository>();
 
 
+
 // var conne = Configuration.GetConnectionString("DefaultConnection");
 
 
