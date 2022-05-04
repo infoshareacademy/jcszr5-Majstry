@@ -18,13 +18,18 @@ namespace Warsztat.BLL.Models
         [Display(Name = "Reg Number")]
         public string RegistrationNumber { get; set; }
         public Car Car { get; set; }
+        [Display(Name = "Car")]
         public int CarId { get; set; }
+
         public Employee Mechanic { get; set; }
+
+        [Display(Name = "Mechanic")]
         public int MechanicId { get; set; }
         public ICollection<Part> Parts { get; set; }
         [Display(Name = "Pcs")]
         public int? PartPcs { get; set; }
         public float Price { get; set; }
+        [Display(Name = "Order Number")]
         public string OrderNumber { get; set; }
     }
 }
