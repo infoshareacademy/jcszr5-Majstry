@@ -39,7 +39,7 @@ namespace Warsztat_v2.Repositories
                 {
                     mechanicId = order.MechanicId;
                     var employee = _context.Employees.First(e => e.Id == mechanicId);
-                    employee.FinishedOrder =+ 1;
+                    employee.FinishedOrder++;
                 }
                     
             }
@@ -50,7 +50,8 @@ namespace Warsztat_v2.Repositories
             
             var result = _context.Employees.OrderByDescending(e => e.FinishedOrder)
                 .FirstOrDefault().FinishedOrder;
-             var json2 = Newtonsoft.Json.JsonConvert.SerializeObject(result);
+            var x = _context.Employees.OrderByDescending(e => e.FinishedOrder);
+             var json2 = Newtonsoft.Json.JsonConvert.SerializeObject(x);
             return result;
         }
 
