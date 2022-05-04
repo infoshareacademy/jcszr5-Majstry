@@ -31,25 +31,34 @@ namespace Warsztat_v2.Repositories
             var mechanicId = 0;
             foreach (var order in _context.Orders)
             {
-                if (order.Status == Status.Finished)
+                if (order.Status != Status.Finished)
+                {
+                    
+                }
+                else
+                {
                     mechanicId = order.MechanicId;
-                var employee = _context.Employees.First(e => e.Id == mechanicId);
-                employee.FinishedOrder = +1;
+                    var employee = _context.Employees.First(e => e.Id == mechanicId);
+                    employee.FinishedOrder =+ 1;
+                }
+                    
             }
             _context.SaveChanges();
         }
         public int HowManyFinishedOrder()
         {
-            var result = _context.Employees.GroupBy(e => e.FinishedOrder)
-                .OrderByDescending(f => f.Count())
-                .Count();
             
-            var json2 = Newtonsoft.Json.JsonConvert.SerializeObject(result);
-
+            var result = _context.Employees.OrderByDescending(e => e.FinishedOrder)
+                .FirstOrDefault().FinishedOrder;
+             var json2 = Newtonsoft.Json.JsonConvert.SerializeObject(result);
             return result;
         }
+
         public string DisplayName()
         {
+
+            //var x = _context.Employees.Where();
+            //var json2 = Newtonsoft.Json.JsonConvert.SerializeObject(x);
             var result = _context.Employees.OrderByDescending(e => e.FinishedOrder)
                 .FirstOrDefault().FullName;
 

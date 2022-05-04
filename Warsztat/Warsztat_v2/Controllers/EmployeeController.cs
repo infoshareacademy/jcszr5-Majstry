@@ -23,7 +23,7 @@ namespace Warsztat_v2.Controllers
         public async Task<IActionResult> Index()
         {
             ClearTable();
-            var finishedOrder_= _employeeRepository.AddFinishedOrder;
+            _employeeRepository.AddFinishedOrder();
             _context.SaveChanges();
             
             return View(await _context.Employees.ToListAsync());
