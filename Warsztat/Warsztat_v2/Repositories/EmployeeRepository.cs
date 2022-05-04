@@ -51,20 +51,17 @@ namespace Warsztat_v2.Repositories
             
             var result = _context.Employees.OrderByDescending(e => e.FinishedOrder)
                 .FirstOrDefault().FinishedOrder;
-            //var x = _context.Employees.OrderByDescending(e => e.FinishedOrder);
-            // var json2 = Newtonsoft.Json.JsonConvert.SerializeObject(x);
             return result;
         }
 
         public string DisplayName()
         {
-            var result = _context.Employees.Where(e => e.FinishedOrder == HowManyFinishedOrder())
+            var bestEmployeeList = _context.Employees.Where(e => e.FinishedOrder == HowManyFinishedOrder())
                 .Select(e => e.FullName)
                 .ToList();
-            string result2 = string.Join(", " , result);
-            var json2 = Newtonsoft.Json.JsonConvert.SerializeObject(result);
+            string result = string.Join(", " , bestEmployeeList);
             
-            return result2;
+            return result;
         }
         public void Add(Employee employee)
         {
