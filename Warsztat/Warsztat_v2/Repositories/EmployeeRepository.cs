@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Linq;
 using Warsztat.BLL.Enums;
 using Warsztat.BLL.Models;
 using Warsztat_v2.Data;
@@ -50,20 +51,20 @@ namespace Warsztat_v2.Repositories
             
             var result = _context.Employees.OrderByDescending(e => e.FinishedOrder)
                 .FirstOrDefault().FinishedOrder;
-            var x = _context.Employees.OrderByDescending(e => e.FinishedOrder);
-             var json2 = Newtonsoft.Json.JsonConvert.SerializeObject(x);
+            //var x = _context.Employees.OrderByDescending(e => e.FinishedOrder);
+            // var json2 = Newtonsoft.Json.JsonConvert.SerializeObject(x);
             return result;
         }
 
         public string DisplayName()
         {
-
-            //var x = _context.Employees.Where();
-            //var json2 = Newtonsoft.Json.JsonConvert.SerializeObject(x);
-            var result = _context.Employees.OrderByDescending(e => e.FinishedOrder)
-                .FirstOrDefault().FullName;
-
-            return result;
+            var result = _context.Employees.Where(e => e.FinishedOrder == HowManyFinishedOrder())
+                .Select(e => e.FullName)
+                .ToList();
+            string result2 = string.Join(", " , result);
+            var json2 = Newtonsoft.Json.JsonConvert.SerializeObject(result);
+            
+            return result2;
         }
         public void Add(Employee employee)
         {
