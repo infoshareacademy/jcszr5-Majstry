@@ -1,4 +1,5 @@
-﻿@model Warsztat.BLL.Models.Employee
+﻿@using Warsztat.BLL.Enums
+@model Warsztat.BLL.Models.Employee
 
 @{
     ViewData["Title"] = "Edit";
@@ -35,7 +36,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" />
+                <select asp-for="Role" asp-items ="Html.GetEnumSelectList<Role>()" class = "form-control">
+                    <option selected = "selected" value = "">Please select an employee</option>
+                </select>
                 <span asp-validation-for="Role" class="text-danger"></span>
             </div>
             <div class="form-group">
