@@ -53,7 +53,7 @@
             <div>
                 <label asp-for="OrderParts" class="control-label"></label>
                 @*<input asp-for="Part" class="form-control" />*@
-                  <select asp-for="OrderParts" multiple="multiple" asp-items="@(new SelectList(ViewBag.Parts,nameof(Part.PartName),nameof(Part.PartName)))"  class ="form-control"></select>
+                  <select asp-for="OrderParts" multiple="multiple" class="multi-select" id="my_multi_select1" asp-items="@(new SelectList(ViewBag.Parts,nameof(Part.PartName),nameof(Part.PartName)))"  class ="form-control"></select>
                  
                  <span asp-validation-for="OrderParts" class="text-danger"></span>
 
