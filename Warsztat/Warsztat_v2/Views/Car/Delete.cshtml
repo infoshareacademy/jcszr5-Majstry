@@ -11,34 +11,34 @@
     <h4>Car</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-2 text-white">
             <label asp-for="Id"></label>
         </dt>
         <dd class = "col-sm-10">
             @Model.Id
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-2 text-white">
             <label asp-for="CarMark"></label>
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-10 text-white">
             @Model.CarMark
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-2 text-white">
             <label asp-for="CarModel"></label>
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-10 text-white">
             @Model.CarModel
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-2 text-white">
             <label asp-for="YearProduction"></label>
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-10 text-white">
             @Model.YearProduction
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger text-white" /> |
+        <a class=" text-white" asp-action="Index">Back to List</a>
     </form>
 </div>

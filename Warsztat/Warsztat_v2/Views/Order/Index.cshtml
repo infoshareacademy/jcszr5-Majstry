@@ -8,22 +8,22 @@
 <h1>Orders</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="text-white" asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table text-white">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.OrderNumber)
             </th>
             <th>
-                @Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.DateSortParm })
+                @Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.DateSortParm }, new { @class ="text-white"})
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                @Html.ActionLink("Client", "Index", new { sortOrder = ViewBag.NameSortParm })
+                @Html.ActionLink("Client", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class ="text-white"})
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RegistrationNumber)
@@ -62,9 +62,9 @@
                 @Html.DisplayFor(modelItem => item.Mechanic.FullName )
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class=" text-white" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class=" text-white" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a class=" text-white" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }
