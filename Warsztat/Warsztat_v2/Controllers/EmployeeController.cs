@@ -96,27 +96,19 @@ namespace Warsztat_v2.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
+                if (!ModelState.IsValid)
                 {
-                    _context.Update(employee);
-                    await _context.SaveChangesAsync();
+                    return View(employee);
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EmployeeExists(employee.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _employeeRepository.Update(employee);
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            catch
+            {
+                return View(employee);
+            }
         }
 
         // GET: Employees/Delete/5
