@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Warsztat.BLL.Models;
 using Warsztat_v2.Data;
+using Warsztat_v2.Repositories.Interfaces;
 
 namespace Warsztat_v2.Controllers
 {
@@ -10,15 +11,20 @@ namespace Warsztat_v2.Controllers
     public class EmployeeController : Controller
     {
         private readonly ServiceContext _context;
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public EmployeeController(ServiceContext context)
+        public EmployeeController(ServiceContext context, IEmployeeRepository employeeRepository)
         {
             _context = context;
+            _employeeRepository = employeeRepository;
         }
 
         // GET: Employees
         public async Task<IActionResult> Index()
         {
+            ClearTable();
+            _employeeRepository.AddFinishedOrder();
+            _context.SaveChanges();
             return View(await _context.Employees.ToListAsync());
         }
 
@@ -145,6 +151,14 @@ namespace Warsztat_v2.Controllers
         private bool EmployeeExists(int id)
         {
             return _context.Employees.Any(e => e.Id == id);
+        }
+        private void ClearTable()
+        {
+            foreach (var finishedOrders in _context.Employees)
+            {
+                var employee = _context.Employees.First(e => e.Id == finishedOrders.Id);
+                employee.FinishedOrder = 0;
+            }
         }
     }
 

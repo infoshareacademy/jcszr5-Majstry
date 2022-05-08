@@ -8,7 +8,9 @@ namespace Warsztat_v2.Repositories.Interfaces
         void Delete(int id);
         void Update(Employee employee);
         public Employee GetById(int id);
-        public int AddFinishedOrder();
         public string DisplayName();
+        public void ClearTable();
+        public void AddFinishedOrder();
+        public int HowManyFinishedOrder();
     }
 }
