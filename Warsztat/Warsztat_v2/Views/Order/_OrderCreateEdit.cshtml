@@ -1,0 +1,42 @@
+﻿@using Warsztat.BLL.Enums
+@using Warsztat.BLL.Services
+   @model Order  
+  
+
+   <div asp-validation-summary="ModelOnly" class="text-danger text-white"></div>
+
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                 <select asp-for="Status" asp-items ="Html.GetEnumSelectList<Status>()" class = "form-control">
+                    <option selected = "selected" value = "">Please select status</option>
+                 </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Fault" class="control-label"></label>
+                <input asp-for="Fault" class="form-control" />
+                <span asp-validation-for="Fault" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Client" class="control-label"></label>
+                <input asp-for="Client" class="form-control" />
+                <span asp-validation-for="Client" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RegistrationNumber" class="control-label"></label>
+                <input asp-for="RegistrationNumber" class="form-control" />
+                <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CarId" class="control-label"></label>
+                <select asp-for="CarId" class ="form-control" asp-items="ViewBag.CarId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MechanicId" class="control-label"></label>
+                <select asp-for="MechanicId" class ="form-control" asp-items="ViewBag.MechanicId"></select>
+            </div>

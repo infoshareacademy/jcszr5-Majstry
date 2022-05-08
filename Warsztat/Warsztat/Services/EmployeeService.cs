@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Warsztat
+﻿namespace Warsztat
 {
     public class EmployeeService
     {
-        EmployeeRepository employeeRepository = new EmployeeRepository();
+        private EmployeeRepository employeeRepository = new EmployeeRepository();
 
         public void AddMechanic()
         {
@@ -34,6 +28,7 @@ namespace Warsztat
                     Console.WriteLine("Enter the correct data");
                 }
             }
+            Console.WriteLine("Salary:");
             while (loop)
             {
                 bool myBool = int.TryParse(Console.ReadLine(), out myInt);
@@ -50,6 +45,11 @@ namespace Warsztat
             var mechanics = employeeRepository.ReadMechanicFromFile();
             mechanics.Add(new Mechanic(firstName, lastName, age, money));
             employeeRepository.SaveMechanicToFile(mechanics);
+        }
+
+        public object GetAll()
+        {
+            throw new NotImplementedException();
         }
 
         public void RemoveSelectedMechanic()

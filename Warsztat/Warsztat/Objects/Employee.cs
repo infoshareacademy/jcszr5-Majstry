@@ -1,42 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
-namespace Warsztat
+﻿namespace Warsztat
 {
-    public abstract class Employee
+    public abstract class Employee1
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; } 
-        public int Age { get; set; }
-        public double Salary { get; set; }
+        public string FirstName1 { get; set; }
+        public string LastName1 { get; set; }
+        public int Age1 { get; set; }
+        public double Salary1 { get; set; }
 
-        
-        
-        public Employee(string firstName, string lastName, int age, double salary)
+
+
+        public Employee1(string firstName, string lastName, int age, double salary)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            Age = age;
-            Salary = salary;
-            
+            FirstName1 = firstName;
+            LastName1 = lastName;
+            Age1 = age;
+            Salary1 = salary;
+
         }
         //public abstract void AddEmployees();
         //public abstract void DeleteEmploye();
         //public abstract void EditEmploye(Employee employee);
         public override string ToString()
         {
-            return $"{FirstName}, {LastName}, {Age},{Salary}";
+            return $"{FirstName1}, {LastName1}, {Age1},{Salary1}";
         }
         public virtual void ShowEmployee(Employee employee)
         {
-            Console.WriteLine($"Name: {FirstName} {LastName}.\n" +
-                $"Age: {Age, -10}." +
-                $"Salary: {Salary}.");
+            Console.WriteLine($"Name: {FirstName1} {LastName1}.\n" +
+                $"Age: {Age1,-10}." +
+                $"Salary: {Salary1}.");
         }
 
 
@@ -81,6 +73,6 @@ namespace Warsztat
 
         //}
     }
-    
+
 
 }

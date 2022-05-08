@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Warsztat.BLL.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div style="float: right; width: 100%; /*height:0%;*/">@await Component.InvokeAsync("OrderStatistics")  </div>
+<h1>Orders</h1>
+
+<p>
+    <a class="text-white" asp-action="Create">Create New</a>
+</p>
+<table class="table text-white">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderNumber)
+            </th>
+            <th>
+                @Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.DateSortParm }, new { @class ="text-white"})
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.ActionLink("Client", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class ="text-white"})
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mechanic)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.FullName)           
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mechanic.FullName )
+            </td>
+            <td>
+                <a class=" text-white" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class=" text-white" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a class=" text-white" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
