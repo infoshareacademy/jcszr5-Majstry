@@ -20,12 +20,38 @@ namespace Warsztat_v2.Controllers
         }
 
         // GET: Employees
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
+            ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.RoleSortParm = sortOrder == "Role" ? "role_desc" : "Role";
+            ViewBag.FirstNameSortParm = sortOrder == "FirstName" ? "firstName_desc" : "FirstName";
+            var emploees = from e in _context.Employees select e;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    emploees = emploees.OrderByDescending(e => e.LastName);
+                    break;
+                case "FirstName":
+                    emploees = emploees.OrderBy(e => e.FirstName);
+                    break;
+                case "firstName_desc":
+                    emploees = emploees.OrderByDescending(e => e.FirstName);
+                    break;
+                case "Role":
+                    emploees = emploees.OrderBy(e => e.Role);
+                    break;
+                case "role_desc":
+                    emploees = emploees.OrderByDescending(e => e.Role);
+                    break;
+                default:
+                    emploees = emploees.OrderBy(e => e.LastName);
+                    break;
+            }
             ClearTable();
             _employeeRepository.AddFinishedOrder();
             _context.SaveChanges();
-            return View(await _context.Employees.ToListAsync());
+
+            return View(await emploees.ToListAsync());
         }
 
         // GET: Employees/Details/5

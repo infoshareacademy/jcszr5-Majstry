@@ -17,14 +17,14 @@
         <tr>
             
             <th>
-                <label asp-for="First().FirstName"></label>
+                @Html.ActionLink( "First Name", "Index" , new { sortOrder = ViewBag.FirstNameSortParm }, new {@class="text-white" })
             </th>
             <th>
-                <label asp-for="First().LastName"></label>
+                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.LastNameSortParm}, new {@class="text-white"} )
             </th>
             
             <th>
-                <label asp-for="First().Role"></label>
+                @Html.ActionLink( "Role", "Index", new { sortOrder = ViewBag.RoleSortParm }, new {@class="text-white"})
             </th>
             <th></th>
         </tr>
