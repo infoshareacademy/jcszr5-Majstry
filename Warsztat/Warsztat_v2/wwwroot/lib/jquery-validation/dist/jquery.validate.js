@@ -1405,9 +1405,10 @@ $.extend( $.validator, {
 		},
 
 		// https://jqueryvalidation.org/number-method/
-		number: function( value, element ) {
-			return this.optional( element ) || /^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test( value );
-		},
+		number: function (value, element) {
+			return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(value); //dot separated
+			return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:\.\d{3})+)(?:,\d+)?$/.test(value); //comma separated
+		}
 
 		// https://jqueryvalidation.org/digits-method/
 		digits: function( value, element ) {

@@ -25,7 +25,7 @@ namespace Warsztat_v2.Repositories
 
             if (Employees == null)
             {
-                Console.WriteLine("Empty Mechanic List"); 
+                Console.WriteLine("Empty Mechanic List");
             }
             var mechanicId = 0;
             foreach (var order in _context.Orders)

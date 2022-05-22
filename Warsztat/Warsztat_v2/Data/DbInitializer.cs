@@ -61,7 +61,7 @@ namespace Warsztat_v2.Data
                 YearProduction = 2013
             }
             };
-          
+
 
             var employees = new Employee[]
             {
@@ -195,7 +195,7 @@ namespace Warsztat_v2.Data
                         Client = "Bogdan Frankowski",
                         RegistrationNumber = "HPD02378",
                         CarId =1,
-                        MechanicId=2,                    
+                        MechanicId=2,
                         Parts = parts,
                         PartPcs = 0,
                         Price = 0
@@ -216,7 +216,7 @@ namespace Warsztat_v2.Data
                         Price = 0
                 },
             };
-        
+
 
             foreach (Car car in cars)
             {
