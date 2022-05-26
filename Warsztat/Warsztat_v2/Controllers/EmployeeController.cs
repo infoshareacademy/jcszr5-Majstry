@@ -55,7 +55,7 @@ namespace Warsztat_v2.Controllers
         }
 
         // GET: Employees/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult>  Details(int? id)
         {
             if (id == null)
             {
@@ -69,7 +69,8 @@ namespace Warsztat_v2.Controllers
                 return NotFound();
             }
 
-            return View(employee);
+            //return View(employee);
+            return  Ok(employee);
         }
 
         // GET: Employees/Create
