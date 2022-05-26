@@ -56,7 +56,7 @@ namespace Warsztat_v2.Repositories
         public void Add(Employee employee)
         {
             _context.Employees.Add(employee);
-            _context.SaveChanges();
+            //_context.SaveChanges();
         }
 
         public void Delete(int id)
