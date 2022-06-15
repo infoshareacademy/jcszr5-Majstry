@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Warsztat.BLL.Services;
 using Warsztat.BLL.Services.Interfaces;
 using Warsztat_v2.Data;
@@ -30,6 +31,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ServiceContext>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddDirectoryBrowser();
 
 var app = builder.Build();
 

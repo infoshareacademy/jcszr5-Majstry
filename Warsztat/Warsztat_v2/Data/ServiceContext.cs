@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using Warsztat.BLL.Models;
+using Warsztat_v2.Controllers;
 
 namespace Warsztat_v2.Data
 {
@@ -52,5 +53,13 @@ namespace Warsztat_v2.Data
             optionsBuilder
                 .UseSqlServer("Server=localhost;Database=Service;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
+
+        //public void ConfigureServices(IServiceCollection services)
+        //{
+        //    services.AddDbContext<ServiceContext>(options =>
+        //        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        //}
+
+        public DbSet<Warsztat_v2.Controllers.Result>? Result { get; set; }
     }
 }

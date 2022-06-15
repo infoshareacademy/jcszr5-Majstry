@@ -12,4 +12,8 @@
     <ProjectReference Include="..\Warsztat_v2\Warsztat_v2.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Pages\Vin\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

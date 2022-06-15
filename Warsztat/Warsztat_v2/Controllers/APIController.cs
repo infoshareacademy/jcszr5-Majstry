@@ -26,14 +26,18 @@ namespace Warsztat_v2.Controllers
             var vehicleResponse = await response.Content.ReadFromJsonAsync<VehicleResponse>();
             return Ok(vehicleResponse.Results[0..4]);
         }
+
+        
+
         [HttpPost("/employee")]
         public async Task<IActionResult> AddEmployees(Employee employee)
         {
             _employeeRepository.Add(employee);
-           
-           return Ok();
+
+            return Ok();
         }
     }
+
     public class VehicleResponse
     {
         public class Vehicle
