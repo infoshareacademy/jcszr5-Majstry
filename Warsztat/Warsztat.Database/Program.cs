@@ -10,51 +10,6 @@ using Warsztat_v2.Data;
 ServiceContext context = new ServiceContext();
 
 
-var cars = new Car[]
-        {
-            new Car
-            {
-                CarModel = "A6",
-                CarMark = "Audi",
-                YearProduction = 2017
-            },
-            new Car
-            {
-                CarModel = "Laguna",
-                CarMark = "Renault",
-                YearProduction = 2008
-            },
-            new Car
-            {
-                CarModel= "407",
-                CarMark= "Peugeot",
-                YearProduction= 2004
-            },
-            new Car
-            {
-                CarModel = "Corolla",
-                CarMark = "Toyota",
-                YearProduction = 2014
-            },
-            new Car
-            {
-                CarModel = "C5",
-                CarMark = "Citroen",
-                YearProduction = 2020
-            },
-            new Car
-            {
-                CarModel = "E60",
-                CarMark = "BMW",
-                YearProduction = 2006
-            },
-            new Car
-            {
-                CarModel = "A8",
-                CarMark = "Audi",
-                YearProduction = 2013
-            }
-        };
 
 var employees = new Employee[]
     {
@@ -157,9 +112,9 @@ var orders = new Order[]
                         Fault = "Wheels change",
                         Client = "Iwona Krajewska",
                         RegistrationNumber = "LCH32145",
-                        Car = context.Cars.FirstOrDefault(c=>c.Id == 2),
+                   //     Car = context.Cars.FirstOrDefault(c=>c.Id == 2),
                         //Mechanic = context.Employees.FirstOrDefault(e=>e.Role == Warsztat.BLL.Enums.Role.Mechanic),
-                        Parts = parts,
+                        Part =  context.Parts.FirstOrDefault(p => p.Id ==1),
                         PartPcs = 4,
                         Price = 3060
                     },
@@ -171,9 +126,9 @@ var orders = new Order[]
                         Fault = "Engine fault",
                         Client = "Zbigniew Stonoga",
                         RegistrationNumber = "HPD32819",
-                        Car =  context.Cars.FirstOrDefault(c=>c.Id == 5),
+                       // Car =  context.Cars.FirstOrDefault(c=>c.Id == 5),
                         //Mechanic = context.Employees.FirstOrDefault(e=>e.Role == Warsztat.BLL.Enums.Role.Mechanic),
-                        Parts =  parts,
+                        Part =  context.Parts.FirstOrDefault(p => p.Id ==1),
                         PartPcs = 5,
                         Price = 370
                 },
@@ -185,19 +140,14 @@ var orders = new Order[]
                         Fault = "Break system fault",
                         Client = "Bogdan Frankowski",
                         RegistrationNumber = "HPD02378",
-                        Car = context.Cars.FirstOrDefault(c=>c.Id == 4),
+                      //  Car = context.Cars.FirstOrDefault(c=>c.Id == 4),
                         //Mechanic = context.Employees.FirstOrDefault(e=>e.Role == Warsztat.BLL.Enums.Role.Mechanic),
-                        Parts = parts,
+                         Part =  context.Parts.FirstOrDefault(p => p.Id ==1),
                         PartPcs = 0,
                         Price = 0
                 },
 };
 
-foreach (Car car in cars)
-{
-    context.Cars.Add(car);
-    context.SaveChanges();
-}
 
 foreach (Employee employee in employees)
 {

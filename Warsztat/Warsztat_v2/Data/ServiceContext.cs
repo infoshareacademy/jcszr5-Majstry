@@ -17,26 +17,18 @@ namespace Warsztat_v2.Data
         }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Car> Cars { get; set; }
         public DbSet<Part> Parts { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-
             var order = modelBuilder.Entity<Order>();
-            var car = modelBuilder.Entity<Car>();
 
-            order.HasOne(o => o.Car).WithMany().HasForeignKey("CarId");
+            
             order.HasOne(o => o.Mechanic).WithMany().HasForeignKey("MechanicId");
-            //order.HasOne<Employee>().WithMany().HasForeignKey();
-            //order.Property(o=>o.StartTime)
-            //order.HasOne<Employee>().WithMany().HasForeignKey();
             order.Property(o => o.Fault).HasMaxLength(200);
-            order.Property(o=>o.RegistrationNumber).HasMaxLength(10);
-       
+            order.Property(o=>o.RegistrationNumber).HasMaxLength(10); 
         }
 
         //public void ConfigureServices(IServiceCollection services)

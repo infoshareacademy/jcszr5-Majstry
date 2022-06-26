@@ -47,16 +47,29 @@
             @Html.DisplayFor(model => model.RegistrationNumber)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Car)
+            @Html.DisplayNameFor(model => model.CarFullName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Car.FullName)
+            @Html.DisplayFor(model => model.CarFullName)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Mechanic)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Mechanic.FullName)
+        </dd>
+
+              <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Part)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Part.PartName)
+        </dd>
+              <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PartPcs)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PartPcs)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Price)

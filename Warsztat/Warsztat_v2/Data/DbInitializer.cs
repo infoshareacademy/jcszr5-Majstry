@@ -16,53 +16,6 @@ namespace Warsztat_v2.Data
                 return;   // DB has been seeded
             }
 
-            var cars = new Car[]
-            {
-            new Car
-            {
-                CarModel = "A6",
-                CarMark = "Audi",
-                YearProduction = 2017
-            },
-            new Car
-            {
-                CarModel = "Laguna",
-                CarMark = "Renault",
-                YearProduction = 2008
-            },
-            new Car
-            {
-                CarModel= "407",
-                CarMark= "Peugeot",
-                YearProduction= 2004
-            },
-            new Car
-            {
-                CarModel = "Corolla",
-                CarMark = "Toyota",
-                YearProduction = 2014
-            },
-            new Car
-            {
-                CarModel = "C5",
-                CarMark = "Citroen",
-                YearProduction = 2020
-            },
-            new Car
-            {
-                CarModel = "E60",
-                CarMark = "BMW",
-                YearProduction = 2006
-            },
-            new Car
-            {
-                CarModel = "A8",
-                CarMark = "Audi",
-                YearProduction = 2013
-            }
-            };
-          
-
             var employees = new Employee[]
             {
             new Employee
@@ -164,9 +117,10 @@ namespace Warsztat_v2.Data
                         Fault = "Wheels change",
                         Client = "Iwona Krajewska",
                         RegistrationNumber = "LCH32145",
-                        CarId = 3,
+                        CarMake = "Mercedes",
+                        CarModel = "Sprinter",
                         MechanicId = 1,
-                        Parts =  context.Parts.ToArray(),
+                         Part =  context.Parts.FirstOrDefault(p => p.Id == 3),
                         PartPcs = 4,
                         Price = 3060
                     },
@@ -179,9 +133,10 @@ namespace Warsztat_v2.Data
                         Fault = "Engine fault",
                         Client = "Zbigniew Stonoga",
                         RegistrationNumber = "HPD32819",
-                         CarId =2,
+                        CarMake = "Audi",
+                        CarModel = "A3",           
                         MechanicId=3,
-                        Parts =  context.Parts.ToArray(),
+                        Part =  context.Parts.FirstOrDefault(p => p.Id ==2),
                         PartPcs = 5,
                         Price = 370
                  },
@@ -194,9 +149,10 @@ namespace Warsztat_v2.Data
                         Fault = "Break system fault",
                         Client = "Bogdan Frankowski",
                         RegistrationNumber = "HPD02378",
-                        CarId =1,
-                        MechanicId=2,                    
-                        Parts = parts,
+                        CarMake = "VW",
+                        CarModel = "T5",
+                        MechanicId=2,
+                         Part =  context.Parts.FirstOrDefault(p => p.Id ==1),
                         PartPcs = 0,
                         Price = 0
                 },
@@ -209,20 +165,15 @@ namespace Warsztat_v2.Data
                         Fault = " computer diagnostics",
                         Client = "Jan Kowalski",
                         RegistrationNumber = "WMM02378",
-                        CarId =5,
+                        CarMake = "Renault",
+                        CarModel = "Laguna",
                         MechanicId=1,
-                        Parts = parts,
+                         Part =  context.Parts.FirstOrDefault(p => p.Id ==1),
                         PartPcs = 0,
                         Price = 0
                 },
             };
-        
 
-            foreach (Car car in cars)
-            {
-                context.Cars.Add(car);
-                context.SaveChanges();
-            }
 
             foreach (Employee employee in employees)
             {

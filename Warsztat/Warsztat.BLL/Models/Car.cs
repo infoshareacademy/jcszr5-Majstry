@@ -15,13 +15,7 @@ namespace Warsztat.BLL.Models
 
         [Display(Name = "Car Mark")]
         public string CarMark { get; set; }
-
-        [Display(Name = "Production Year")]
-        public int YearProduction { get; set; }
-        //public  string CarFullName
-        //{
-        //    get { return CAR.CarMark + " " + CAR.CarModel; }
-        //}
+ 
         public string FullName => CarMark + " " + CarModel;
     }   
 }   

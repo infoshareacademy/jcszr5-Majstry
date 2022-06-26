@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Warsztat_v2.Data;
 
@@ -11,9 +12,10 @@ using Warsztat_v2.Data;
 namespace WarsztatAuthentication.Data.Migrations
 {
     [DbContext(typeof(ServiceContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220626185254_CarDeleted")]
+    partial class CarDeleted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -224,6 +226,21 @@ namespace WarsztatAuthentication.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("OrderPart", b =>
+                {
+                    b.Property<int>("OrdersId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PartsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrdersId", "PartsId");
+
+                    b.HasIndex("PartsId");
+
+                    b.ToTable("OrderPart");
+                });
+
             modelBuilder.Entity("Warsztat.BLL.Models.Employee", b =>
                 {
                     b.Property<int>("Id")
@@ -288,9 +305,6 @@ namespace WarsztatAuthentication.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PartId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("PartPcs")
                         .HasColumnType("int");
 
@@ -311,8 +325,6 @@ namespace WarsztatAuthentication.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("MechanicId");
-
-                    b.HasIndex("PartId");
 
                     b.ToTable("Orders");
                 });
@@ -391,6 +403,21 @@ namespace WarsztatAuthentication.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("OrderPart", b =>
+                {
+                    b.HasOne("Warsztat.BLL.Models.Order", null)
+                        .WithMany()
+                        .HasForeignKey("OrdersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Warsztat.BLL.Models.Part", null)
+                        .WithMany()
+                        .HasForeignKey("PartsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Warsztat.BLL.Models.Order", b =>
                 {
                     b.HasOne("Warsztat.BLL.Models.Employee", "Mechanic")
@@ -399,20 +426,7 @@ namespace WarsztatAuthentication.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Warsztat.BLL.Models.Part", "Part")
-                        .WithMany("Orders")
-                        .HasForeignKey("PartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Mechanic");
-
-                    b.Navigation("Part");
-                });
-
-            modelBuilder.Entity("Warsztat.BLL.Models.Part", b =>
-                {
-                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

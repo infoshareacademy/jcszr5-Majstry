@@ -48,7 +48,7 @@ namespace Warsztat_v2.Repositories
             order.StartTime = model.StartTime;
             order.PartPcs = model.PartPcs;
             order.Status = model.Status;
-            order.Car = model.Car;
+         //   order.Car = model.Car;
             order.Client = model.Client;
             //order.Price = GetCostOfOrder(model);
             //order.Part = model.Part;
