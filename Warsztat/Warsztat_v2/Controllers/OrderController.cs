@@ -113,8 +113,15 @@ namespace Warsztat_v2.Controllers
         }
 
         // GET: Orders/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var client = new HttpClient();
+            var response = await client.GetAsync("https://vpic.nhtsa.dot.gov/api//vehicles/GetMakesForVehicleType/car?format=json");
+            var vehicleResponse = await response.Content.ReadFromJsonAsync<VehicleApiResponse>();
+            var carsMakes = vehicleResponse.Results.OrderBy(c => c.MakeName);
+            // ViewBag.CarMark = new SelectList((System.Collections.IEnumerable)carsMakes, "Id", "MakeName");
+            ViewData["MakeName"] = new SelectList((System.Collections.IEnumerable)carsMakes, "MakeName", "MakeName");
+
             ViewData["PartId"] = new SelectList(_context.Parts, "Id", "PartName");
             ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e => e.Role == Role.Mechanic), "Id", "FullName");
             return View();
@@ -125,7 +132,7 @@ namespace Warsztat_v2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,OrderNumber,StartTime,WorkTime,EndTime,Status,Fault,Client,RegistrationNumber,CarId,MechanicId,Price")] Order order)
+        public async Task<IActionResult> Create([Bind("Id,OrderNumber,StartTime,WorkTime,EndTime,Status,Fault,Client,RegistrationNumber,MakeName,Model_Name,CarId,MechanicId,PartId,Price")] Order order)
         {
             //if (ModelState.IsValid)
             {
@@ -135,7 +142,14 @@ namespace Warsztat_v2.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            //  ViewData["CarId"] = new SelectList(_context.Cars, "Id", "FullName", order.CarId);
+            var client = new HttpClient();
+            var response = await client.GetAsync("https://vpic.nhtsa.dot.gov/api//vehicles/GetMakesForVehicleType/car?format=json");
+            var vehicleResponse = await response.Content.ReadFromJsonAsync<VehicleApiResponse>();
+            var carsMakes = vehicleResponse.Results.OrderBy(c => c.MakeName);
+            // ViewBag.CarMark = new SelectList((System.Collections.IEnumerable)carsMakes, "Id", "MakeName", order.MakeName);
+            ViewData["MakeName"] = new SelectList((System.Collections.IEnumerable)carsMakes, "MakeName", "MakeName", order.MakeName);
+
+
             ViewData["PartId"] = new SelectList(_context.Parts, "Id", "PartName", order.PartId);
             ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e => e.Role == Role.Mechanic), "Id", "FullName", order.MechanicId);
             return View(order);

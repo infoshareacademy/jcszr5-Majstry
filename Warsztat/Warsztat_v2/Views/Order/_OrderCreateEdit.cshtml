@@ -25,22 +25,48 @@
                 <span asp-validation-for="Client" class="text-danger"></span>
             </div>
 
+             <div class="form-group">
+                <label asp-for="MakeName" class="control-label"></label>
+                <select asp-for="MakeName" class ="form-control" asp-items="ViewBag.MakeName"></select>
+             </div>
+             <div class="form-group">
+                <label asp-for="Model_Name" class="control-label"></label>
+                <select asp-for="Model_Name" class ="form-control" asp-items="ViewBag.CarModel"></select>
+            </div>
+
             <div class="form-group">
                 <label asp-for="RegistrationNumber" class="control-label"></label>
                 <input asp-for="RegistrationNumber" class="form-control" />
                 <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
             </div>
 
-        @*    <div class="form-group">
-                <label asp-for="CarMake" class="control-label"></label>
-                <select asp-for="CarMake" class ="form-control" asp-items="ViewBag.CarId"></select>
-            </div>*@
              <div class="form-group">
                 <label asp-for="PartId" class="control-label"></label>
                 <select asp-for="PartId" class ="form-control" asp-items="ViewBag.PartId"></select>
             </div>
 
+
+
             <div class="form-group">
                 <label asp-for="MechanicId" class="control-label"></label>
                 <select asp-for="MechanicId" class ="form-control" asp-items="ViewBag.MechanicId"></select>
             </div>
+
+      <script>
+        $(function () {
+            $("#MakeName").on("change", function () {
+                var CarMake = $(this).val();
+                    console.log(CarMake);
+
+                $("#Model_Name").empty();
+                $.getJSON(`https://vpic.nhtsa.dot.gov/api//vehicles/GetModelsForMake/${CarMake}?format=json`, (data) => {     
+                    console.log(data);
+                    $.each(data.Results, function (i, item) {
+                        var car = JSON.stringify(item.Model_Name).replace('"','').replace('"','');
+                        $("#Model_Name").append(`<option value="${i}">${car}</option>`);
+                        console.log(item.Model_Name)
+                    });
+                });
+            });
+        });
+    </script>

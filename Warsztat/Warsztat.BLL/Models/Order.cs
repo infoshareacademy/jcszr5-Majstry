@@ -7,7 +7,7 @@ namespace Warsztat.BLL.Models
 {
     public class Order
     {
-           [Key]
+        [Key]
         public int Id { get; set; }
         [Display(Name = "Start")]
         [DataType(DataType.Date)]
@@ -17,14 +17,12 @@ namespace Warsztat.BLL.Models
         public string Client { get; set; }
         [Display(Name = "Reg Number")]
         public string RegistrationNumber { get; set; }
-        public string CarMake { get; set; }
-        public string CarModel { get; set; }
-        public string CarFullName => CarMake + " " + CarModel;
+        public string MakeName { get; set; }
+        public string Model_Name { get; set; }
+        public string CarFullName => MakeName + " " + Model_Name;
         public Employee Mechanic { get; set; }
         [Display(Name = "Mechanic")]
         public int MechanicId { get; set; }
-        //public ICollection<Part> Parts { get; set; }
-        //[Display(Name = "Pcs")]
         public Part Part { get; set; }
         [Display(Name = "Part")]
         public int PartId { get; set; }
