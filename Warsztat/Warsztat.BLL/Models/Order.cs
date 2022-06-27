@@ -12,7 +12,7 @@ namespace Warsztat.BLL.Models
         [Display(Name = "Start")]
         [DataType(DataType.Date)]
         public DateTime StartTime { get; set; }
-        [Display(Name = "Start")]
+        [Display(Name = "Next Step")]
         [DataType(DataType.Date)]
         public DateTime EndTime { get; set; }
         public Status Status { get; set; }

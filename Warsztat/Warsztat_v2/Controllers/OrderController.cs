@@ -170,7 +170,12 @@ namespace Warsztat_v2.Controllers
             }
 
 
-            //  ViewData["CarId"] = new SelectList(_context.Cars, "Id", "FullName", order.CarId);
+            var client = new HttpClient();
+            var response = await client.GetAsync("https://vpic.nhtsa.dot.gov/api//vehicles/GetMakesForVehicleType/car?format=json");
+            var vehicleResponse = await response.Content.ReadFromJsonAsync<VehicleApiResponse>();
+            var carsMakes = vehicleResponse.Results.OrderBy(c => c.MakeName);
+            // ViewBag.CarMark = new SelectList((System.Collections.IEnumerable)carsMakes, "Id", "MakeName");
+            ViewData["MakeName"] = new SelectList((System.Collections.IEnumerable)carsMakes, "MakeName", "MakeName");
             ViewData["PartId"] = new SelectList(_context.Parts, "Id", "PartName", order.PartId);
             ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e => e.Role == Role.Mechanic), "Id", "FullName", order.MechanicId);
             return View(order);
@@ -209,7 +214,12 @@ namespace Warsztat_v2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            //  ViewData["CarId"] = new SelectList(_context.Cars, "Id", "FullName", order.CarId);
+            var client = new HttpClient();
+            var response = await client.GetAsync("https://vpic.nhtsa.dot.gov/api//vehicles/GetMakesForVehicleType/car?format=json");
+            var vehicleResponse = await response.Content.ReadFromJsonAsync<VehicleApiResponse>();
+            var carsMakes = vehicleResponse.Results.OrderBy(c => c.MakeName);
+            // ViewBag.CarMark = new SelectList((System.Collections.IEnumerable)carsMakes, "Id", "MakeName");
+            ViewData["MakeName"] = new SelectList((System.Collections.IEnumerable)carsMakes, "MakeName", "MakeName");
             ViewData["PartId"] = new SelectList(_context.Parts, "Id", "PartName", order.PartId);
             ViewData["MechanicId"] = new SelectList(_context.Employees.Where(e => e.Role == Role.Mechanic), "Id", "FullName", order.MechanicId);
             return View(order);
