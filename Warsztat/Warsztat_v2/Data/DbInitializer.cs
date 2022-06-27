@@ -113,6 +113,7 @@ namespace Warsztat_v2.Data
                     {
                         OrderNumber = "LCH32145/2022/4",
                         StartTime = DateTime.Parse("2022-03-02"),
+                        EndTime = DateTime.Parse("2022-07-17"),
                         Status = Warsztat.BLL.Enums.Status.Cancelled,
                         Fault = "Wheels change",
                         Client = "Iwona Krajewska",
@@ -129,6 +130,7 @@ namespace Warsztat_v2.Data
                  {
                         OrderNumber = "HPD32819/2022/3",
                         StartTime = DateTime.Parse("2022-03-11"),
+                        EndTime = DateTime.Parse("2022-08-23"),
                         Status = Warsztat.BLL.Enums.Status.InProgress,
                         Fault = "Engine fault",
                         Client = "Zbigniew Stonoga",
@@ -145,6 +147,7 @@ namespace Warsztat_v2.Data
                 {
                         OrderNumber = "HPD02378/2022/2",
                         StartTime = DateTime.Parse("2022-03-11"),
+                        EndTime = DateTime.Parse("2022-09-11"),
                         Status = Warsztat.BLL.Enums.Status.Waiting,
                         Fault = "Break system fault",
                         Client = "Bogdan Frankowski",
@@ -161,6 +164,7 @@ namespace Warsztat_v2.Data
                 {
                         OrderNumber = "WMM02378/2022/2",
                         StartTime = DateTime.Parse("2022-05-01"),
+                        EndTime = DateTime.Parse("2022-09-14"),
                         Status = Warsztat.BLL.Enums.Status.Finished,
                         Fault = " computer diagnostics",
                         Client = "Jan Kowalski",

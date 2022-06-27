@@ -7,6 +7,7 @@
 <div style="float: right; width: 100%; /*height:0%;*/">@await Component.InvokeAsync("OrderStatistics")  </div>
 <h1>Orders</h1>
 
+
 <p>
     <a class="text-white" asp-action="Create">Create New</a>
 </p>
@@ -34,15 +35,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Mechanic)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Part.PartName)
-            </th>
-               <th>
-                @Html.DisplayNameFor(model => model.PartPcs)
-            </th>
-               <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -69,15 +61,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Mechanic.FullName )
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Part.PartName )
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.PartPcs )
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Price )
             </td>
             <td>
                 <a class=" text-white" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

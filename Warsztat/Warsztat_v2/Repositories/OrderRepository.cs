@@ -46,6 +46,7 @@ namespace Warsztat_v2.Repositories
             var order = GetById(model.Id);
             order.RegistrationNumber = model.RegistrationNumber;
             order.StartTime = model.StartTime;
+            order.EndTime = model.EndTime;
             order.PartPcs = model.PartPcs;
             order.Status = model.Status;
          //   order.Car = model.Car;
