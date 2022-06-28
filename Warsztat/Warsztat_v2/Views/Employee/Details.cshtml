@@ -35,7 +35,7 @@
             <label asp-for="DateOfBirth"></label>
         </dt>
         <dd class = "col-sm-10">
-            @Model.DateOfBirth
+            @Model.DateOfBirth.ToString("dd.MM.yyyy")
         </dd>
         <dt class = "col-sm-2">
             <label asp-for="Salary"></label>

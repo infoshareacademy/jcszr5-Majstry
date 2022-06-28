@@ -14,7 +14,8 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddTransient<IPartService, PartService>();
-builder.Services.AddTransient<ICarRepository, CarRepository>();
+builder.Services.AddSwaggerGen();
+
 
 
 // var conne = Configuration.GetConnectionString("DefaultConnection");
@@ -54,7 +55,11 @@ app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 
 

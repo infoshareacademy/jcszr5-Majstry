@@ -16,53 +16,6 @@ namespace Warsztat_v2.Data
                 return;   // DB has been seeded
             }
 
-            var cars = new Car[]
-            {
-            new Car
-            {
-                CarModel = "A6",
-                CarMark = "Audi",
-                YearProduction = 2017
-            },
-            new Car
-            {
-                CarModel = "Laguna",
-                CarMark = "Renault",
-                YearProduction = 2008
-            },
-            new Car
-            {
-                CarModel= "407",
-                CarMark= "Peugeot",
-                YearProduction= 2004
-            },
-            new Car
-            {
-                CarModel = "Corolla",
-                CarMark = "Toyota",
-                YearProduction = 2014
-            },
-            new Car
-            {
-                CarModel = "C5",
-                CarMark = "Citroen",
-                YearProduction = 2020
-            },
-            new Car
-            {
-                CarModel = "E60",
-                CarMark = "BMW",
-                YearProduction = 2006
-            },
-            new Car
-            {
-                CarModel = "A8",
-                CarMark = "Audi",
-                YearProduction = 2013
-            }
-            };
-          
-
             var employees = new Employee[]
             {
             new Employee
@@ -160,28 +113,48 @@ namespace Warsztat_v2.Data
                     {
                         OrderNumber = "LCH32145/2022/4",
                         StartTime = DateTime.Parse("2022-03-02"),
+                        EndTime = DateTime.Parse("2022-07-17"),
                         Status = Warsztat.BLL.Enums.Status.Cancelled,
                         Fault = "Wheels change",
                         Client = "Iwona Krajewska",
                         RegistrationNumber = "LCH32145",
-                        CarId = 3,
+                        MakeName = "Mercedes",
+                        Model_Name = "Sprinter",
                         MechanicId = 1,
-                        Parts =  context.Parts.ToArray(),
+                        PartId =  4,
                         PartPcs = 4,
                         Price = 3060
+                    },
+                    new Order
+                    {
+                        OrderNumber = "HYE54632/2022/7",
+                        StartTime = DateTime.Parse("2022-06-15"),
+                        EndTime = DateTime.Parse("2022-07-23"),
+                        Status = Warsztat.BLL.Enums.Status.Waiting,
+                        Fault = "Computer diagnostic",
+                        Client = "Robert Nawrot",
+                        RegistrationNumber = "HYE54632",
+                        MakeName = "Toyota",
+                        Model_Name = "Hilux",
+                        MechanicId = 2,
+                        PartId =  4,
+                        PartPcs = 6,
+                        Price = 1750
                     },
 
                  new Order
                  {
                         OrderNumber = "HPD32819/2022/3",
                         StartTime = DateTime.Parse("2022-03-11"),
+                        EndTime = DateTime.Parse("2022-08-23"),
                         Status = Warsztat.BLL.Enums.Status.InProgress,
                         Fault = "Engine fault",
                         Client = "Zbigniew Stonoga",
                         RegistrationNumber = "HPD32819",
-                         CarId =2,
+                        MakeName = "Audi",
+                        Model_Name = "A3",           
                         MechanicId=3,
-                        Parts =  context.Parts.ToArray(),
+                        PartId =  3,
                         PartPcs = 5,
                         Price = 370
                  },
@@ -190,13 +163,15 @@ namespace Warsztat_v2.Data
                 {
                         OrderNumber = "HPD02378/2022/2",
                         StartTime = DateTime.Parse("2022-03-11"),
+                        EndTime = DateTime.Parse("2022-09-11"),
                         Status = Warsztat.BLL.Enums.Status.Waiting,
                         Fault = "Break system fault",
                         Client = "Bogdan Frankowski",
                         RegistrationNumber = "HPD02378",
-                        CarId =1,
-                        MechanicId=2,                    
-                        Parts = parts,
+                        MakeName = "VW",
+                        Model_Name = "T5",
+                        MechanicId=2,
+                        PartId =  2,
                         PartPcs = 0,
                         Price = 0
                 },
@@ -205,24 +180,20 @@ namespace Warsztat_v2.Data
                 {
                         OrderNumber = "WMM02378/2022/2",
                         StartTime = DateTime.Parse("2022-05-01"),
+                        EndTime = DateTime.Parse("2022-09-14"),
                         Status = Warsztat.BLL.Enums.Status.Finished,
                         Fault = " computer diagnostics",
                         Client = "Jan Kowalski",
                         RegistrationNumber = "WMM02378",
-                        CarId =5,
+                        MakeName = "Renault",
+                        Model_Name = "Laguna",
                         MechanicId=1,
-                        Parts = parts,
+                        PartId =  1,
                         PartPcs = 0,
                         Price = 0
                 },
             };
-        
 
-            foreach (Car car in cars)
-            {
-                context.Cars.Add(car);
-                context.SaveChanges();
-            }
 
             foreach (Employee employee in employees)
             {

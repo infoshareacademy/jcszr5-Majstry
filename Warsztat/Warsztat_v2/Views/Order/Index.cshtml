@@ -7,8 +7,11 @@
 <div style="float: right; width: 100%; /*height:0%;*/">@await Component.InvokeAsync("OrderStatistics")  </div>
 <h1>Orders</h1>
 
+
 <p>
-    <a class="text-white" asp-action="Create">Create New</a>
+  @*  <a class="text-white" asp-action="Create">Create New</a>*@
+    <a type="button" class="btn btn-outline-warning" asp-action="Create">Create New</a>
+
 </p>
 <table class="table text-white">
     <thead>
@@ -19,17 +22,18 @@
             <th>
                 @Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.DateSortParm }, new { @class ="text-white"})
             </th>
+              <th>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
                 @Html.ActionLink("Client", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class ="text-white"})
             </th>
+
             <th>
-                @Html.DisplayNameFor(model => model.RegistrationNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Car)
+                @Html.DisplayNameFor(model => model.CarFullName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Mechanic)
@@ -46,6 +50,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StartTime)
             </td>
+               <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
@@ -53,10 +60,7 @@
                 @Html.DisplayFor(modelItem => item.Client)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RegistrationNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Car.FullName)           
+                @Html.DisplayFor(modelItem => item.CarFullName)           
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Mechanic.FullName )

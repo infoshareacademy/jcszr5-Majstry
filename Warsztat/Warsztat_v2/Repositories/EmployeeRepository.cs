@@ -23,6 +23,10 @@ namespace Warsztat_v2.Repositories
         public void AddFinishedOrder()
         {
 
+            if (Employees == null)
+            {
+                Console.WriteLine("Empty Mechanic List"); 
+            }
             var mechanicId = 0;
             foreach (var order in _context.Orders)
             {
@@ -52,7 +56,7 @@ namespace Warsztat_v2.Repositories
         public void Add(Employee employee)
         {
             _context.Employees.Add(employee);
-            _context.SaveChanges();
+            //_context.SaveChanges();
         }
 
         public void Delete(int id)
@@ -79,6 +83,10 @@ namespace Warsztat_v2.Repositories
         }
         public int HowManyFinishedOrder()
         {
+            if (Employees == null)
+            {
+                Console.WriteLine("Empty Mechanic List");
+            }
             var result = _context.Employees.OrderByDescending(e => e.FinishedOrder)
                 .FirstOrDefault().FinishedOrder;
             return result;
