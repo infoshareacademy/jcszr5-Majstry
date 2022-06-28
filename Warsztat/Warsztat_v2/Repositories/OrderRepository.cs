@@ -18,13 +18,7 @@ namespace Warsztat_v2.Repositories
             OrderList = context.Orders.ToList();
             _orderservice = orderService;
         }
-        /*
-        public List<Order> ReadFromDB(ServiceContext context)
-        {
-            var orders = context.Orders.ToList();
-            return orders;
-        }
-        */
+
         public List<Order> GetAll()
         {
             return Context.Orders.ToList();
@@ -32,7 +26,7 @@ namespace Warsztat_v2.Repositories
 
         public void Add(Order order)
         {
-            //order.Price = GetCostOfOrder(order);
+           
             order.StartTime = DateTime.Now;
             int orderId = Context.Orders.Count() + 1;
             order.OrderNumber = _orderservice.OrderNumberGenerator(order.RegistrationNumber,order.StartTime, orderId);
@@ -49,10 +43,7 @@ namespace Warsztat_v2.Repositories
             order.EndTime = model.EndTime;
             order.PartPcs = model.PartPcs;
             order.Status = model.Status;
-         //   order.Car = model.Car;
             order.Client = model.Client;
-            //order.Price = GetCostOfOrder(model);
-            //order.Part = model.Part;
             order.Fault = model.Fault;
             order.Mechanic = model.Mechanic;
             Context.SaveChanges();
