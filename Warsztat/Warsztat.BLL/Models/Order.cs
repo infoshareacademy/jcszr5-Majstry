@@ -24,7 +24,7 @@ namespace Warsztat.BLL.Models
         public string MakeName { get; set; }
         [Display(Name = "Model")]
         public string Model_Name { get; set; }
-        [Display(Name = "Car")]
+        [Display(Name = "Vehicle")]
         public string CarFullName => MakeName + " " + Model_Name;
         public Employee Mechanic { get; set; }
         [Display(Name = "Mechanic")]

@@ -132,7 +132,7 @@ namespace Warsztat_v2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,OrderNumber,StartTime,WorkTime,EndTime,Status,Fault,Client,RegistrationNumber,MakeName,Model_Name,CarId,MechanicId,PartId,Price")] Order order)
+        public async Task<IActionResult> Create([Bind("Id,OrderNumber,StartTime,WorkTime,EndTime,Status,Fault,Client,RegistrationNumber,MakeName,Model_Name,CarId,MechanicId,PartId,PartPcs,Price")] Order order)
         {
             //if (ModelState.IsValid)
             {

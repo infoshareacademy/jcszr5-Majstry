@@ -125,6 +125,22 @@ namespace Warsztat_v2.Data
                         PartPcs = 4,
                         Price = 3060
                     },
+                    new Order
+                    {
+                        OrderNumber = "HYE54632/2022/7",
+                        StartTime = DateTime.Parse("2022-06-15"),
+                        EndTime = DateTime.Parse("2022-07-23"),
+                        Status = Warsztat.BLL.Enums.Status.Waiting,
+                        Fault = "Computer diagnostic",
+                        Client = "Robert Nawrot",
+                        RegistrationNumber = "HYE54632",
+                        MakeName = "Toyota",
+                        Model_Name = "Hilux",
+                        MechanicId = 2,
+                        PartId =  4,
+                        PartPcs = 6,
+                        Price = 1750
+                    },
 
                  new Order
                  {
