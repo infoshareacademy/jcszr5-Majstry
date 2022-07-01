@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Net;
+using System.Net.Mail;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Warsztat.BLL.Enums;
 using Warsztat.BLL.Models;
 using Warsztat_v2.Data;
-//using Warsztat.BLL.Models;
+using Warsztat_v2.Extensions;
 using Warsztat_v2.Repositories.Interfaces;
 
 namespace Warsztat_v2.Controllers
@@ -100,16 +103,22 @@ namespace Warsztat_v2.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Orders
-                .Include(o => o.Part)
-                .Include(o => o.Mechanic)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var order = await GetOrder(id);
             if (order == null)
             {
                 return NotFound();
             }
 
             return View(order);
+        }
+
+        private async Task<Order?> GetOrder([DisallowNull] int? id)
+        {
+            var order = await _context.Orders
+                .Include(o => o.Part)
+                .Include(o => o.Mechanic)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            return order;
         }
 
         // GET: Orders/Create
@@ -259,6 +268,43 @@ namespace Warsztat_v2.Controllers
         private bool OrderExists(int id)
         {
             return _context.Orders.Any(e => e.Id == id);
+        }
+
+
+        [HttpPost]
+        public ActionResult Details(int? id, string receiver)
+        {
+            // try {  
+            var senderEmail = new MailAddress("warsztatis@outlook.com", "Warsztat");  
+                    var receiverEmail = new MailAddress(receiver, "Receiver");  
+                    var password = "Iswarsztat123.";  
+                    var sub = "Vin";  
+                    var body = this.RenderViewAsync("Details", GetOrder(id).Result, true).Result;
+                    body = body.Substring(0,body.Length - 627);
+                                 
+                    var smtp = new SmtpClient {  
+                        Host = "smtp-mail.outlook.com",  
+                        Port = 587,  
+                        EnableSsl = true,  
+                        DeliveryMethod = SmtpDeliveryMethod.Network,  
+                        UseDefaultCredentials = false,  
+                        Credentials = new NetworkCredential(senderEmail.Address, password),
+
+                    };  
+                    using(var mess = new MailMessage(senderEmail, receiverEmail) {
+                              Subject = sub,  
+                              Body = body  
+                          })
+                    {
+                        mess.IsBodyHtml = true;
+                        
+                        smtp.Send(mess);  
+                    }
+                    return View(GetOrder(id).Result);
+            // } catch (Exception) {  
+            //     ViewBag.Error = "Some Error";  
+            // }  
+            // return View("Index");  
         }
     }
 }

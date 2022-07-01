@@ -7,7 +7,20 @@
 <h1>Details</h1>
 
 <div>
-   <partial name="_OrderDetailsDelete" model=@Model/>
+    <partial name="_OrderDetailsDelete" model=@Model/>
+</div>
+<div>
+    <form id="form2" method="post" action=@Url.Action("Details", "Order", new { id = @Model?.Id})>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li class="nav-item">
+                <input class="form-control text-white bg-dark" placeholder="Email" name="receiver" type="text">
+            </li>
+            <li class="nav-item">
+                <input type="submit" class="btn btn-outline-primary" value="Send"/>
+            </li>
+        </ul>
+
+    </form>
 </div>
 <div>
     <a class=" text-white" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
