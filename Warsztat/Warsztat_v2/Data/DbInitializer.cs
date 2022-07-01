@@ -16,6 +16,7 @@ namespace Warsztat_v2.Data
                 return;   // DB has been seeded
             }
 
+
             var employees = new Employee[]
             {
             new Employee
@@ -168,10 +169,12 @@ namespace Warsztat_v2.Data
                         Fault = "Break system fault",
                         Client = "Bogdan Frankowski",
                         RegistrationNumber = "HPD02378",
+
                         MakeName = "VW",
                         Model_Name = "T5",
                         MechanicId=2,
                         PartId =  2,
+
                         PartPcs = 0,
                         Price = 0
                 },
@@ -193,6 +196,7 @@ namespace Warsztat_v2.Data
                         Price = 0
                 },
             };
+
 
 
             foreach (Employee employee in employees)

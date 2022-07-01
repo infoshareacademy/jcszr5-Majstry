@@ -6,73 +6,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=2.0" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=2.0"/>
     <title>@ViewData["Title"] - Warsztat_v2</title>
-    <link href="~/css/bootstrap.min.css" rel="stylesheet">    
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Warsztat_v2.styles.css" asp-append-version="true" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/slideout.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/Warsztat_v2.styles.css" asp-append-version="true"/>
 </head>
-<body class = "h-100 text-center text-white bg-dark">
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <header class = "p-3 bg-dark text-white">
-            <div class = "container">
-                <div class = "d-flex flex-wrap align-items-center justify-content-lg-start">
-                <a class= "d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/css/imageedit_9_6734632391.png"/> </a>
+<body class="h-auto text-center text-white bg-dark" style="min-height: 100%">
+@if (SignInManager.IsSignedIn(User))
+{
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-lg-start">
+                <a class="d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/css/imageedit_9_6734632391.png"/>
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link px-2 text-secondary" asp-area="" asp-controller="Home" asp-action="Index">
+                            <span style="color:white">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-2 text-secondary" asp-area="" asp-controller="Order" asp-action="Index">
+                            <span style="color:white">Order</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-2 text-secondary" asp-area="" asp-controller="Employee" asp-action="Index">
+                            <span style="color:white">Employee</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-2 text-secondary" asp-area="" asp-controller="Part" asp-action="Index">
+                            <span style="color:white">Part</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-2 text-secondary" asp-area="" asp-controller="Car" asp-action="Index">
+                            <span style="color:white">Car</span>
+                        </a>
+                    </li>
+                </ul>
+                <form id="form2" method="get" action=@Url.Action("Index", "Vin")>
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li class="nav-item">
-                            <a class="nav-link px-2 text-secondary" asp-area="" asp-controller="Home" asp-action="Index"><span style="color:white">Home</span></a>
+                        <li class = "nav-item">
+                            <input class="form-control text-white bg-dark" placeholder="VIN Decoder" name="vin" type="text">
                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link px-2 text-secondary" asp-area="" asp-controller="Order" asp-action="Index"><span style="color:white">Order</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-2 text-secondary" asp-area="" asp-controller="Employee" asp-action="Index"><span style="color:white">Employee</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-2 text-secondary" asp-area="" asp-controller="Part" asp-action="Index"><span style="color:white">Part</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-2 text-secondary" asp-area="" asp-controller="Car" asp-action="Index"><span style="color:white">Car</span></a>
+                        <li class = "nav-item">
+                            <input type="submit" class="btn btn-outline-primary" value="Search"/>
                         </li>
                     </ul>
-                    <partial name="_LoginPartial" />
-                </div>
+
+                </form>
+                <partial name="_LoginPartial"/>
             </div>
+        </div>
     </header>
-    }
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-    <div class="container">
-  <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+}
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             @if (SignInManager.IsSignedIn(User))
-                {
-                    <li class="nav-item"><a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link px-2 text-muted">Home</a></li>
-                    <li class="nav-item"><a asp-area="" asp-controller="Order" asp-action="Index" class="nav-link px-2 text-muted">Order</a></li>
-                    <li class="nav-item"><a asp-area="" asp-controller="Employee" asp-action="Index" class="nav-link px-2 text-muted">Employee</a></li>
-                    <li class="nav-item"><a asp-area="" asp-controller="Part" asp-action="Index" class="nav-link px-2 text-muted">Part</a></li>
-                    <li class="nav-item"><a asp-area="" asp-controller="Car" asp-action="Index" class="nav-link px-2 text-muted">Car</a></li>
-                }
-                else
-                {
-                    <li class="nav-item"><a asp-area="Identity" asp-page="/Account/Login" class="nav-link px-2 text-muted" >Login</a></li>
-                    <li class="nav-item"><a asp-area="Identity" asp-page="/Account/Register" class="nav-link px-2 text-muted" >Register</a></li>
-                }
-            </ul>
-    <p class="text-center text-muted">© 2022 Warsztat, Inc</p>
-  </footer>
+            {
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link px-2 text-muted">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="Order" asp-action="Index" class="nav-link px-2 text-muted">Order</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="Employee" asp-action="Index" class="nav-link px-2 text-muted">Employee</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="Part" asp-action="Index" class="nav-link px-2 text-muted">Part</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="Car" asp-action="Index" class="nav-link px-2 text-muted">Car</a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a asp-area="Identity" asp-page="/Account/Login" class="nav-link px-2 text-muted">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="Identity" asp-page="/Account/Register" class="nav-link px-2 text-muted">Register</a>
+                </li>
+            }
+        </ul>
+        <p class="text-center text-muted">© 2022 Warsztat, Inc</p>
+    </footer>
 </div>
     @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <partial name="_ValidationScriptsPartial" />
 
-    @await RenderSectionAsync("Scripts", required: false)
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

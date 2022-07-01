@@ -1,0 +1,92 @@
+﻿@model Warsztat_v2.Controllers.Result
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>VIN Decoder</h1>
+<a asp-area="" asp-controller="Vin" asp-action="VinDownload" asp-route-vin="@Model.VIN" class="btn btn-outline-warning")>Download</a>
+
+<div>
+    <hr/>
+    <table class="table text-white">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Data</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.BodyClass)</td>
+            <td>@Html.DisplayFor(model => model.BodyClass)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Doors)</td>
+            <td>@Html.DisplayFor(model => model.Doors)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.EngineCylinders)</td>
+            <td>@Html.DisplayFor(model => model.EngineCylinders)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.EngineHP)</td>
+            <td>@Html.DisplayFor(model => model.EngineHP)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.EngineKW)</td>
+            <td>@Html.DisplayFor(model => model.EngineKW)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.EngineModel)</td>
+            <td>@Html.DisplayFor(model => model.EngineModel)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.FuelTypePrimary)</td>
+            <td>@Html.DisplayFor(model => model.FuelTypePrimary)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Make)</td>
+            <td>@Html.DisplayFor(model => model.Make)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.MakeID)</td>
+            <td>@Html.DisplayFor(model => model.MakeID)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Manufacturer)</td>
+            <td>@Html.DisplayFor(model => model.Manufacturer)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.ManufacturerId)</td>
+            <td>@Html.DisplayFor(model => model.ManufacturerId)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Model)</td>
+            <td>@Html.DisplayFor(model => model.Model)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.ModelYear)</td>
+            <td>@Html.DisplayFor(model => model.ModelYear)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.PlantCountry)</td>
+            <td>@Html.DisplayFor(model => model.PlantCountry)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.SuggestedVIN)</td>
+            <td>@Html.DisplayFor(model => model.SuggestedVIN)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.VIN)</td>
+            <td>@Html.DisplayFor(model => model.VIN)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.VehicleType)</td>
+            <td>@Html.DisplayFor(model => model.VehicleType)</td>
+        </tr>
+        </tbody>
+
+    </table>
+   
+</div>

@@ -4,19 +4,26 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <div class = "d-flex text-end">
-        <a  class="nav-link px-2 text-secondary" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-        <form  class="nav-link px-2 text-secondary" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="btn btn-danger">Logout</button>
-        </form>
-    </div>
-    
-    
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li class="nav-item">
+            <button class="btn btn-outline-warning" style="margin-top: 8px; margin-left: 50px" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity?.Name!</button>
+
+        </li>
+        <li class="nav-item">
+            <form class="nav-link px-2 text-secondary" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </li>
+    </ul>
 }
 else
 {
-    <div class = "text-end">
-        <a asp-area="Identity" asp-page="/Account/Login"><input type = "button" class = "btn btn-outline-light me-2" value = "Login"></a>
-        <a asp-area="Identity" asp-page="/Account/Register"><input type = "button" class = "btn btn-warning" value= "Register"></a>
+    <div class="text-end">
+        <a asp-area="Identity" asp-page="/Account/Login">
+            <input type="button" class="btn btn-outline-light me-2" value="Login">
+        </a>
+        <a asp-area="Identity" asp-page="/Account/Register">
+            <input type="button" class="btn btn-warning" value="Register">
+        </a>
     </div>
 }
