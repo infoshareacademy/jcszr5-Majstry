@@ -22,7 +22,7 @@ namespace Warsztat_v2.Controllers
         public async Task<IActionResult> GetVehicles()
         {
             var client = new HttpClient();
-            var response = await client.GetAsync("https://vpic.nhtsa.dot.gov/api//vehicles/GetAllMakes?format=json");
+            var response = await client.GetAsync("https://vpic.nhtsa.dot.gov/api//vehicles/GetMakesForVehicleType/car?format=json");
             var vehicleResponse = await response.Content.ReadFromJsonAsync<VehicleResponse>();
             return Ok(vehicleResponse.Results[0..4]);
         }
@@ -40,6 +40,7 @@ namespace Warsztat_v2.Controllers
 
     public class VehicleResponse
     {
+        public Order Car { get; set; }
         public class Vehicle
         {
             public int Make_ID { get; set; }
@@ -49,7 +50,7 @@ namespace Warsztat_v2.Controllers
 
         public int Count { get; set; }
         public string Message { get; set; }
-        public Vehicle[] Results { get; set; }
+        public Order[] Results { get; set; }
 
     }
 }

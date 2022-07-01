@@ -9,12 +9,11 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=2.0"/>
     <title>@ViewData["Title"] - Warsztat_v2</title>
+
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/slideout.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/Warsztat_v2.styles.css" asp-append-version="true"/>
-
-
 </head>
 <body class="h-auto text-center text-white bg-dark" style="min-height: 100%">
 @if (SignInManager.IsSignedIn(User))
@@ -107,11 +106,10 @@
         <p class="text-center text-muted">© 2022 Warsztat, Inc</p>
     </footer>
 </div>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-<partial name="_ValidationScriptsPartial"/>
-
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <partial name="_ValidationScriptsPartial" />
 
 @await RenderSectionAsync("Scripts", required: false)
 </body>

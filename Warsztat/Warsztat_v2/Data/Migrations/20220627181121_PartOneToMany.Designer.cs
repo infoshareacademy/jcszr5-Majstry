@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Warsztat_v2.Data;
 
@@ -11,9 +12,10 @@ using Warsztat_v2.Data;
 namespace WarsztatAuthentication.Data.Migrations
 {
     [DbContext(typeof(ServiceContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220627181121_PartOneToMany")]
+    partial class PartOneToMany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,9 +271,6 @@ namespace WarsztatAuthentication.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Fault")
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
@@ -292,6 +291,9 @@ namespace WarsztatAuthentication.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PartId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PartId1")
                         .HasColumnType("int");
 
                     b.Property<int?>("PartPcs")
@@ -316,6 +318,8 @@ namespace WarsztatAuthentication.Data.Migrations
                     b.HasIndex("MechanicId");
 
                     b.HasIndex("PartId");
+
+                    b.HasIndex("PartId1");
 
                     b.ToTable("Orders");
                 });
@@ -408,9 +412,18 @@ namespace WarsztatAuthentication.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Warsztat.BLL.Models.Part", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("PartId1");
+
                     b.Navigation("Mechanic");
 
                     b.Navigation("Part");
+                });
+
+            modelBuilder.Entity("Warsztat.BLL.Models.Part", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

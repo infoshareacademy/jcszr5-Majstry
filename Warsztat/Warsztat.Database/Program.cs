@@ -10,51 +10,6 @@ using Warsztat_v2.Data;
 ServiceContext context = new ServiceContext();
 
 
-var cars = new Car[]
-        {
-            new Car
-            {
-                CarModel = "A6",
-                CarMark = "Audi",
-                YearProduction = 2017
-            },
-            new Car
-            {
-                CarModel = "Laguna",
-                CarMark = "Renault",
-                YearProduction = 2008
-            },
-            new Car
-            {
-                CarModel= "407",
-                CarMark= "Peugeot",
-                YearProduction= 2004
-            },
-            new Car
-            {
-                CarModel = "Corolla",
-                CarMark = "Toyota",
-                YearProduction = 2014
-            },
-            new Car
-            {
-                CarModel = "C5",
-                CarMark = "Citroen",
-                YearProduction = 2020
-            },
-            new Car
-            {
-                CarModel = "E60",
-                CarMark = "BMW",
-                YearProduction = 2006
-            },
-            new Car
-            {
-                CarModel = "A8",
-                CarMark = "Audi",
-                YearProduction = 2013
-            }
-        };
 
 var employees = new Employee[]
     {
@@ -149,55 +104,91 @@ var parts = new Part[]
 
 var orders = new Order[]
 {
-                new Order
+                               new Order
                     {
-                        //OrderNumber = "LCH32145/2022/4",
+                        OrderNumber = "LCH32145/2022/4",
                         StartTime = DateTime.Parse("2022-03-02"),
+                        EndTime = DateTime.Parse("2022-07-17"),
                         Status = Warsztat.BLL.Enums.Status.Cancelled,
                         Fault = "Wheels change",
                         Client = "Iwona Krajewska",
                         RegistrationNumber = "LCH32145",
-                        Car = context.Cars.FirstOrDefault(c=>c.Id == 2),
-                        //Mechanic = context.Employees.FirstOrDefault(e=>e.Role == Warsztat.BLL.Enums.Role.Mechanic),
-                        Parts = parts,
+                        MakeName = "Mercedes",
+                        Model_Name = "Sprinter",
+                        MechanicId = 1,
+                        PartId =  4,
                         PartPcs = 4,
                         Price = 3060
                     },
-                new Order
-                {
-                        //OrderNumber = "HPD32819/2022/3",
+                    new Order
+                    {
+                        OrderNumber = "HYE54632/2022/7",
+                        StartTime = DateTime.Parse("2022-06-15"),
+                        EndTime = DateTime.Parse("2022-07-23"),
+                        Status = Warsztat.BLL.Enums.Status.Waiting,
+                        Fault = "Computer diagnostic",
+                        Client = "Robert Nawrot",
+                        RegistrationNumber = "HYE54632",
+                        MakeName = "Toyota",
+                        Model_Name = "Hilux",
+                        MechanicId = 2,
+                        PartId =  4,
+                        PartPcs = 6,
+                        Price = 1750
+                    },
+
+                 new Order
+                 {
+                        OrderNumber = "HPD32819/2022/3",
                         StartTime = DateTime.Parse("2022-03-11"),
+                        EndTime = DateTime.Parse("2022-08-23"),
                         Status = Warsztat.BLL.Enums.Status.InProgress,
                         Fault = "Engine fault",
                         Client = "Zbigniew Stonoga",
                         RegistrationNumber = "HPD32819",
-                        Car =  context.Cars.FirstOrDefault(c=>c.Id == 5),
-                        //Mechanic = context.Employees.FirstOrDefault(e=>e.Role == Warsztat.BLL.Enums.Role.Mechanic),
-                        Parts =  parts,
+                        MakeName = "Audi",
+                        Model_Name = "A3",
+                        MechanicId=3,
+                        PartId =  3,
                         PartPcs = 5,
                         Price = 370
-                },
+                 },
+
                 new Order
                 {
-                       //OrderNumber = "HPD02378/2022/2",
+                        OrderNumber = "HPD02378/2022/2",
                         StartTime = DateTime.Parse("2022-03-11"),
+                        EndTime = DateTime.Parse("2022-09-11"),
                         Status = Warsztat.BLL.Enums.Status.Waiting,
                         Fault = "Break system fault",
                         Client = "Bogdan Frankowski",
                         RegistrationNumber = "HPD02378",
-                        Car = context.Cars.FirstOrDefault(c=>c.Id == 4),
-                        //Mechanic = context.Employees.FirstOrDefault(e=>e.Role == Warsztat.BLL.Enums.Role.Mechanic),
-                        Parts = parts,
+                        MakeName = "VW",
+                        Model_Name = "T5",
+                        MechanicId=2,
+                        PartId =  2,
+                        PartPcs = 0,
+                        Price = 0
+                },
+
+                new Order
+                {
+                        OrderNumber = "WMM02378/2022/2",
+                        StartTime = DateTime.Parse("2022-05-01"),
+                        EndTime = DateTime.Parse("2022-09-14"),
+                        Status = Warsztat.BLL.Enums.Status.Finished,
+                        Fault = " computer diagnostics",
+                        Client = "Jan Kowalski",
+                        RegistrationNumber = "WMM02378",
+                        MakeName = "Renault",
+                        Model_Name = "Laguna",
+                        MechanicId=1,
+                        PartId =  1,
                         PartPcs = 0,
                         Price = 0
                 },
 };
 
-foreach (Car car in cars)
-{
-    context.Cars.Add(car);
-    context.SaveChanges();
-}
 
 foreach (Employee employee in employees)
 {
@@ -217,5 +208,3 @@ foreach (Order order in orders)
     context.SaveChanges();
 }
 
-//    //context.SaveChanges();
-////}

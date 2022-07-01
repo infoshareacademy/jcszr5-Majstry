@@ -9,16 +9,11 @@ namespace Warsztat.BLL.Services
         public float GetCostOfOrder(Order order)
         {
             float price = 0;
-            //var part = OrderList.FirstOrDefault(p => p.Part == order.Part);
-            //order.Price = (float)(order.PartPcs * part.Price);
+          //  var part = OrderList.FirstOrDefault(p => p.Part == order.Part);
+          //  order.Price = (float)(order.PartPcs * part.Price);
             price = order.Price;
             return price;
         }
-
-        //public string OrderNumberGenerator(Order order)
-        //{
-        //    return order.RegistrationNumber + "/" + order.StartTime.ToString("yyyy") + "/" + order.Id.ToString();
-        //}
 
         public  string OrderNumberGenerator(string registrationNumber,DateTime startTime, int id)
         {

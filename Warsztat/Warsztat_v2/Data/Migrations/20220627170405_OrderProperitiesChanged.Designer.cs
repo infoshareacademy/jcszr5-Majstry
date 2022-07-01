@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Warsztat_v2.Data;
 
@@ -11,9 +12,10 @@ using Warsztat_v2.Data;
 namespace WarsztatAuthentication.Data.Migrations
 {
     [DbContext(typeof(ServiceContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220627170405_OrderProperitiesChanged")]
+    partial class OrderProperitiesChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,9 +271,6 @@ namespace WarsztatAuthentication.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Fault")
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
@@ -403,7 +402,7 @@ namespace WarsztatAuthentication.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Warsztat.BLL.Models.Part", "Part")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("PartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -411,6 +410,11 @@ namespace WarsztatAuthentication.Data.Migrations
                     b.Navigation("Mechanic");
 
                     b.Navigation("Part");
+                });
+
+            modelBuilder.Entity("Warsztat.BLL.Models.Part", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }
