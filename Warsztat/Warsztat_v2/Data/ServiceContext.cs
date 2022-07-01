@@ -60,6 +60,6 @@ namespace Warsztat_v2.Data
         //        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         //}
 
-        public DbSet<Warsztat_v2.Controllers.Result>? Result { get; set; }
+        public DbSet<Result>? Result { get; set; }
     }
 }

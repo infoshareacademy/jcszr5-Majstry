@@ -1,0 +1,129 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Warsztat_v2.Controllers.Result
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Decoded VIN</title>
+    <link rel="stylesheet" href="~/css/pdf.css" asp-append-version="true"/>
+</head>
+<body>
+<div class="page-content container">
+    <div class="page-header text-blue-d2">
+        <h1 class="page-title text-secondary-d1">
+            Decoded VIN
+            <small class="page-info">
+                <i class="fa fa-angle-double-right text-80"></i>
+                @Model.VIN
+            </small>
+        </h1>
+    </div>
+
+    <div class="container px-0">
+        <div class="row mt-4">
+            <div class="col-12 col-lg-12">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center text-150">
+                            <i class="fa fa-book fa-2x text-success-m2 mr-1"></i>
+                            <IMG src="css/imageedit_9_6734632391.png">
+                        </div>
+                    </div>
+                </div>
+                <!-- .row -->
+
+                <hr class="row brc-default-l1 mx-n1 mb-4" />
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div>
+                            <span class="text-sm text-grey-m2 align-middle">To:</span>
+                            <span class="text-600 text-110 text-blue align-middle">@User.Identity?.Name</span>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+
+                    <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
+                        <hr class="d-sm-none" />
+                        <div class="text-grey-m2">
+                            <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                                Raport
+                            </div>
+
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">VIN:</span> @Model.VIN</div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+                <div class="mt-4">
+                    <div class="text-95 text-secondary-d3">
+                        <div class="row mb-2 mb-sm-0 py-25">
+                            <div class="col-9 col-sm-5">@(Html.DisplayNameFor(model => model.Make))</div>
+                            <div class="d-none d-sm-block col-2"></div>
+                            <div class="col-9 text-secondary-d2">@Html.DisplayFor(model => model.Make)</div>
+                        </div>
+
+                        <div class="row mb-2 mb-sm-0 py-25 bgc-default-l4">
+                            <div class="col-9 col-sm-5">@Html.DisplayNameFor(model => model.Model)</div>
+                            <div class="d-none d-sm-block col-2"></div>
+                            <div class="col-9 text-secondary-d2">@Html.DisplayFor(model => model.Model)</div>
+                        </div>
+                        
+                        <div class="row mb-2 mb-sm-0 py-25">
+                            <div class="col-9 col-sm-5">@Html.DisplayNameFor(model => model.ModelYear)</div>
+                            <div class="d-none d-sm-block col-2"></div>
+                            <div class="col-9 text-secondary-d2">@Html.DisplayFor(model => model.ModelYear)</div>
+                        </div>
+
+                        <div class="row mb-2 mb-sm-0 py-25 bgc-default-l4">
+                            <div class="col-9 col-sm-5">@Html.DisplayNameFor(model => model.EngineModel)</div>
+                            <div class="d-none d-sm-block col-2"></div>
+                            <div class="col-9 text-secondary-d2">@Html.DisplayFor(model => model.EngineModel)</div>
+                        </div>
+                    
+                        <div class="row mb-2 mb-sm-0 py-25">
+                            <div class="col-9 col-sm-5">@Html.DisplayNameFor(model => model.EngineHP)</div>
+                            <div class="d-none d-sm-block col-2"></div>
+                            <div class="col-9 text-secondary-d2">@Html.DisplayFor(model => model.EngineHP)</div>
+                        </div>
+
+                        <div class="row mb-2 mb-sm-0 py-25 bgc-default-l4">
+                            <div class="col-9 col-sm-5">@Html.DisplayNameFor(model => model.VehicleType)</div>
+                            <div class="d-none d-sm-block col-2"></div>
+                            <div class="col-9 text-secondary-d2">@Html.DisplayFor(model => model.VehicleType)</div>
+                        </div>
+                        
+                        <div class="row mb-2 mb-sm-0 py-25">
+                            <div class="col-9 col-sm-5">@Html.DisplayNameFor(model => model.BodyClass)</div>
+                            <div class="d-none d-sm-block col-2"></div>
+                            <div class="col-9 text-secondary-d2">@Html.DisplayFor(model => model.BodyClass)</div>
+                        </div>
+                    </div>
+
+                    <div class="row border-b-2 brc-default-l2"></div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
+                            Niemiec płakał jak sprzedawał...
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div>
+                        <span class="text-secondary-d1 text-105">Thank you for choosing our service</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
