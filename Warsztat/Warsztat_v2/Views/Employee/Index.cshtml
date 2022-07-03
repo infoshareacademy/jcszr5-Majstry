@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Warsztat.BLL.Models.Employee>
+﻿@model IEnumerable<Warsztat_v2.ViewModels.EmployeeDto>
 
 @{
-    ViewData["Title"] = "Employee";
+    ViewData["Title"] = "EmployeeDto";
 }
 
 <h1>Employees</h1>
@@ -17,14 +17,14 @@
         <tr>
             
             <th>
-                @Html.ActionLink( "First Name", "Index" , new { sortOrder = ViewBag.FirstNameSortParm }, new {@class="text-white" })
+                <label asp-for="First().Name"></label>
             </th>
             <th>
-                @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.LastNameSortParm}, new {@class="text-white"} )
+                <label asp-for="First().Role"></label>
             </th>
             
             <th>
-                @Html.ActionLink( "Role", "Index", new { sortOrder = ViewBag.RoleSortParm }, new {@class="text-white"})
+               <label asp-for="First().Age"></label>
             </th>
             <th></th>
         </tr>
@@ -34,14 +34,14 @@
         <tr>
             
             <td>
-                @item.FirstName
+                @item.Name
             </td>
             <td>
-                @item.LastName
+                @item.Role
             </td>
             
             <td>
-                @item.Role
+                @item.Age
             </td>
             <td>
                 <a class=" text-white" asp-action = "Edit" asp-route-id = "@item.Id">Edit</a> |

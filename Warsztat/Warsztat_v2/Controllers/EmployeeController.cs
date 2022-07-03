@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Warsztat.BLL.Models;
 using Warsztat_v2.Data;
 using Warsztat_v2.Repositories.Interfaces;
+using Warsztat_v2.ViewModels;
 
 namespace Warsztat_v2.Controllers
 {
@@ -12,46 +14,49 @@ namespace Warsztat_v2.Controllers
     {
         private readonly ServiceContext _context;
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly IMapper _mapper;
 
-        public EmployeeController(ServiceContext context, IEmployeeRepository employeeRepository)
+        public EmployeeController(ServiceContext context, IEmployeeRepository employeeRepository, IMapper mapper)
         {
             _context = context;
             _employeeRepository = employeeRepository;
+            _mapper = mapper;
         }
 
         // GET: Employees
-        public async Task<IActionResult> Index(string sortOrder)
+        public ActionResult Index(string sortOrder)
         {
-            ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.RoleSortParm = sortOrder == "Role" ? "role_desc" : "Role";
-            ViewBag.FirstNameSortParm = sortOrder == "FirstName" ? "firstName_desc" : "FirstName";
-            var emploees = from e in _context.Employees select e;
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    emploees = emploees.OrderByDescending(e => e.LastName);
-                    break;
-                case "FirstName":
-                    emploees = emploees.OrderBy(e => e.FirstName);
-                    break;
-                case "firstName_desc":
-                    emploees = emploees.OrderByDescending(e => e.FirstName);
-                    break;
-                case "Role":
-                    emploees = emploees.OrderBy(e => e.Role);
-                    break;
-                case "role_desc":
-                    emploees = emploees.OrderByDescending(e => e.Role);
-                    break;
-                default:
-                    emploees = emploees.OrderBy(e => e.LastName);
-                    break;
-            }
-            ClearTable();
-            _employeeRepository.AddFinishedOrder();
-            _context.SaveChanges();
-
-            return View(await emploees.ToListAsync());
+            //ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            //ViewBag.RoleSortParm = sortOrder == "Role" ? "role_desc" : "Role";
+            //ViewBag.FirstNameSortParm = sortOrder == "FirstName" ? "firstName_desc" : "FirstName";
+            //var emploees = from e in _context.Employees select e;
+            //switch (sortOrder)
+            //{
+            //    case "name_desc":
+            //        emploees = emploees.OrderByDescending(e => e.LastName);
+            //        break;
+            //    case "FirstName":
+            //        emploees = emploees.OrderBy(e => e.FirstName);
+            //        break;
+            //    case "firstName_desc":
+            //        emploees = emploees.OrderByDescending(e => e.FirstName);
+            //        break;
+            //    case "Role":
+            //        emploees = emploees.OrderBy(e => e.Role);
+            //        break;
+            //    case "role_desc":
+            //        emploees = emploees.OrderByDescending(e => e.Role);
+            //        break;
+            //    default:
+            //        emploees = emploees.OrderBy(e => e.LastName);
+            //        break;
+            //}
+            //ClearTable();
+            //_employeeRepository.AddFinishedOrder();
+            //_context.SaveChanges();
+            List<Employee> employees = _context.Employees.ToList();
+            return View(_mapper.Map<List<Employee>, List<EmployeeDto>>(employees));
+                         //_mapper.Map<List<Car>, List<CarDto>>(cars));
         }
 
         // GET: Employees/Details/5
@@ -64,13 +69,14 @@ namespace Warsztat_v2.Controllers
 
             var employee = await _context.Employees
                 .FirstOrDefaultAsync(m => m.Id == id);
+            //employee = ;
             if (employee == null)
             {
                 return NotFound();
             }
 
             //return View(employee);
-            return  Ok(employee);
+            return  View(_mapper.Map<Employee, EmployeeDto>(employee));
         }
 
         // GET: Employees/Create
@@ -84,16 +90,19 @@ namespace Warsztat_v2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,DateOfBirth,Salary,Role,FinishedOrder")] Employee employee)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,DateOfBirth,Salary,Role")]CreateEmployeeDto employee)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(employee);
+            //if (ModelState.IsValid)
+            
+               _employeeRepository.Add(_mapper.Map<Employee>(employee));
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(employee);
+            
+            return RedirectToAction(nameof(Index));
+
         }
+
 
         // GET: Employees/Edit/5
         public async Task<IActionResult> Edit(int? id)

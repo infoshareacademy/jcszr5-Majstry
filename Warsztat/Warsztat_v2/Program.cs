@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using Warsztat.BLL.Services;
 using Warsztat.BLL.Services.Interfaces;
 using Warsztat_v2.Data;
@@ -16,6 +18,7 @@ builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddTransient<IPartService, PartService>();
 builder.Services.AddTransient<ICarRepository, CarRepository>();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 
@@ -62,7 +65,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("pl-PL"),
+    SupportedCultures = new List<CultureInfo> { new CultureInfo("pl-PL") },
+    SupportedUICultures = new List<CultureInfo> { new CultureInfo("pl-PL") }
+});
 
 CreateDbIfNotExists(app);//
 //ServiceContext context = new ServiceContext();
