@@ -1,0 +1,125 @@
+@model IEnumerable<Warsztat_v2.Controllers.Result>
+
+@{
+    ViewData["Title"] = "PdfView";
+}
+
+<h1>PdfView</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BodyClass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Doors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EngineCylinders)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EngineHP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EngineKW)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EngineModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuelTypePrimary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Make)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MakeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManufacturerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlantCountry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SuggestedVIN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VIN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BodyClass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EngineCylinders)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EngineHP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EngineKW)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EngineModel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuelTypePrimary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Make)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MakeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManufacturerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlantCountry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuggestedVIN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VIN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleType)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>

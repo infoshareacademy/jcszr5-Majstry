@@ -47,11 +47,6 @@
                             <span style="color:white">Part</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-2 text-secondary" asp-area="" asp-controller="Car" asp-action="Index">
-                            <span style="color:white">Car</span>
-                        </a>
-                    </li>
                 </ul>
                 <form id="form2" method="get" action=@Url.Action("Index", "Vin")>
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -90,9 +85,6 @@
                 </li>
                 <li class="nav-item">
                     <a asp-area="" asp-controller="Part" asp-action="Index" class="nav-link px-2 text-muted">Part</a>
-                </li>
-                <li class="nav-item">
-                    <a asp-area="" asp-controller="Car" asp-action="Index" class="nav-link px-2 text-muted">Car</a>
                 </li>
             }
             else

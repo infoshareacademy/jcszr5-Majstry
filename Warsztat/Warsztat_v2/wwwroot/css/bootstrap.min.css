@@ -8,4 +8,11 @@ logo-resize {
     height: 120px;
     width: 200px;
 }
+backgroundhome {
+    /* Background pattern from Toptal Subtle Patterns */
+    height: 400px;
+    width: 100%;
+    background-image: url("./css/workshop.jpg");
+}
+
 /*# sourceMappingURL=bootstrap.min.css.map */
